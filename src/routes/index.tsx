@@ -7,7 +7,7 @@ import { ModuleCard } from "@/components/bio/ModuleCard";
 import { ProgressPanel } from "@/components/bio/ProgressPanel";
 import { PulseLine } from "@/components/bio/PulseLine";
 import { Button } from "@/components/ui/button";
-import { MODULES } from "@/lib/modules";
+import { MODULES, getModule } from "@/lib/modules";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -230,7 +230,8 @@ function StatsStrip() {
 }
 
 function Modules() {
-  const [featured, ...rest] = MODULES;
+  const featured = getModule("anatomy");
+  const rest = MODULES.filter((m) => m.id !== featured.id);
   return (
     <section className="mx-auto mt-24 max-w-7xl px-5" id="learn">
       <SectionHeading
