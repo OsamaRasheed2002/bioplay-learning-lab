@@ -12,13 +12,13 @@ import { MODULES, getModule } from "@/lib/modules";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "BioPlay — Explore the Science Behind the Human Body" },
+      { title: "BEPlay — Explore the Science Behind the Human Body" },
       {
         name: "description",
         content:
-          "BioPlay makes biomedical engineering fun and visual: anatomy, biosignals, medical devices and interactive challenges for university students.",
+          "BEPlay makes biomedical engineering fun and visual: anatomy, biosignals, medical devices and interactive challenges for university students.",
       },
-      { property: "og:title", content: "BioPlay — Explore the Science Behind the Human Body" },
+      { property: "og:title", content: "BEPlay — Explore the Science Behind the Human Body" },
       {
         property: "og:description",
         content:

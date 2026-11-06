@@ -6,9 +6,9 @@ import { ModulePage } from "@/components/bio/ModulePage";
 export const Route = createFileRoute("/challenges")({
   head: () => ({
     meta: [
-      { title: "Interactive Challenges — BioPlay" },
+      { title: "Interactive Challenges — BEPlay" },
       { name: "description", content: "Quizzes, diagnosis puzzles and design missions that earn you XP." },
-      { property: "og:title", content: "Interactive Challenges — BioPlay" },
+      { property: "og:title", content: "Interactive Challenges — BEPlay" },
       { property: "og:description", content: "Quizzes, diagnosis puzzles and design missions that earn you XP." },
     ],
   }),

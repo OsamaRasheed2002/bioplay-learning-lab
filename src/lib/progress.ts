@@ -36,8 +36,8 @@ export const STARTER_PROGRESS: Progress = {
 };
 
 // v2: earlier builds seeded a fake starter profile, so old browsers start clean.
-const KEY = "bioplay.progress.v2";
-const EVENT = "bioplay:progress";
+const KEY = "beplay.progress.v2";
+const EVENT = "beplay:progress";
 
 export function levelFromXp(xp: number) {
   const level = Math.floor(xp / XP_PER_LEVEL) + 1;

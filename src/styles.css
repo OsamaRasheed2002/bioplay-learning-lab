@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * BioPlay design system.
+ * BEPlay design system.
  * Warm off-white canvas, soft mint / lavender / pale-blue accents,
  * deep ink text. All colors are oklch tokens.
  */
@@ -44,7 +44,7 @@
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
 
-  /* BioPlay accents */
+  /* BEPlay accents */
   --color-mint: var(--mint);
   --color-mint-soft: var(--mint-soft);
   --color-mint-deep: var(--mint-deep);

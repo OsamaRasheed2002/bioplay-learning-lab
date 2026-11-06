@@ -81,13 +81,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "BioPlay — Learn Biomedical Engineering by Playing" },
+      { title: "BEPlay — Learn Biomedical Engineering by Playing" },
       {
         name: "description",
         content: "An interactive, visual biomedical engineering learning platform for students.",
       },
-      { name: "author", content: "BioPlay" },
-      { property: "og:title", content: "BioPlay — Learn Biomedical Engineering by Playing" },
+      { name: "author", content: "BEPlay" },
+      { property: "og:title", content: "BEPlay — Learn Biomedical Engineering by Playing" },
       {
         property: "og:description",
         content: "An interactive, visual biomedical engineering learning platform for students.",
@@ -106,7 +106,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", type: "image/png", href: "/favicon.png", sizes: "64x64" },
+      {
+        rel: "apple-touch-icon",
+        type: "image/png",
+        href: "/apple-touch-icon.png",
+        sizes: "180x180",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -121,7 +127,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(localStorage.getItem("bioplay.theme")==="light")document.documentElement.classList.remove("dark")}catch(e){}`,
+            __html: `try{if(localStorage.getItem("beplay.theme")==="light")document.documentElement.classList.remove("dark")}catch(e){}`,
           }}
         />
         <HeadContent />
