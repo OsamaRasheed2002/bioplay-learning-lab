@@ -65,19 +65,33 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
         </div>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {m.topics.map((t, i) => (
-            <div
-              key={t}
-              style={{ animationDelay: `${i * 80}ms` }}
-              className="animate-fade-up rounded-3xl border border-border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-float"
-            >
-              <div className={cn("mb-4 grid size-10 place-items-center rounded-2xl font-mono text-sm font-bold", tone.bg)}>
-                {String(i + 1).padStart(2, "0")}
+          {m.topics.map((t, i) => {
+            const link = m.topicLinks?.[t];
+            const body = (
+              <>
+                <div className={cn("mb-4 grid size-10 place-items-center rounded-2xl font-mono text-sm font-bold", tone.bg)}>
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="font-display text-lg font-semibold">{t}</div>
+                <div className={cn("mt-1 text-xs", link ? "font-semibold text-mint-deep" : "text-muted-foreground")}>
+                  Unit {i + 1} · {link ? "Explore now →" : "coming soon"}
+                </div>
+              </>
+            );
+            const cls = cn(
+              "animate-fade-up block rounded-3xl border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-float",
+              link ? "border-mint" : "border-border",
+            );
+            return link ? (
+              <Link key={t} to={link} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
+                {body}
+              </Link>
+            ) : (
+              <div key={t} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
+                {body}
               </div>
-              <div className="font-display text-lg font-semibold">{t}</div>
-              <div className="mt-1 text-xs text-muted-foreground">Unit {i + 1} · coming soon</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
