@@ -24,6 +24,7 @@ export type Progress = {
   achievements: string[];
   completedTopics: string[];
   dailyAnsweredOn: string | null;
+  dailyChoice: number | null;
 };
 
 // Everyone starts from zero: no XP, no badges, no finished topics.
@@ -33,6 +34,7 @@ export const STARTER_PROGRESS: Progress = {
   achievements: [],
   completedTopics: [],
   dailyAnsweredOn: null,
+  dailyChoice: null,
 };
 
 // v2: earlier builds seeded a fake starter profile, so old browsers start clean.
@@ -61,8 +63,39 @@ export function loadProgress(): Progress {
   }
 }
 
-export function todayKey() {
-  return new Date().toISOString().slice(0, 10);
+/** Local calendar date as YYYY-MM-DD (changes at the user's midnight). */
+export function todayKey(date: Date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+export function yesterdayKey(date: Date = new Date()) {
+  return todayKey(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1));
+}
+
+export const DAILY_XP = 20;
+
+/** Streak shown right now: drops to 0 once a whole day was missed. */
+export function currentStreak(p: Progress, now: Date = new Date()) {
+  if (p.dailyAnsweredOn === todayKey(now) || p.dailyAnsweredOn === yesterdayKey(now)) return p.streak;
+  return 0;
+}
+
+/** Apply today's daily answer: +XP and streak only once per day. */
+export function answerDaily(p: Progress, choice: number, now: Date = new Date()): Progress {
+  const today = todayKey(now);
+  if (p.dailyAnsweredOn === today) return p;
+  const streak = p.dailyAnsweredOn === yesterdayKey(now) ? p.streak + 1 : 1;
+  return {
+    ...p,
+    xp: p.xp + DAILY_XP,
+    streak,
+    dailyAnsweredOn: today,
+    dailyChoice: choice,
+    achievements: p.achievements.includes("pulse-check") ? p.achievements : [...p.achievements, "pulse-check"],
+  };
 }
 
 export function useProgress() {
