@@ -17,6 +17,8 @@ export type LearningModule = {
   lessons: number;
   minutes: number;
   topics: string[];
+  /** Topics that already have a lesson page. */
+  topicLinks?: Partial<Record<string, "/anatomy/heart">>;
 };
 
 export const MODULES: LearningModule[] = [
@@ -32,6 +34,7 @@ export const MODULES: LearningModule[] = [
     lessons: 24,
     minutes: 180,
     topics: ["Cardiovascular system", "Respiratory mechanics", "Nervous system", "Musculoskeletal"],
+    topicLinks: { "Cardiovascular system": "/anatomy/heart" },
   },
   {
     id: "signals",
