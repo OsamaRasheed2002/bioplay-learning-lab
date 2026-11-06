@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Sparkles, X } from "lucide-react";
+import { Menu, Moon, Sparkles, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { BioLogo } from "@/components/bio/BioLogo";
@@ -21,6 +21,19 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const { progress } = useProgress();
   const { level } = levelFromXp(progress.xp);
+
+  const [dark, setDark] = useState(true);
+  useEffect(() => {
+    setDark(document.documentElement.classList.contains("dark"));
+  }, []);
+  const toggleTheme = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    try {
+      localStorage.setItem("bioplay.theme", next ? "dark" : "light");
+    } catch {}
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -66,6 +79,14 @@ export function SiteHeader() {
               Lv {level}
             </span>
           </Link>
+          <Button
+            variant="glass"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {dark ? <Sun /> : <Moon />}
+          </Button>
           <Button
             variant="glass"
             size="icon"
