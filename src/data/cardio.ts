@@ -1,7 +1,14 @@
+import plasmaImg from "@/assets/blood-plasma.jpg";
+import redCellsImg from "@/assets/blood-red-cells.jpg";
+import whiteCellsImg from "@/assets/blood-white-cells.jpg";
+import plateletsImg from "@/assets/blood-platelets.jpg";
+
 export type BloodComponent = {
   name: string;
   share: string;
   tone: "peach" | "sky" | "lavender" | "mint";
+  image: string;
+  alt: string;
   what: string;
   job: string;
   engineering: string;
@@ -12,6 +19,8 @@ export const BLOOD_COMPONENTS: BloodComponent[] = [
     name: "Plasma",
     share: "~55% of blood",
     tone: "peach",
+    image: plasmaImg,
+    alt: "A glass test tube of pale straw-coloured blood plasma",
     what: "A straw-coloured liquid that is about 92% water, plus proteins (albumin, globulins, fibrinogen), salts, glucose, hormones and waste.",
     job: "Carries cells, nutrients, hormones and CO₂ around the body and keeps blood pressure and pH stable.",
     engineering: "Dialysis machines clean plasma by passing it across a semi-permeable membrane.",
@@ -20,6 +29,8 @@ export const BLOOD_COMPONENTS: BloodComponent[] = [
     name: "Red blood cells (erythrocytes)",
     share: "~45% of blood",
     tone: "sky",
+    image: redCellsImg,
+    alt: "Disc-shaped red blood cells floating in plasma",
     what: "Disc-shaped cells with no nucleus, packed with haemoglobin — an iron-containing protein. Each lives about 120 days.",
     job: "Pick up oxygen in the lungs and deliver it to tissues, then help carry CO₂ back.",
     engineering: "Pulse oximeters shine red and infrared light through a finger to measure how much haemoglobin carries oxygen.",
@@ -28,6 +39,8 @@ export const BLOOD_COMPONENTS: BloodComponent[] = [
     name: "White blood cells (leukocytes)",
     share: "<1% of blood",
     tone: "lavender",
+    image: whiteCellsImg,
+    alt: "Large white blood cells with lobed nuclei among smaller red cells",
     what: "Nucleated immune cells: neutrophils, lymphocytes, monocytes, eosinophils and basophils.",
     job: "Find and destroy bacteria, viruses and damaged cells, and produce antibodies.",
     engineering: "Flow cytometers count and sort white cells by scattering laser light off each one.",
@@ -36,6 +49,8 @@ export const BLOOD_COMPONENTS: BloodComponent[] = [
     name: "Platelets (thrombocytes)",
     share: "<1% of blood",
     tone: "mint",
+    image: plateletsImg,
+    alt: "Activated platelets with spiky projections caught in fibrin threads",
     what: "Tiny cell fragments broken off from large bone-marrow cells (megakaryocytes). Live about 7–10 days.",
     job: "Stick to damaged vessel walls and, with fibrin, form a clot that stops bleeding.",
     engineering: "Blood-contacting devices like stents and valves are coated to stop platelets clotting on them.",

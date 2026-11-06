@@ -37,14 +37,19 @@ function BloodPage() {
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
         {BLOOD_COMPONENTS.map((c, i) => (
-          <div key={c.name} style={{ animationDelay: `${i * 80}ms` }} className="animate-fade-up rounded-4xl border border-border bg-card p-6 shadow-soft">
-            <span className={cn("rounded-full px-3 py-1 font-mono text-xs", TONE_CLASSES[c.tone].soft, TONE_CLASSES[c.tone].text)}>{c.share}</span>
-            <h2 className="mt-3 text-2xl font-bold">{c.name}</h2>
+          <div key={c.name} style={{ animationDelay: `${i * 80}ms` }} className="animate-fade-up overflow-hidden rounded-4xl border border-border bg-card shadow-soft">
+            <div className="relative">
+              <img src={c.image} alt={c.alt} loading="lazy" width={1024} height={768} className="aspect-[4/3] w-full object-cover" />
+              <span className={cn("absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-xs backdrop-blur-sm", TONE_CLASSES[c.tone].soft, TONE_CLASSES[c.tone].text)}>{c.share}</span>
+            </div>
+            <div className="p-6">
+            <h2 className="text-2xl font-bold">{c.name}</h2>
             <p className="mt-3 text-sm"><span className="font-semibold">What it is: </span><span className="text-muted-foreground">{c.what}</span></p>
             <p className="mt-2 text-sm"><span className="font-semibold">Function: </span><span className="text-muted-foreground">{c.job}</span></p>
             <div className="mt-4 rounded-2xl bg-lavender-soft p-3 text-sm">
               <div className="mb-1 flex items-center gap-1.5 font-semibold text-lavender-deep"><Cpu className="size-4" /> Engineering link</div>
               {c.engineering}
+            </div>
             </div>
           </div>
         ))}
