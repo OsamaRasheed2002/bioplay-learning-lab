@@ -16,6 +16,7 @@ import { Route as ConceptsRouteImport } from './routes/concepts'
 import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as SignalsRouteImport } from './routes/signals'
+import { Route as AnatomyHeartRouteImport } from './routes/anatomy_.heart'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyHeartRoute = AnatomyHeartRouteImport.update({
+  id: '/anatomy_/heart',
+  path: '/anatomy/heart',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/devices': typeof DevicesRoute
   '/progress': typeof ProgressRoute
   '/signals': typeof SignalsRoute
+  '/anatomy/heart': typeof AnatomyHeartRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/devices': typeof DevicesRoute
   '/progress': typeof ProgressRoute
   '/signals': typeof SignalsRoute
+  '/anatomy/heart': typeof AnatomyHeartRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/devices': typeof DevicesRoute
   '/progress': typeof ProgressRoute
   '/signals': typeof SignalsRoute
+  '/anatomy_/heart': typeof AnatomyHeartRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/devices'
     | '/progress'
     | '/signals'
+    | '/anatomy/heart'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/devices'
     | '/progress'
     | '/signals'
+    | '/anatomy/heart'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/devices'
     | '/progress'
     | '/signals'
+    | '/anatomy_/heart'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   DevicesRoute: typeof DevicesRoute
   ProgressRoute: typeof ProgressRoute
   SignalsRoute: typeof SignalsRoute
+  AnatomyHeartRoute: typeof AnatomyHeartRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/heart': {
+      id: '/anatomy_/heart'
+      path: '/anatomy/heart'
+      fullPath: '/anatomy/heart'
+      preLoaderRoute: typeof AnatomyHeartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   DevicesRoute: DevicesRoute,
   ProgressRoute: ProgressRoute,
   SignalsRoute: SignalsRoute,
+  AnatomyHeartRoute: AnatomyHeartRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
