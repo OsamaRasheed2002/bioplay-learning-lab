@@ -97,8 +97,8 @@ function HeartPage() {
               </button>
             ))}
             <div className="absolute bottom-3 left-3 flex flex-wrap gap-2 rounded-2xl bg-card/85 px-3 py-2 text-[11px] backdrop-blur">
-              <span className="flex items-center gap-1.5"><span className="size-2.5 rounded-full bg-sky-deep" /> Oxygen-poor</span>
-              <span className="flex items-center gap-1.5"><span className="size-2.5 rounded-full bg-destructive" /> Oxygen-rich</span>
+              <span className="flex items-center gap-1.5"><span className="size-2.5 rounded-full bg-sky-deep" /> Deoxygenated blood</span>
+              <span className="flex items-center gap-1.5"><span className="size-2.5 rounded-full bg-destructive" /> Oxygenated Blood</span>
             </div>
           </div>
 
