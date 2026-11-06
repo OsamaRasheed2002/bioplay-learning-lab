@@ -64,7 +64,7 @@ export function useProgress() {
 
   useEffect(() => {
     setProgress(loadProgress());
-    const sync = () => setProgress(read());
+    const sync = () => setProgress(loadProgress());
     window.addEventListener(EVENT, sync);
     window.addEventListener("storage", sync);
     return () => {
