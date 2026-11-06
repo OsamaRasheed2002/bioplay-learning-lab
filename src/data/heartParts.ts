@@ -2,7 +2,7 @@ export type HeartPart = {
   id: string;
   name: string;
   group: "Chamber" | "Valve" | "Vessel" | "Wall";
-  blood: "Deoxygenated" | "Oxygenated" | "Both";
+  blood: "oxygen-poor" | "oxygen-rich" | "both";
   x: number; // % from left of the diagram
   y: number; // % from top
   summary: string;
