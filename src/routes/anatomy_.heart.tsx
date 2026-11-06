@@ -127,7 +127,7 @@ function HeartPage() {
                   <ArrowLeft /> Previous
                 </Button>
                 <Button variant="hero" size="sm" disabled={active === HEART_PARTS.length - 1} onClick={() => select(active + 1)}>
-                  Follow the blood <ArrowRight />
+                  Next <ArrowRight />
                 </Button>
               </div>
             </div>
