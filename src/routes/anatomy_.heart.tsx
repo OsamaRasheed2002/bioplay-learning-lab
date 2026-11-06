@@ -111,7 +111,7 @@ function HeartPage() {
                 </span>
                 <span className="rounded-full bg-muted px-3 py-1 font-mono text-xs">{part.group}</span>
                 <span className="flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 font-mono text-xs">
-                  <span className={cn("size-2 rounded-full", bloodDot(part.blood))} /> {part.blood}
+                  <span className={cn("size-2 rounded-full", bloodDot(part.blood))} /> {part.blood === "oxygen-poor" ? "Deoxygenated blood" : part.blood}
                 </span>
               </div>
               <h2 className="text-3xl font-bold">{part.name}</h2>
