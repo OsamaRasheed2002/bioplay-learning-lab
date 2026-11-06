@@ -3,7 +3,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { PulseLine } from "@/components/bio/PulseLine";
-import { Button } from "@/components/ui/button";
 import { todayKey, useProgress } from "@/lib/progress";
 import { cn } from "@/lib/utils";
 
@@ -96,9 +95,7 @@ export function DailyChallenge() {
             </div>
           )}
           {!revealed && (
-            <Button variant="link" className="px-0" disabled>
-              Pick an answer to earn XP
-            </Button>
+            <p className="px-1 text-xs text-muted-foreground">Pick an answer to earn XP.</p>
           )}
         </div>
       </div>
