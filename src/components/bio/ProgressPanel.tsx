@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Activity, Brain, CheckCircle2, Flame, Heart, Lock, Trophy, Zap } from "lucide-react";
+import { Activity, Brain, CheckCircle2, Flame, Heart, Lock, Sparkles, Trophy, Zap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ACHIEVEMENTS, levelFromXp, useProgress, type Achievement } from "@/lib/progress";
@@ -103,6 +103,18 @@ export function ProgressPanel() {
                 <div className="text-[11px] text-muted-foreground">topics done</div>
               </div>
             </div>
+            {progress.xp === 0 && (
+              <p className="animate-fade-up rounded-2xl border border-dashed border-border bg-surface/70 px-3 py-2 text-xs text-muted-foreground">
+                Fresh start — answer today's{" "}
+                <Link
+                  to="/challenges"
+                  className="font-semibold text-mint-deep underline-offset-2 hover:underline"
+                >
+                  Pulse Check
+                </Link>{" "}
+                to earn your first XP.
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -115,6 +127,11 @@ export function ProgressPanel() {
             {progress.achievements.length}/{ACHIEVEMENTS.length} unlocked
           </span>
         </div>
+        {progress.achievements.length === 0 && (
+          <p className="-mt-3 mb-4 text-sm text-muted-foreground">
+            Nothing unlocked yet — your first badge is one daily question away.
+          </p>
+        )}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {ACHIEVEMENTS.map((a, i) => {
             const Icon = ICONS[a.icon];
@@ -167,6 +184,24 @@ export function ProgressPanel() {
             {doneCount} of {allTopics.length} topics
           </span>
         </div>
+        {doneCount === 0 && (
+          <div className="mb-5 flex flex-col items-start gap-4 rounded-3xl border border-dashed border-border bg-surface/70 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-lavender-soft">
+                <Sparkles className="size-5 text-lavender-deep" />
+              </span>
+              <div>
+                <div className="text-sm font-semibold text-foreground">No topics finished yet</div>
+                <div className="text-xs text-muted-foreground">
+                  Finish a lesson in any path and it will light up here.
+                </div>
+              </div>
+            </div>
+            <Button variant="hero" size="sm" asChild>
+              <Link to="/anatomy">Pick a path</Link>
+            </Button>
+          </div>
+        )}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {MODULES.map((m) => {
             const count = m.topics.filter((t) => done.has(t)).length;
@@ -202,7 +237,7 @@ export function ProgressPanel() {
         </div>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button variant="hero" asChild>
-            <Link to="/anatomy">Continue learning</Link>
+            <Link to="/anatomy">{doneCount === 0 ? "Start learning" : "Continue learning"}</Link>
           </Button>
           <Button variant="glass" asChild>
             <Link to="/challenges">Earn more XP</Link>

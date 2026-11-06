@@ -26,16 +26,17 @@ export type Progress = {
   dailyAnsweredOn: string | null;
 };
 
-// Starter profile so the dashboard has something to show before real lessons exist.
+// Everyone starts from zero: no XP, no badges, no finished topics.
 export const STARTER_PROGRESS: Progress = {
-  xp: 1240,
-  streak: 3,
-  achievements: ["first-beat", "signal-sleuth", "streak-3"],
-  completedTopics: ["Cardiovascular system", "ECG waveforms", "Pacemakers", "Biomechanics"],
+  xp: 0,
+  streak: 0,
+  achievements: [],
+  completedTopics: [],
   dailyAnsweredOn: null,
 };
 
-const KEY = "bioplay.progress.v1";
+// v2: earlier builds seeded a fake starter profile, so old browsers start clean.
+const KEY = "bioplay.progress.v2";
 const EVENT = "bioplay:progress";
 
 export function levelFromXp(xp: number) {
@@ -44,7 +45,7 @@ export function levelFromXp(xp: number) {
   return { level, into, pct: Math.round((into / XP_PER_LEVEL) * 100), toNext: XP_PER_LEVEL - into };
 }
 
-function read(): Progress {
+export function loadProgress(): Progress {
   try {
     const raw = window.localStorage.getItem(KEY);
     if (!raw) return STARTER_PROGRESS;
@@ -62,7 +63,7 @@ export function useProgress() {
   const [progress, setProgress] = useState<Progress>(STARTER_PROGRESS);
 
   useEffect(() => {
-    setProgress(read());
+    setProgress(loadProgress());
     const sync = () => setProgress(read());
     window.addEventListener(EVENT, sync);
     window.addEventListener("storage", sync);
@@ -73,7 +74,7 @@ export function useProgress() {
   }, []);
 
   const update = useCallback((fn: (p: Progress) => Progress) => {
-    const next = fn(read());
+    const next = fn(loadProgress());
     window.localStorage.setItem(KEY, JSON.stringify(next));
     window.dispatchEvent(new Event(EVENT));
   }, []);
