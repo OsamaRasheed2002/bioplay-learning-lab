@@ -16,7 +16,11 @@ import { Route as ConceptsRouteImport } from './routes/concepts'
 import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as SignalsRouteImport } from './routes/signals'
+import { Route as AnatomyArteriesRouteImport } from './routes/anatomy_.arteries'
+import { Route as AnatomyBloodRouteImport } from './routes/anatomy_.blood'
+import { Route as AnatomyCardiovascularRouteImport } from './routes/anatomy_.cardiovascular'
 import { Route as AnatomyHeartRouteImport } from './routes/anatomy_.heart'
+import { Route as AnatomyVeinsRouteImport } from './routes/anatomy_.veins'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -53,9 +57,29 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyArteriesRoute = AnatomyArteriesRouteImport.update({
+  id: '/anatomy_/arteries',
+  path: '/anatomy/arteries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyBloodRoute = AnatomyBloodRouteImport.update({
+  id: '/anatomy_/blood',
+  path: '/anatomy/blood',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyCardiovascularRoute = AnatomyCardiovascularRouteImport.update({
+  id: '/anatomy_/cardiovascular',
+  path: '/anatomy/cardiovascular',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnatomyHeartRoute = AnatomyHeartRouteImport.update({
   id: '/anatomy_/heart',
   path: '/anatomy/heart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyVeinsRoute = AnatomyVeinsRouteImport.update({
+  id: '/anatomy_/veins',
+  path: '/anatomy/veins',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -67,7 +91,11 @@ export interface FileRoutesByFullPath {
   '/devices': typeof DevicesRoute
   '/progress': typeof ProgressRoute
   '/signals': typeof SignalsRoute
+  '/anatomy/arteries': typeof AnatomyArteriesRoute
+  '/anatomy/blood': typeof AnatomyBloodRoute
+  '/anatomy/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/veins': typeof AnatomyVeinsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +105,11 @@ export interface FileRoutesByTo {
   '/devices': typeof DevicesRoute
   '/progress': typeof ProgressRoute
   '/signals': typeof SignalsRoute
+  '/anatomy/arteries': typeof AnatomyArteriesRoute
+  '/anatomy/blood': typeof AnatomyBloodRoute
+  '/anatomy/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/veins': typeof AnatomyVeinsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +120,11 @@ export interface FileRoutesById {
   '/devices': typeof DevicesRoute
   '/progress': typeof ProgressRoute
   '/signals': typeof SignalsRoute
+  '/anatomy_/arteries': typeof AnatomyArteriesRoute
+  '/anatomy_/blood': typeof AnatomyBloodRoute
+  '/anatomy_/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy_/heart': typeof AnatomyHeartRoute
+  '/anatomy_/veins': typeof AnatomyVeinsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +136,11 @@ export interface FileRouteTypes {
     | '/devices'
     | '/progress'
     | '/signals'
+    | '/anatomy/arteries'
+    | '/anatomy/blood'
+    | '/anatomy/cardiovascular'
     | '/anatomy/heart'
+    | '/anatomy/veins'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +150,11 @@ export interface FileRouteTypes {
     | '/devices'
     | '/progress'
     | '/signals'
+    | '/anatomy/arteries'
+    | '/anatomy/blood'
+    | '/anatomy/cardiovascular'
     | '/anatomy/heart'
+    | '/anatomy/veins'
   id:
     | '__root__'
     | '/'
@@ -120,7 +164,11 @@ export interface FileRouteTypes {
     | '/devices'
     | '/progress'
     | '/signals'
+    | '/anatomy_/arteries'
+    | '/anatomy_/blood'
+    | '/anatomy_/cardiovascular'
     | '/anatomy_/heart'
+    | '/anatomy_/veins'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,7 +179,11 @@ export interface RootRouteChildren {
   DevicesRoute: typeof DevicesRoute
   ProgressRoute: typeof ProgressRoute
   SignalsRoute: typeof SignalsRoute
+  AnatomyArteriesRoute: typeof AnatomyArteriesRoute
+  AnatomyBloodRoute: typeof AnatomyBloodRoute
+  AnatomyCardiovascularRoute: typeof AnatomyCardiovascularRoute
   AnatomyHeartRoute: typeof AnatomyHeartRoute
+  AnatomyVeinsRoute: typeof AnatomyVeinsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -185,11 +237,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/arteries': {
+      id: '/anatomy_/arteries'
+      path: '/anatomy/arteries'
+      fullPath: '/anatomy/arteries'
+      preLoaderRoute: typeof AnatomyArteriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/blood': {
+      id: '/anatomy_/blood'
+      path: '/anatomy/blood'
+      fullPath: '/anatomy/blood'
+      preLoaderRoute: typeof AnatomyBloodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/cardiovascular': {
+      id: '/anatomy_/cardiovascular'
+      path: '/anatomy/cardiovascular'
+      fullPath: '/anatomy/cardiovascular'
+      preLoaderRoute: typeof AnatomyCardiovascularRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anatomy_/heart': {
       id: '/anatomy_/heart'
       path: '/anatomy/heart'
       fullPath: '/anatomy/heart'
       preLoaderRoute: typeof AnatomyHeartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/veins': {
+      id: '/anatomy_/veins'
+      path: '/anatomy/veins'
+      fullPath: '/anatomy/veins'
+      preLoaderRoute: typeof AnatomyVeinsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -203,7 +283,11 @@ const rootRouteChildren: RootRouteChildren = {
   DevicesRoute: DevicesRoute,
   ProgressRoute: ProgressRoute,
   SignalsRoute: SignalsRoute,
+  AnatomyArteriesRoute: AnatomyArteriesRoute,
+  AnatomyBloodRoute: AnatomyBloodRoute,
+  AnatomyCardiovascularRoute: AnatomyCardiovascularRoute,
   AnatomyHeartRoute: AnatomyHeartRoute,
+  AnatomyVeinsRoute: AnatomyVeinsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

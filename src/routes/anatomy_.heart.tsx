@@ -61,11 +61,11 @@ function HeartPage() {
     <section className="relative px-5 pt-10 pb-10 sm:pt-14">
       <div className="bg-hero pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px]" />
       <div className="mx-auto max-w-7xl">
-        <Link to="/anatomy" className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="size-4" /> Anatomy Explorer
+        <Link to="/anatomy/cardiovascular" className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+          <ArrowLeft className="size-4" /> Cardiovascular system
         </Link>
         <div className="mb-8 space-y-3">
-          <span className="font-mono text-xs uppercase tracking-widest text-mint-deep">Cardiovascular system · Unit 1</span>
+          <span className="font-mono text-xs uppercase tracking-widest text-mint-deep">Cardiovascular system · Section 1</span>
           <h1 className="text-4xl font-bold sm:text-5xl">The Human Heart</h1>
           <p className="max-w-2xl text-muted-foreground">
             Tap any numbered point to explore that structure. Points are ordered the way blood flows — follow them
