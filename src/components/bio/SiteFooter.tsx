@@ -35,7 +35,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border py-5 text-center font-mono text-xs text-muted-foreground">
-        © {new Date().getFullYear()} BioPlay · Made for future biomedical engineers
+        © {new Date().getFullYear()} BEPlay · Made for future biomedical engineers
       </div>
     </footer>
   );

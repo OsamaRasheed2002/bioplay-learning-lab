@@ -31,7 +31,7 @@ export function SiteHeader() {
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
     try {
-      localStorage.setItem("bioplay.theme", next ? "dark" : "light");
+      localStorage.setItem("beplay.theme", next ? "dark" : "light");
     } catch {}
   };
 

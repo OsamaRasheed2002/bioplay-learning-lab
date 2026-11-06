@@ -8,9 +8,9 @@ import { useProgress } from "@/lib/progress";
 export const Route = createFileRoute("/progress")({
   head: () => ({
     meta: [
-      { title: "My Progress — BioPlay" },
+      { title: "My Progress — BEPlay" },
       { name: "description", content: "Track your XP, achievements and completed biomedical engineering topics." },
-      { property: "og:title", content: "My Progress — BioPlay" },
+      { property: "og:title", content: "My Progress — BEPlay" },
       { property: "og:description", content: "Track your XP, achievements and completed biomedical engineering topics." },
     ],
   }),
