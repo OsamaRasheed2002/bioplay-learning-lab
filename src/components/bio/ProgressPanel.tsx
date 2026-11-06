@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Activity, Brain, CheckCircle2, Flame, Heart, Lock, Sparkles, Trophy, Zap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ACHIEVEMENTS, levelFromXp, useProgress, type Achievement } from "@/lib/progress";
+import { ACHIEVEMENTS, currentStreak, levelFromXp, useProgress, type Achievement } from "@/lib/progress";
 import { MODULES } from "@/lib/modules";
 import { cn } from "@/lib/utils";
 
@@ -91,7 +91,7 @@ export function ProgressPanel() {
               <div className="flex-1 rounded-2xl bg-peach-soft px-3 py-2.5">
                 <div className="flex items-center gap-1.5 text-peach-deep">
                   <Flame className="size-4" />
-                  <span className="font-display text-xl font-bold">{progress.streak}</span>
+                  <span className="font-display text-xl font-bold">{currentStreak(progress)}</span>
                 </div>
                 <div className="text-[11px] text-muted-foreground">day streak</div>
               </div>
@@ -110,7 +110,7 @@ export function ProgressPanel() {
                   to="/challenges"
                   className="font-semibold text-mint-deep underline-offset-2 hover:underline"
                 >
-                  Pulse Check
+                  Daily Warm-Up
                 </Link>{" "}
                 to earn your first XP.
               </p>

@@ -25,6 +25,7 @@ describe("starting progress", () => {
       achievements: [],
       completedTopics: [],
       dailyAnsweredOn: null,
+      dailyChoice: null,
     });
   });
 
