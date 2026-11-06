@@ -17,30 +17,24 @@ export function BioMark({ className }: { className?: string }) {
       <path
         d="M17.5 16L9.6 30q-1 2 1.4 2h18q2.4 0 1.4-2L22.5 16Z"
         fill="var(--card)"
-        fillOpacity=".55"
+        fillOpacity=".6"
       />
       <g clipPath="url(#bp-flask)">
-        <rect x="5" y="23" width="30" height="12" fill="var(--mint-deep)" fillOpacity=".5" />
+        <rect x="5" y="25" width="30" height="10" fill="var(--mint-deep)" fillOpacity=".45" />
       </g>
-      <g
-        fill="none"
-        stroke="var(--primary)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
+      <g fill="none" stroke="var(--primary)" strokeLinecap="round" strokeLinejoin="round">
         <path
           d="M15.8 8h8.4M17.5 8v8L9.6 30q-1 2 1.4 2h18q2.4 0 1.4-2L22.5 16V8"
           strokeWidth="2.5"
         />
         <g strokeWidth="1.9">
-          <path d="M20 18.5q7 2.5 0 5q-7 2.5 0 5" />
-          <path d="M20 18.5q-7 2.5 0 5q7 2.5 0 5" />
-          <path d="M16.6 21h6.8M16.6 26h6.8" />
+          <path d="M20 19q6.4 1.3 0 2.625q-6.4 1.3 0 2.625q6.4 1.3 0 2.625q-6.4 1.3 0 2.625" />
+          <path d="M20 19q-6.4 1.3 0 2.625q6.4 1.3 0 2.625q-6.4 1.3 0 2.625q6.4 1.3 0 2.625" />
         </g>
-      </g>
-      <g fill="var(--background)" fillOpacity=".8">
-        <circle cx="14.8" cy="27" r="1" />
-        <circle cx="25.2" cy="28.5" r=".8" />
+        <path
+          d="M16.8 20.3h6.4M16.8 22.9h6.4M16.8 25.6h6.4M16.8 28.2h6.4"
+          strokeWidth="1.5"
+        />
       </g>
     </svg>
   );
