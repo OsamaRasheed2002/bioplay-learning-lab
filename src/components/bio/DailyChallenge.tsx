@@ -1,41 +1,42 @@
-import { CheckCircle2, Sparkles, XCircle, Zap } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle2, Clock, Flame, Sparkles, XCircle, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { PulseLine } from "@/components/bio/PulseLine";
-import { todayKey, useProgress } from "@/lib/progress";
+import { questionFor } from "@/data/dailyQuestions";
+import { DAILY_XP, answerDaily, currentStreak, todayKey, useProgress } from "@/lib/progress";
 import { cn } from "@/lib/utils";
 
-const QUESTION = {
-  prompt: "On an ECG trace, which wave represents ventricular depolarization?",
-  options: ["P wave", "QRS complex", "T wave", "U wave"],
-  answer: 1,
-  explain:
-    "The QRS complex marks the rapid electrical spread through the ventricles, just before they contract.",
-};
-
-const REWARD = 50;
+function untilMidnight(now: Date) {
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  const s = Math.max(0, Math.floor((midnight.getTime() - now.getTime()) / 1000));
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${pad(Math.floor(s / 3600))}:${pad(Math.floor((s % 3600) / 60))}:${pad(s % 60)}`;
+}
 
 export function DailyChallenge() {
   const { progress, update } = useProgress();
-  const [picked, setPicked] = useState<number | null>(null);
-  const answeredToday = progress.dailyAnsweredOn === todayKey();
-  const revealed = picked !== null || answeredToday;
+  // Clock starts after mount so server and browser render the same first frame.
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => {
+    setNow(new Date());
+    const id = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const q = questionFor(now ?? undefined);
+  const ready = now !== null;
+  const answeredToday = ready && progress.dailyAnsweredOn === todayKey(now);
+  const picked = answeredToday ? progress.dailyChoice : null;
+  const revealed = answeredToday;
+  const streak = ready ? currentStreak(progress, now) : 0;
 
   function choose(i: number) {
-    if (revealed) return;
-    setPicked(i);
-    const correct = i === QUESTION.answer;
-    update((p) => ({
-      ...p,
-      xp: p.xp + (correct ? REWARD : 10),
-      dailyAnsweredOn: todayKey(),
-      achievements: p.achievements.includes("pulse-check")
-        ? p.achievements
-        : [...p.achievements, "pulse-check"],
-    }));
-    if (correct) toast.success(`Correct! +${REWARD} XP`, { description: "Achievement unlocked: Pulse Check" });
-    else toast("Nice try! +10 XP for showing up", { description: "Check the explanation below." });
+    if (!ready || revealed) return;
+    const correct = i === q.answer;
+    update((p) => answerDaily(p, i));
+    if (correct) toast.success(`Correct! +${DAILY_XP} XP`);
+    else toast(`Not quite — +${DAILY_XP} XP for showing up`, { description: "Check the explanation." });
   }
 
   return (
@@ -43,23 +44,28 @@ export function DailyChallenge() {
       <div className="bg-dots pointer-events-none absolute inset-0 opacity-60" />
       <div className="relative grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
         <div className="space-y-4">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-lavender-soft px-3 py-1 font-mono text-xs font-medium text-lavender-deep">
-            <Zap className="size-3.5" /> Daily Pulse Check · +{REWARD} XP
-          </span>
-          <h3 className="text-3xl font-bold sm:text-4xl">{QUESTION.prompt}</h3>
+          <div className="flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-lavender-soft px-3 py-1 font-mono text-xs font-medium text-lavender-deep">
+              <Zap className="size-3.5" /> Daily Warm-Up · +{DAILY_XP} XP
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-peach-soft px-3 py-1 font-mono text-xs font-medium text-peach-deep">
+              <Flame className="size-3.5" /> {streak}-day streak
+            </span>
+          </div>
+          <h3 className={cn("text-3xl font-bold sm:text-4xl", !ready && "opacity-0")}>{q.question}</h3>
           <PulseLine className="h-14" />
         </div>
 
-        <div className="space-y-3">
-          {QUESTION.options.map((opt, i) => {
-            const isAnswer = i === QUESTION.answer;
+        <div className={cn("space-y-3", !ready && "opacity-0")}>
+          {q.options.map((opt, i) => {
+            const isAnswer = i === q.answer;
             const isPicked = picked === i;
             return (
               <button
                 key={opt}
                 type="button"
                 onClick={() => choose(i)}
-                disabled={revealed}
+                disabled={!ready || revealed}
                 className={cn(
                   "flex w-full items-center justify-between gap-3 rounded-2xl border px-5 py-4 text-left font-medium transition-all duration-300",
                   !revealed &&
@@ -81,17 +87,19 @@ export function DailyChallenge() {
             );
           })}
 
-          {revealed && (
-            <div className="animate-fade-up rounded-2xl bg-sky-soft p-4 text-sm text-foreground">
-              <div className="mb-1 flex items-center gap-1.5 font-semibold">
-                <Sparkles className="size-4 text-sky-deep" /> Why?
+          {revealed && now && (
+            <div className="animate-fade-up space-y-3 rounded-2xl bg-sky-soft p-4 text-sm text-foreground">
+              <div className="flex items-center gap-1.5 font-semibold">
+                <Sparkles className="size-4 text-sky-deep" />
+                {picked === q.answer ? "You got it right!" : "Not quite this time."}
               </div>
-              {QUESTION.explain}
-              {answeredToday && picked === null && (
-                <p className="mt-2 text-xs text-muted-foreground">
-                  You've already answered today — come back tomorrow for a new one.
-                </p>
-              )}
+              <p>{q.explanation}</p>
+              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-3 text-xs text-muted-foreground">
+                <span>Come back tomorrow for a new question</span>
+                <span className="inline-flex items-center gap-1.5 font-mono text-foreground">
+                  <Clock className="size-3.5" /> {untilMidnight(now)}
+                </span>
+              </div>
             </div>
           )}
           {!revealed && (
