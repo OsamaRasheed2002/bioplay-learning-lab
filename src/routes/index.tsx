@@ -288,11 +288,7 @@ function FinalCta() {
                 Start learning now <ArrowRight />
               </Link>
             </Button>
-            <Button
-              size="lg"
-              asChild
-              className="border border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
-            >
+            <Button variant="inverse" size="lg" asChild>
               <Link to="/signals">Open the Signals Lab</Link>
             </Button>
           </div>

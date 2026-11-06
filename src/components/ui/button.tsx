@@ -20,6 +20,8 @@ const buttonVariants = cva(
         mint: "bg-mint text-foreground shadow-soft hover:-translate-y-0.5 hover:shadow-glow active:translate-y-0",
         glass:
           "glass border border-border text-foreground shadow-soft hover:-translate-y-0.5 hover:border-mint active:translate-y-0",
+        inverse:
+          "border border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10",
       },
       size: {
         default: "h-10 px-5 py-2",
