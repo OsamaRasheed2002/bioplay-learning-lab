@@ -53,6 +53,6 @@ export function questionIndexFor(date: Date = new Date()) {
   return ((daysSinceStart(date) % n) + n) % n;
 }
 
-export function questionFor(date: Date = new Date()) {
-  return DAILY_QUESTIONS[questionIndexFor(date)];
+export function questionFor(date: Date = new Date()): DailyQuestion {
+  return DAILY_QUESTIONS[questionIndexFor(date)] ?? DAILY_QUESTIONS[0]!;
 }
