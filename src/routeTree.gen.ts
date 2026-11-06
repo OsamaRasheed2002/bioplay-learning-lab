@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnatomyRouteImport } from './routes/anatomy'
+import { Route as ChallengesRouteImport } from './routes/challenges'
+import { Route as ConceptsRouteImport } from './routes/concepts'
+import { Route as DevicesRouteImport } from './routes/devices'
+import { Route as ProgressRouteImport } from './routes/progress'
+import { Route as SignalsRouteImport } from './routes/signals'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyRoute = AnatomyRouteImport.update({
+  id: '/anatomy',
+  path: '/anatomy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChallengesRoute = ChallengesRouteImport.update({
+  id: '/challenges',
+  path: '/challenges',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptsRoute = ConceptsRouteImport.update({
+  id: '/concepts',
+  path: '/concepts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevicesRoute = DevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgressRoute = ProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignalsRoute = SignalsRouteImport.update({
+  id: '/signals',
+  path: '/signals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anatomy': typeof AnatomyRoute
+  '/challenges': typeof ChallengesRoute
+  '/concepts': typeof ConceptsRoute
+  '/devices': typeof DevicesRoute
+  '/progress': typeof ProgressRoute
+  '/signals': typeof SignalsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anatomy': typeof AnatomyRoute
+  '/challenges': typeof ChallengesRoute
+  '/concepts': typeof ConceptsRoute
+  '/devices': typeof DevicesRoute
+  '/progress': typeof ProgressRoute
+  '/signals': typeof SignalsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anatomy': typeof AnatomyRoute
+  '/challenges': typeof ChallengesRoute
+  '/concepts': typeof ConceptsRoute
+  '/devices': typeof DevicesRoute
+  '/progress': typeof ProgressRoute
+  '/signals': typeof SignalsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/anatomy'
+    | '/challenges'
+    | '/concepts'
+    | '/devices'
+    | '/progress'
+    | '/signals'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/anatomy'
+    | '/challenges'
+    | '/concepts'
+    | '/devices'
+    | '/progress'
+    | '/signals'
+  id:
+    | '__root__'
+    | '/'
+    | '/anatomy'
+    | '/challenges'
+    | '/concepts'
+    | '/devices'
+    | '/progress'
+    | '/signals'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnatomyRoute: typeof AnatomyRoute
+  ChallengesRoute: typeof ChallengesRoute
+  ConceptsRoute: typeof ConceptsRoute
+  DevicesRoute: typeof DevicesRoute
+  ProgressRoute: typeof ProgressRoute
+  SignalsRoute: typeof SignalsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy': {
+      id: '/anatomy'
+      path: '/anatomy'
+      fullPath: '/anatomy'
+      preLoaderRoute: typeof AnatomyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/challenges': {
+      id: '/challenges'
+      path: '/challenges'
+      fullPath: '/challenges'
+      preLoaderRoute: typeof ChallengesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concepts': {
+      id: '/concepts'
+      path: '/concepts'
+      fullPath: '/concepts'
+      preLoaderRoute: typeof ConceptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/devices': {
+      id: '/devices'
+      path: '/devices'
+      fullPath: '/devices'
+      preLoaderRoute: typeof DevicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progress': {
+      id: '/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof ProgressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signals': {
+      id: '/signals'
+      path: '/signals'
+      fullPath: '/signals'
+      preLoaderRoute: typeof SignalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnatomyRoute: AnatomyRoute,
+  ChallengesRoute: ChallengesRoute,
+  ConceptsRoute: ConceptsRoute,
+  DevicesRoute: DevicesRoute,
+  ProgressRoute: ProgressRoute,
+  SignalsRoute: SignalsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
