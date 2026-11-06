@@ -46,7 +46,7 @@ export function ModuleCard({
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-3 pt-5">
+      <div className={cn("flex flex-col gap-3 p-3 pt-5", !featured && "flex-1")}>
         <div className="flex items-start justify-between gap-3">
           <h3 className={cn("font-bold text-foreground", featured ? "text-3xl" : "text-xl")}>
             {module.title}

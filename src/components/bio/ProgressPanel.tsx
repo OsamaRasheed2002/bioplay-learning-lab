@@ -63,9 +63,9 @@ export function ProgressPanel() {
   return (
     <div className="grid gap-5 lg:grid-cols-12">
       {/* XP */}
-      <div className="relative overflow-hidden rounded-4xl border border-border bg-card p-6 shadow-soft sm:p-8 lg:col-span-5">
+      <div className="relative flex items-center overflow-hidden rounded-4xl border border-border bg-card p-6 shadow-soft sm:p-8 lg:col-span-5">
         <div className="bg-hero pointer-events-none absolute inset-0 opacity-70" />
-        <div className="relative flex flex-col items-center gap-6 sm:flex-row sm:items-center">
+        <div className="relative flex w-full flex-col items-center gap-6 sm:flex-row sm:items-center">
           <XpRing pct={pct} level={level} />
           <div className="w-full space-y-4">
             <div>

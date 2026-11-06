@@ -186,7 +186,7 @@ function HeroVisual() {
 
       {/* Floating XP badge */}
       <div
-        className="glass absolute -right-2 top-8 animate-float rounded-2xl border border-border px-4 py-3 shadow-float sm:-right-8"
+        className="glass absolute -right-2 top-8 animate-float rounded-2xl border border-border px-4 py-3 shadow-float sm:-right-5"
         style={{ animationDelay: "1.5s" }}
       >
         <div className="flex items-center gap-2">
