@@ -18,7 +18,7 @@ export const HEART_PARTS: HeartPart[] = [
     blood: "oxygen-poor",
     x: 29,
     y: 11,
-    summary: "Large vein returning Deoxygenated blood from the head, neck and arms into the right atrium.",
+    summary: "Large vein returning deoxygenated blood from the head, neck and arms into the right atrium.",
     engineering: "Central venous catheters are usually threaded here to measure central venous pressure.",
   },
   {
