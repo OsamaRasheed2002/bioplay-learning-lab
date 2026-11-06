@@ -127,7 +127,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(localStorage.getItem("beplay.theme")==="light")document.documentElement.classList.remove("dark")}catch(e){}`,
+            __html: `try{var t=localStorage.getItem("beplay.theme");if(t===null){t=localStorage.getItem("bioplay.theme");if(t!==null)localStorage.setItem("beplay.theme",t)}if(t==="light")document.documentElement.classList.remove("dark")}catch(e){}`,
           }}
         />
         <HeadContent />

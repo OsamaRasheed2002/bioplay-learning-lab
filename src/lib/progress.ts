@@ -37,6 +37,7 @@ export const STARTER_PROGRESS: Progress = {
 
 // v2: earlier builds seeded a fake starter profile, so old browsers start clean.
 const KEY = "beplay.progress.v2";
+export const LEGACY_KEY = "bioplay.progress.v2";
 const EVENT = "beplay:progress";
 
 export function levelFromXp(xp: number) {
@@ -47,7 +48,12 @@ export function levelFromXp(xp: number) {
 
 export function loadProgress(): Progress {
   try {
-    const raw = window.localStorage.getItem(KEY);
+    let raw = window.localStorage.getItem(KEY);
+    if (!raw) {
+      // Carry over progress saved before the BioPlay → BEPlay rename.
+      raw = window.localStorage.getItem(LEGACY_KEY);
+      if (raw) window.localStorage.setItem(KEY, raw);
+    }
     if (!raw) return STARTER_PROGRESS;
     return { ...STARTER_PROGRESS, ...(JSON.parse(raw) as Partial<Progress>) };
   } catch {

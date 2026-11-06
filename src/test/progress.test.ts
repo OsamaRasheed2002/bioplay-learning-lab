@@ -36,6 +36,12 @@ describe("starting progress", () => {
     expect(loaded.completedTopics).toEqual([]);
   });
 
+  it("keeps XP saved under the old BioPlay name", () => {
+    window.localStorage.clear();
+    window.localStorage.setItem("bioplay.progress.v2", JSON.stringify({ xp: 320 }));
+    expect(loadProgress().xp).toBe(320);
+  });
+
   it("keeps every achievement locked for a brand-new visitor", () => {
     expect(STARTER_PROGRESS.achievements).toHaveLength(0);
     expect(ACHIEVEMENTS.length).toBeGreaterThan(0);
