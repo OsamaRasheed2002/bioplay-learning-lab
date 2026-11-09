@@ -108,11 +108,17 @@ export function VesselLesson({ vessel, unit }: { vessel: Vessel; unit: string })
             ? "From the aorta down to the pulse at your wrist — the arteries you will meet most often in clinics, imaging and device manuals."
             : "From the vena cavae back to the surface veins of the arm — the veins used for IVs, dialysis access and bypass grafts."}
         </p>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 flex flex-wrap justify-center gap-4">
           {vessel.major.map((v) => {
             const tone = TONE_CLASSES[v.tone];
             return (
-              <div key={v.name} className={cn("rounded-3xl border border-border p-5", tone.soft)}>
+              <div
+                key={v.name}
+                className={cn(
+                  "w-full rounded-3xl border border-border p-5 sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]",
+                  tone.soft,
+                )}
+              >
                 <div className="flex items-center gap-2">
                   <span className={cn("size-2.5 shrink-0 rounded-full", tone.bg)} />
                   <h4 className="font-bold">{v.name}</h4>
