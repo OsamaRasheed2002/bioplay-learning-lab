@@ -25,9 +25,9 @@ export const Route = createFileRoute("/anatomy_/blood")({
 
 const LEGEND = [
   { name: "Plasma", share: "~55%", fill: "bg-plasma" },
-  { name: "Red cells", share: "~45%", fill: "bg-redcell" },
   { name: "White cells", share: "<1%", fill: "bg-whitecell" },
   { name: "Platelets", share: "<1%", fill: "bg-platelet" },
+  { name: "Red cells", share: "~45%", fill: "bg-redcell" },
 ];
 
 function BloodPage() {
