@@ -60,6 +60,16 @@
   --color-success: var(--success);
   --color-surface: var(--surface);
 
+  /* Blood component colors — match the real fluid colors. */
+  --color-plasma: var(--plasma);
+  --color-plasma-ink: var(--plasma-ink);
+  --color-redcell: var(--redcell);
+  --color-redcell-ink: var(--redcell-ink);
+  --color-whitecell: var(--whitecell);
+  --color-whitecell-ink: var(--whitecell-ink);
+  --color-platelet: var(--platelet);
+  --color-platelet-ink: var(--platelet-ink);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -124,6 +134,15 @@
   --peach-soft: oklch(0.96 0.025 60);
   --peach-deep: oklch(0.5 0.1 45);
   --success: oklch(0.62 0.13 160);
+
+  --plasma: oklch(0.91 0.075 95);
+  --plasma-ink: oklch(0.36 0.07 85);
+  --redcell: oklch(0.52 0.19 27);
+  --redcell-ink: oklch(0.97 0.01 85);
+  --whitecell: oklch(0.965 0.012 95);
+  --whitecell-ink: oklch(0.38 0.04 255);
+  --platelet: oklch(0.85 0.09 82);
+  --platelet-ink: oklch(0.36 0.08 75);
 
   --gradient-hero: radial-gradient(
       60% 60% at 15% 20%,
@@ -204,6 +223,14 @@
   --peach-soft: oklch(0.3 0.05 55);
   --peach-deep: oklch(0.86 0.08 55);
   --success: oklch(0.72 0.14 160);
+  --plasma: oklch(0.82 0.09 95);
+  --plasma-ink: oklch(0.28 0.05 85);
+  --redcell: oklch(0.55 0.2 27);
+  --redcell-ink: oklch(0.97 0.01 85);
+  --whitecell: oklch(0.93 0.015 95);
+  --whitecell-ink: oklch(0.3 0.04 255);
+  --platelet: oklch(0.78 0.11 82);
+  --platelet-ink: oklch(0.28 0.07 75);
   --shadow-soft-value: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px -12px oklch(0 0 0 / 0.5);
   --shadow-float-value: 0 2px 4px oklch(0 0 0 / 0.3), 0 24px 48px -20px oklch(0 0 0 / 0.6);
   color-scheme: dark;

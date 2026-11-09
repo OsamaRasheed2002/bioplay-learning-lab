@@ -23,6 +23,13 @@ export const Route = createFileRoute("/anatomy_/blood")({
   component: BloodPage,
 });
 
+const LEGEND = [
+  { name: "Plasma", share: "~55%", fill: "bg-plasma" },
+  { name: "White cells", share: "<1%", fill: "bg-whitecell" },
+  { name: "Platelets", share: "<1%", fill: "bg-platelet" },
+  { name: "Red cells", share: "~45%", fill: "bg-redcell" },
+];
+
 function BloodPage() {
   return (
     <LessonShell
@@ -30,11 +37,37 @@ function BloodPage() {
       title="Blood & Its Components"
       intro="An adult has about 5 litres of blood. Spin a sample in a centrifuge and it separates into plasma on top, a thin 'buffy coat' of white cells and platelets, and red cells at the bottom."
     >
-      <div className="mb-8 flex h-10 overflow-hidden rounded-full border border-border font-mono text-xs">
-        <div className="grid basis-[55%] place-items-center bg-peach">Plasma 55%</div>
-        <div className="grid basis-[3%] place-items-center bg-lavender" title="White cells & platelets" />
-        <div className="grid basis-[42%] place-items-center bg-sky">Red cells ~45%</div>
+      <div className="mb-3 flex h-11 overflow-hidden rounded-full border border-border font-mono text-xs">
+        <div className="grid basis-[55%] place-items-center bg-plasma text-plasma-ink">Plasma 55%</div>
+        <div
+          className="grid basis-[3%] place-items-center bg-whitecell text-whitecell-ink"
+          title="White blood cells — under 1% of blood"
+        >
+          <span className="hidden md:inline">WBC</span>
+        </div>
+        <div
+          className="grid basis-[3%] place-items-center bg-platelet text-platelet-ink"
+          title="Platelets — under 1% of blood"
+        >
+          <span className="hidden md:inline">PLT</span>
+        </div>
+        <div className="grid basis-[39%] place-items-center bg-redcell text-redcell-ink">Red cells ~45%</div>
       </div>
+      <div className="mb-2 flex flex-wrap gap-2 font-mono text-xs">
+        {LEGEND.map((l) => (
+          <span
+            key={l.name}
+            className="flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 shadow-soft"
+          >
+            <span className={cn("size-3 rounded-full ring-1 ring-border", l.fill)} />
+            {l.name}
+            <span className="text-muted-foreground">{l.share}</span>
+          </span>
+        ))}
+      </div>
+      <p className="mb-8 font-mono text-xs text-muted-foreground">
+        White cells and platelets are each under 1% of blood — drawn a little wider here so you can see them.
+      </p>
       <div className="grid gap-5 sm:grid-cols-2">
         {BLOOD_COMPONENTS.map((c, i) => (
           <div key={c.name} style={{ animationDelay: `${i * 80}ms` }} className="animate-fade-up overflow-hidden rounded-4xl border border-border bg-card shadow-soft">
