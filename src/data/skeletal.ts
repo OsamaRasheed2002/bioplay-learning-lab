@@ -15,7 +15,7 @@ export const SKELETAL_PARTS = [
 ] as const;
 
 export const SKELETON_LABELS = [
-  { name: "Skull", side: "left", x: 340, y: 70, ly: 70, text: "Protects the brain; its bones are joined by fixed sutures." },
+  { name: "\n", side: "left", x: 340, y: 70, ly: 70, text: "\n" },
   { name: "Clavicle", side: "left", x: 300, y: 252, ly: 230, text: "The collarbone — a strut linking the arm to the trunk. One of the most commonly broken bones." },
   { name: "Humerus", side: "left", x: 222, y: 400, ly: 390, text: "The upper arm bone, from shoulder to elbow." },
   { name: "Vertebral column", side: "left", x: 380, y: 540, ly: 520, text: "33 vertebrae that protect the spinal cord and carry the body's weight." },
