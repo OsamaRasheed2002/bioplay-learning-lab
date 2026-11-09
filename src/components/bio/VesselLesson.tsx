@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Cpu } from "lucide-react";
+import { ArrowLeft, Cpu, MapPin } from "lucide-react";
 import { useState } from "react";
 
 import type { Vessel } from "@/data/cardio";
+import { TONE_CLASSES } from "@/lib/modules";
 import { cn } from "@/lib/utils";
 
 const RING_TONES = ["bg-peach", "bg-destructive/70", "bg-sky"];
@@ -95,6 +96,41 @@ export function VesselLesson({ vessel, unit }: { vessel: Vessel; unit: string })
               {vessel.engineering}
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="mt-6 rounded-4xl border border-border bg-card p-6 shadow-soft sm:p-8">
+        <h3 className="text-2xl font-bold sm:text-3xl">
+          Major {vessel.kind === "artery" ? "arteries" : "veins"} in the body
+        </h3>
+        <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+          {vessel.kind === "artery"
+            ? "From the aorta down to the pulse at your wrist — the arteries you will meet most often in clinics, imaging and device manuals."
+            : "From the vena cavae back to the surface veins of the arm — the veins used for IVs, dialysis access and bypass grafts."}
+        </p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {vessel.major.map((v) => {
+            const tone = TONE_CLASSES[v.tone];
+            return (
+              <div key={v.name} className={cn("rounded-3xl border border-border p-5", tone.soft)}>
+                <div className="flex items-center gap-2">
+                  <span className={cn("size-2.5 shrink-0 rounded-full", tone.bg)} />
+                  <h4 className="font-bold">{v.name}</h4>
+                </div>
+                <p className="mt-2 flex gap-1.5 text-sm text-muted-foreground">
+                  <MapPin className={cn("mt-0.5 size-3.5 shrink-0", tone.text)} />
+                  {v.where}
+                </p>
+                <p className="mt-2 text-sm">
+                  <span className="font-semibold">Function: </span>
+                  <span className="text-muted-foreground">{v.job}</span>
+                </p>
+                <p className="mt-3 rounded-2xl border border-border bg-background/70 p-3 text-xs text-muted-foreground">
+                  {v.note}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </LessonShell>
