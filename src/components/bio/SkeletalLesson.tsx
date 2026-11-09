@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
+import skeleton from "@/assets/skeleton-front.jpg";
 import { Button } from "@/components/ui/button";
 import { JOINT_TYPES, LOADS, SKELETAL_PARTS, SKELETAL_SECTIONS, type LoadId, type SkeletalSection } from "@/data/skeletal";
 import { cn } from "@/lib/utils";
@@ -30,26 +31,27 @@ export function SkeletalLesson({ section }: { section: SkeletalSection }) {
 }
 
 function Skeleton({ selected }: { selected: number }) {
-  const g = (i: number) => cn("transition-all duration-300", selected === i ? "stroke-mint-deep fill-mint/25" : "stroke-muted-foreground/50 fill-transparent");
-  return <svg viewBox="0 0 200 400" role="img" aria-label={`${SKELETAL_PARTS[selected]?.name} highlighted on the skeleton`} className="mx-auto h-full max-h-[520px] w-full" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3">
-    <defs><filter id="bone-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
-    <g className={g(0)} filter={selected === 0 ? "url(#bone-glow)" : undefined}><ellipse cx="100" cy="32" rx="20" ry="23" /><path d="M87 50 Q100 64 113 50" /></g>
-    <g className={g(1)} filter={selected === 1 ? "url(#bone-glow)" : undefined}>{Array.from({ length: 14 }, (_, i) => <rect key={i} x="95" y={62 + i * 11.5} width="10" height="8" rx="2" />)}</g>
-    <g className={g(2)} filter={selected === 2 ? "url(#bone-glow)" : undefined} fill="none"><path d="M100 78 V140" />{[85, 97, 109, 121, 133].map((y, i) => <g key={y}><path d={`M96 ${y} Q${66 - i} ${y + 2} ${70 + i * 2} ${y + 14}`} /><path d={`M104 ${y} Q${134 + i} ${y + 2} ${130 - i * 2} ${y + 14}`} /></g>)}</g>
-    <g className={g(3)} filter={selected === 3 ? "url(#bone-glow)" : undefined}><path d="M100 225 C80 218 66 222 64 238 C64 254 80 262 92 258 L100 250 L108 258 C120 262 136 254 136 238 C134 222 120 218 100 225 Z" /></g>
-    <g className={g(4)} filter={selected === 4 ? "url(#bone-glow)" : undefined}>
-      <path d="M64 76 H136" /><path d="M66 80 L56 160 M134 80 L144 160" /><path d="M55 166 L48 236 M60 166 L54 236 M145 166 L152 236 M140 166 L146 236" />
-      <path d="M82 262 L78 334 M118 262 L122 334" /><path d="M77 340 L76 392 M83 340 L82 392 M123 340 L124 392 M117 340 L118 392" />
-    </g>
-    <g className="fill-background stroke-muted-foreground/50" strokeWidth="2">{[[56, 163], [144, 163], [80, 337], [120, 337]].map(([x, y]) => <circle key={`${x}${y}`} cx={x} cy={y} r="4" />)}</g>
-  </svg>;
+  const bones = "M230 285 L205 520 M540 285 L565 520 M205 535 L165 710 M565 535 L605 710 M282 705 L318 975 M488 705 L452 975 M318 1035 L322 1350 M452 1035 L450 1350";
+  return <div className="relative mx-auto aspect-[1/2] max-h-[620px] overflow-hidden rounded-2xl">
+    <img src={skeleton} alt="Front view of a full human skeleton" width={768} height={1536} className="h-full w-full object-cover" />
+    <svg viewBox="0 0 768 1536" role="img" aria-label={`${SKELETAL_PARTS[selected]?.name} highlighted on the skeleton`} className="pointer-events-none absolute inset-0 h-full w-full text-mint" strokeLinecap="round">
+      <defs><filter id="bone-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+      <g key={selected} className="animate-fade-up" filter="url(#bone-glow)" stroke="currentColor" strokeWidth="6" fill="currentColor" fillOpacity="0.25">
+        {selected === 0 && <ellipse cx="383" cy="92" rx="66" ry="88" />}
+        {selected === 1 && <rect x="360" y="180" width="48" height="440" rx="22" />}
+        {selected === 2 && <ellipse cx="385" cy="385" rx="128" ry="145" />}
+        {selected === 3 && <ellipse cx="383" cy="660" rx="125" ry="92" />}
+        {selected === 4 && <path d={bones} fill="none" strokeWidth="34" strokeOpacity="0.55" />}
+      </g>
+    </svg>
+  </div>;
 }
 
 function Anatomy() {
   const [selected, setSelected] = useState(0);
   const part = SKELETAL_PARTS[selected];
   return <div className="grid items-start gap-8 md:grid-cols-2">
-    <figure className="rounded-3xl border border-border bg-card p-6"><Skeleton selected={selected} /><figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">Simplified front view · 206 bones in an adult</figcaption></figure>
+    <figure className="rounded-3xl border border-border bg-card p-4"><Skeleton selected={selected} /><figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">Simplified front view · 206 bones in an adult</figcaption></figure>
     <div>
       <h2 className="mb-4 text-2xl font-bold">Meet the main structures</h2>
       <div className="flex flex-col gap-2">{SKELETAL_PARTS.map((item, index) => <Button key={item.name} variant={selected === index ? "default" : "outline"} className="h-12 justify-start" aria-pressed={selected === index} onClick={() => setSelected(index)}><span className="w-6 font-mono text-xs">0{index + 1}</span>{item.name}</Button>)}</div>
