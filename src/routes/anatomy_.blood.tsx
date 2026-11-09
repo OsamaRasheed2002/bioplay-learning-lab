@@ -25,9 +25,9 @@ export const Route = createFileRoute("/anatomy_/blood")({
 
 const LEGEND = [
   { name: "Plasma", share: "~55%", fill: "bg-plasma" },
-  { name: "White cells", share: "<1%", fill: "bg-whitecell" },
+  { name: "White blood cells", share: "<1%", fill: "bg-whitecell" },
   { name: "Platelets", share: "<1%", fill: "bg-platelet" },
-  { name: "Red cells", share: "~45%", fill: "bg-redcell" },
+  { name: "Red blood cells", share: "~45%", fill: "bg-redcell" },
 ];
 
 function BloodPage() {
@@ -38,7 +38,7 @@ function BloodPage() {
       intro="An adult has about 5 litres of blood. Spin a sample in a centrifuge and it separates into plasma on top, a thin 'buffy coat' of white cells and platelets, and red cells at the bottom."
     >
       <div className="mb-3 flex h-11 overflow-hidden rounded-full border border-border font-mono text-xs">
-        <div className="grid basis-[55%] place-items-center bg-plasma text-plasma-ink">Plasma 55%</div>
+        <div className="grid basis-[55%] place-items-center bg-plasma text-plasma-ink">Plasma</div>
         <div
           className="grid basis-[3%] place-items-center bg-whitecell text-whitecell-ink"
           title="White blood cells — under 1% of blood"
@@ -51,7 +51,7 @@ function BloodPage() {
         >
           <span className="hidden md:inline">PLT</span>
         </div>
-        <div className="grid basis-[39%] place-items-center bg-redcell text-redcell-ink">Red cells ~45%</div>
+        <div className="grid basis-[39%] place-items-center bg-redcell text-redcell-ink">Red cells</div>
       </div>
       <div className="mb-2 flex flex-wrap gap-2 font-mono text-xs">
         {LEGEND.map((l) => (
