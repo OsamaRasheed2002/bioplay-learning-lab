@@ -64,6 +64,153 @@ export type VesselLayer = {
   job: string;
 };
 
+export type MajorVessel = {
+  name: string;
+  where: string;
+  job: string;
+  note: string;
+  tone: "peach" | "sky" | "lavender" | "mint";
+};
+
+export const MAJOR_ARTERIES: MajorVessel[] = [
+  {
+    name: "Aorta",
+    tone: "peach",
+    where: "Leaves the left ventricle, arches over the heart and runs down through the chest into the belly.",
+    job: "The body's largest artery — takes all the oxygenated blood out of the heart and hands it to every other artery.",
+    note: "Its thick elastic wall stretches with each heartbeat, which is why you can feel a pulse.",
+  },
+  {
+    name: "Coronary arteries",
+    tone: "mint",
+    where: "Wrap over the outside surface of the heart.",
+    job: "Feed the heart muscle itself the oxygen and fuel it needs to keep beating.",
+    note: "When they narrow with plaque, a stent is pushed in on a balloon to hold them open.",
+  },
+  {
+    name: "Carotid arteries",
+    tone: "sky",
+    where: "Both sides of the neck, running up to the head.",
+    job: "Supply most of the blood to the brain, eyes and face.",
+    note: "Plaque here is checked with ultrasound and can be cleared surgically or held open with a stent.",
+  },
+  {
+    name: "Subclavian arteries",
+    tone: "lavender",
+    where: "Under the collarbones, out towards the arms.",
+    job: "Carry blood to the arms and give off the vertebral arteries that feed the brain.",
+    note: "Also the usual route for a pacemaker or defibrillator lead into the heart.",
+  },
+  {
+    name: "Brachial artery",
+    tone: "mint",
+    where: "Down the inside of the upper arm to the elbow.",
+    job: "The main blood supply to the arm.",
+    note: "This is the artery a blood-pressure cuff squeezes and listens to.",
+  },
+  {
+    name: "Radial artery",
+    tone: "sky",
+    where: "Forearm, to the thumb side of the wrist.",
+    job: "Supplies the hand and thumb.",
+    note: "The classic pulse point, and a vessel often harvested for heart-bypass grafts.",
+  },
+  {
+    name: "Renal arteries",
+    tone: "lavender",
+    where: "Off the aorta at waist level, one into each kidney.",
+    job: "Deliver blood to be filtered by the kidneys.",
+    note: "A narrowing here raises blood pressure and can be opened with angioplasty.",
+  },
+  {
+    name: "Femoral artery",
+    tone: "peach",
+    where: "Groin, running down the front of the thigh to the leg.",
+    job: "The main blood supply to the leg.",
+    note: "The usual entry point for heart catheters, angiograms and mechanical circulatory support.",
+  },
+  {
+    name: "Pulmonary artery",
+    tone: "mint",
+    where: "From the right ventricle to the lungs.",
+    job: "Carries deoxygenated blood to the lungs to pick up oxygen and release CO₂.",
+    note: "The only artery in the body that carries deoxygenated blood.",
+  },
+];
+
+export const MAJOR_VEINS: MajorVessel[] = [
+  {
+    name: "Superior vena cava",
+    tone: "sky",
+    where: "Upper chest, formed by the veins of the head, neck and arms.",
+    job: "Drops blood from the top half of the body into the right atrium.",
+    note: "Pressure here tells clinicians how much blood is returning to the heart.",
+  },
+  {
+    name: "Inferior vena cava",
+    tone: "peach",
+    where: "Runs up the back of the belly from the legs and abdominal organs.",
+    job: "The largest vein — returns blood from the bottom half of the body to the heart.",
+    note: "Small metal filters can be placed here to catch clots before they reach the lungs.",
+  },
+  {
+    name: "Jugular veins",
+    tone: "lavender",
+    where: "Both sides of the neck, beside the carotid arteries.",
+    job: "Drain blood from the brain, face and neck.",
+    note: "A visible jugular pulse estimates heart filling pressure; the veins also give access for central lines.",
+  },
+  {
+    name: "Subclavian vein",
+    tone: "mint",
+    where: "Under the collarbone, just in front of the artery.",
+    job: "Carries blood back from the arm towards the heart.",
+    note: "A common site for a port or central line used for chemotherapy and dialysis.",
+  },
+  {
+    name: "Cephalic, basilic & median cubital veins",
+    tone: "sky",
+    where: "Down the outer and inner arm, with the median cubital vein across the elbow.",
+    job: "Return blood from the arm and hand.",
+    note: "These are the surface veins used for blood draws and IV cannulas.",
+  },
+  {
+    name: "Hepatic portal vein",
+    tone: "peach",
+    where: "From the stomach, intestines and spleen into the liver.",
+    job: "Carries nutrient-rich blood to the liver to be processed before it rejoins the main circulation.",
+    note: "A vein that starts and ends in organs — a portal system.",
+  },
+  {
+    name: "Renal veins",
+    tone: "lavender",
+    where: "From each kidney to the inferior vena cava.",
+    job: "Carry filtered blood away from the kidneys.",
+    note: "Short and wide; sampling here can show how well a kidney is working.",
+  },
+  {
+    name: "Femoral vein",
+    tone: "mint",
+    where: "Groin and thigh, running next to the femoral artery.",
+    job: "Returns blood from the leg, helped upward by one-way valves.",
+    note: "A common site for deep-vein thrombosis, and used for large-bore cannulas in ECMO.",
+  },
+  {
+    name: "Great saphenous vein",
+    tone: "sky",
+    where: "The length of the leg, from the inner ankle to the groin.",
+    job: "The longest vein in the body — drains the skin and muscles of the leg.",
+    note: "Often harvested for heart-bypass grafts, and the vein most often affected by varicose veins.",
+  },
+  {
+    name: "Pulmonary veins",
+    tone: "peach",
+    where: "From the lungs into the left atrium.",
+    job: "Carry freshly oxygenated blood back to the heart to be pumped out to the body.",
+    note: "The only veins in the body that carry oxygenated blood.",
+  },
+];
+
 export type Vessel = {
   kind: "artery" | "vein";
   title: string;
@@ -73,6 +220,7 @@ export type Vessel = {
   rings: [number, number, number];
   facts: string[];
   engineering: string;
+  major: MajorVessel[];
 };
 
 export const ARTERY: Vessel = {
@@ -108,6 +256,7 @@ export const ARTERY: Vessel = {
   ],
   engineering:
     "Stents are mesh tubes that hold a narrowed artery open; vascular grafts made of Dacron or PTFE replace damaged sections.",
+  major: MAJOR_ARTERIES,
 };
 
 export const VEIN: Vessel = {
@@ -143,4 +292,5 @@ export const VEIN: Vessel = {
   ],
   engineering:
     "Compression stockings and venous valve implants help when valves fail (varicose veins); veins are also the usual site for IV lines.",
+  major: MAJOR_VEINS,
 };
