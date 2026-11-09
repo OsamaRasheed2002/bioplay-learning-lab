@@ -55,7 +55,7 @@ function Anatomy() {
       </svg>
       <figcaption className="mt-2 text-center font-mono text-xs text-muted-foreground">Front view · 206 bones in an adult · tap a label to learn more</figcaption>
     </figure>
-    <div aria-live="polite" className="mx-auto mt-6 max-w-2xl border-l-2 border-mint pl-5"><h2 className="text-2xl font-bold">{part?.name}</h2><p className="mt-2 leading-relaxed text-muted-foreground">{part?.text}</p></div>
+    <div aria-live="polite" className="mx-auto mt-6 max-w-2xl"><h2 className="text-2xl font-bold">{part?.name}</h2><p className="mt-2 leading-relaxed text-muted-foreground">{part?.text}</p></div>
   </div>;
 }
 
