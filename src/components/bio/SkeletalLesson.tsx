@@ -39,7 +39,7 @@ function Anatomy() {
   const part = SKELETON_LABELS[selected];
   return <div>
     <figure className="rounded-3xl border border-border bg-card p-4 sm:p-6">
-      <svg viewBox="0 0 1068 1536" role="group" aria-label="Labelled front view of the human skeleton" className="mx-auto w-full max-w-5xl">
+      <svg viewBox="0 0 1068 1536" role="group" aria-label="Labelled front view of the human skeleton" className="mx-auto w-full">
         <image href={skeleton} x={OFFSET} y="0" width="768" height="1536" preserveAspectRatio="xMidYMid slice" />
         {SKELETON_LABELS.map((l, i) => {
           const left = l.side === "left";
