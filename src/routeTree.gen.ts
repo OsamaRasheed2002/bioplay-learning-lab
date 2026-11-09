@@ -20,7 +20,11 @@ import { Route as AnatomyArteriesRouteImport } from './routes/anatomy_.arteries'
 import { Route as AnatomyBloodRouteImport } from './routes/anatomy_.blood'
 import { Route as AnatomyCardiovascularRouteImport } from './routes/anatomy_.cardiovascular'
 import { Route as AnatomyHeartRouteImport } from './routes/anatomy_.heart'
+import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respiratory'
 import { Route as AnatomyVeinsRouteImport } from './routes/anatomy_.veins'
+import { Route as AnatomyRespiratoryAnatomyRouteImport } from './routes/anatomy_.respiratory_.anatomy'
+import { Route as AnatomyRespiratoryBiomechanicsRouteImport } from './routes/anatomy_.respiratory_.biomechanics'
+import { Route as AnatomyRespiratoryBreathingRouteImport } from './routes/anatomy_.respiratory_.breathing'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -77,11 +81,34 @@ const AnatomyHeartRoute = AnatomyHeartRouteImport.update({
   path: '/anatomy/heart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyRespiratoryRoute = AnatomyRespiratoryRouteImport.update({
+  id: '/anatomy_/respiratory',
+  path: '/anatomy/respiratory',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnatomyVeinsRoute = AnatomyVeinsRouteImport.update({
   id: '/anatomy_/veins',
   path: '/anatomy/veins',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyRespiratoryAnatomyRoute =
+  AnatomyRespiratoryAnatomyRouteImport.update({
+    id: '/anatomy_/respiratory_/anatomy',
+    path: '/anatomy/respiratory/anatomy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AnatomyRespiratoryBiomechanicsRoute =
+  AnatomyRespiratoryBiomechanicsRouteImport.update({
+    id: '/anatomy_/respiratory_/biomechanics',
+    path: '/anatomy/respiratory/biomechanics',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AnatomyRespiratoryBreathingRoute =
+  AnatomyRespiratoryBreathingRouteImport.update({
+    id: '/anatomy_/respiratory_/breathing',
+    path: '/anatomy/respiratory/breathing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,7 +122,11 @@ export interface FileRoutesByFullPath {
   '/anatomy/blood': typeof AnatomyBloodRoute
   '/anatomy/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
+  '/anatomy/respiratory/anatomy': typeof AnatomyRespiratoryAnatomyRoute
+  '/anatomy/respiratory/biomechanics': typeof AnatomyRespiratoryBiomechanicsRoute
+  '/anatomy/respiratory/breathing': typeof AnatomyRespiratoryBreathingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -109,7 +140,11 @@ export interface FileRoutesByTo {
   '/anatomy/blood': typeof AnatomyBloodRoute
   '/anatomy/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
+  '/anatomy/respiratory/anatomy': typeof AnatomyRespiratoryAnatomyRoute
+  '/anatomy/respiratory/biomechanics': typeof AnatomyRespiratoryBiomechanicsRoute
+  '/anatomy/respiratory/breathing': typeof AnatomyRespiratoryBreathingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -124,7 +159,11 @@ export interface FileRoutesById {
   '/anatomy_/blood': typeof AnatomyBloodRoute
   '/anatomy_/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy_/heart': typeof AnatomyHeartRoute
+  '/anatomy_/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy_/veins': typeof AnatomyVeinsRoute
+  '/anatomy_/respiratory_/anatomy': typeof AnatomyRespiratoryAnatomyRoute
+  '/anatomy_/respiratory_/biomechanics': typeof AnatomyRespiratoryBiomechanicsRoute
+  '/anatomy_/respiratory_/breathing': typeof AnatomyRespiratoryBreathingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -140,7 +179,11 @@ export interface FileRouteTypes {
     | '/anatomy/blood'
     | '/anatomy/cardiovascular'
     | '/anatomy/heart'
+    | '/anatomy/respiratory'
     | '/anatomy/veins'
+    | '/anatomy/respiratory/anatomy'
+    | '/anatomy/respiratory/biomechanics'
+    | '/anatomy/respiratory/breathing'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -154,7 +197,11 @@ export interface FileRouteTypes {
     | '/anatomy/blood'
     | '/anatomy/cardiovascular'
     | '/anatomy/heart'
+    | '/anatomy/respiratory'
     | '/anatomy/veins'
+    | '/anatomy/respiratory/anatomy'
+    | '/anatomy/respiratory/biomechanics'
+    | '/anatomy/respiratory/breathing'
   id:
     | '__root__'
     | '/'
@@ -168,7 +215,11 @@ export interface FileRouteTypes {
     | '/anatomy_/blood'
     | '/anatomy_/cardiovascular'
     | '/anatomy_/heart'
+    | '/anatomy_/respiratory'
     | '/anatomy_/veins'
+    | '/anatomy_/respiratory_/anatomy'
+    | '/anatomy_/respiratory_/biomechanics'
+    | '/anatomy_/respiratory_/breathing'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -183,7 +234,11 @@ export interface RootRouteChildren {
   AnatomyBloodRoute: typeof AnatomyBloodRoute
   AnatomyCardiovascularRoute: typeof AnatomyCardiovascularRoute
   AnatomyHeartRoute: typeof AnatomyHeartRoute
+  AnatomyRespiratoryRoute: typeof AnatomyRespiratoryRoute
   AnatomyVeinsRoute: typeof AnatomyVeinsRoute
+  AnatomyRespiratoryAnatomyRoute: typeof AnatomyRespiratoryAnatomyRoute
+  AnatomyRespiratoryBiomechanicsRoute: typeof AnatomyRespiratoryBiomechanicsRoute
+  AnatomyRespiratoryBreathingRoute: typeof AnatomyRespiratoryBreathingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -265,11 +320,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomyHeartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/respiratory': {
+      id: '/anatomy_/respiratory'
+      path: '/anatomy/respiratory'
+      fullPath: '/anatomy/respiratory'
+      preLoaderRoute: typeof AnatomyRespiratoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anatomy_/veins': {
       id: '/anatomy_/veins'
       path: '/anatomy/veins'
       fullPath: '/anatomy/veins'
       preLoaderRoute: typeof AnatomyVeinsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/respiratory_/anatomy': {
+      id: '/anatomy_/respiratory_/anatomy'
+      path: '/anatomy/respiratory/anatomy'
+      fullPath: '/anatomy/respiratory/anatomy'
+      preLoaderRoute: typeof AnatomyRespiratoryAnatomyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/respiratory_/biomechanics': {
+      id: '/anatomy_/respiratory_/biomechanics'
+      path: '/anatomy/respiratory/biomechanics'
+      fullPath: '/anatomy/respiratory/biomechanics'
+      preLoaderRoute: typeof AnatomyRespiratoryBiomechanicsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/respiratory_/breathing': {
+      id: '/anatomy_/respiratory_/breathing'
+      path: '/anatomy/respiratory/breathing'
+      fullPath: '/anatomy/respiratory/breathing'
+      preLoaderRoute: typeof AnatomyRespiratoryBreathingRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -287,7 +370,11 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyBloodRoute: AnatomyBloodRoute,
   AnatomyCardiovascularRoute: AnatomyCardiovascularRoute,
   AnatomyHeartRoute: AnatomyHeartRoute,
+  AnatomyRespiratoryRoute: AnatomyRespiratoryRoute,
   AnatomyVeinsRoute: AnatomyVeinsRoute,
+  AnatomyRespiratoryAnatomyRoute: AnatomyRespiratoryAnatomyRoute,
+  AnatomyRespiratoryBiomechanicsRoute: AnatomyRespiratoryBiomechanicsRoute,
+  AnatomyRespiratoryBreathingRoute: AnatomyRespiratoryBreathingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
