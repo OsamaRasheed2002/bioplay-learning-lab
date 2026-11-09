@@ -65,9 +65,7 @@ function BloodPage() {
           </span>
         ))}
       </div>
-      <p className="mb-8 font-mono text-xs text-muted-foreground">
-        White cells and platelets are each under 1% of blood — drawn a little wider here so you can see them.
-      </p>
+      <p className="mb-8 font-mono text-xs text-muted-foreground">{"\n"}</p>
       <div className="grid gap-5 sm:grid-cols-2">
         {BLOOD_COMPONENTS.map((c, i) => (
           <div key={c.name} style={{ animationDelay: `${i * 80}ms` }} className="animate-fade-up overflow-hidden rounded-4xl border border-border bg-card shadow-soft">
