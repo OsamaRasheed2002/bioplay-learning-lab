@@ -30,24 +30,26 @@ export function SkeletalLesson({ section }: { section: SkeletalSection }) {
   );
 }
 
-const OFFSET = 316;
+const OFFSET = 150;
+const LEFT_TX = 238;
+const RIGHT_TX = 830;
 
 function Anatomy() {
   const [selected, setSelected] = useState(0);
   const part = SKELETON_LABELS[selected];
   return <div>
     <figure className="rounded-3xl border border-border bg-card p-4 sm:p-6">
-      <svg viewBox="0 0 1400 1536" role="group" aria-label="Labelled front view of the human skeleton" className="mx-auto w-full max-w-4xl">
+      <svg viewBox="0 0 1068 1536" role="group" aria-label="Labelled front view of the human skeleton" className="mx-auto w-full max-w-5xl">
         <image href={skeleton} x={OFFSET} y="0" width="768" height="1536" preserveAspectRatio="xMidYMid slice" />
         {SKELETON_LABELS.map((l, i) => {
           const left = l.side === "left";
-          const tx = left ? 290 : 1110;
+          const tx = left ? LEFT_TX : RIGHT_TX;
           const px = l.x + OFFSET;
           const active = selected === i;
           return <g key={l.name} role="button" tabIndex={0} aria-pressed={active} aria-label={l.name} onClick={() => setSelected(i)} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setSelected(i)} className="cursor-pointer outline-none">
-            <path d={`M${tx} ${l.ly} H${left ? tx + 30 : tx - 30} L${px} ${l.y}`} fill="none" strokeWidth={active ? 4 : 2} className={cn("transition-colors", active ? "stroke-mint" : "stroke-muted-foreground/60")} />
+            <path d={`M${tx} ${l.ly} H${left ? tx + 12 : tx - 12} L${px} ${l.y}`} fill="none" strokeWidth={active ? 4 : 2} className={cn("transition-colors", active ? "stroke-mint" : "stroke-muted-foreground/60")} />
             <circle cx={px} cy={l.y} r={active ? 10 : 6} className={active ? "fill-mint" : "fill-muted-foreground"} />
-            <text x={left ? tx - 8 : tx + 8} y={l.ly + 10} textAnchor={left ? "end" : "start"} fontSize="30" className={cn("font-sans font-semibold transition-colors", active ? "fill-mint" : "fill-foreground")}>{l.name}</text>
+            <text x={left ? tx - 8 : tx + 8} y={l.ly + 9} textAnchor={left ? "end" : "start"} fontSize="26" className={cn("font-sans font-semibold transition-colors", active ? "fill-mint" : "fill-foreground")}>{l.name}</text>
           </g>;
         })}
       </svg>
