@@ -12,6 +12,8 @@ export const Route = createFileRoute("/progress")({
       { name: "description", content: "Track your XP, achievements and completed biomedical engineering topics." },
       { property: "og:title", content: "My Progress — BEPlay" },
       { property: "og:description", content: "Track your XP, achievements and completed biomedical engineering topics." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: ProgressPage,

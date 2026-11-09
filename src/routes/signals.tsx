@@ -9,6 +9,8 @@ export const Route = createFileRoute("/signals")({
       { name: "description", content: "Record, filter and decode ECG, EEG and EMG signals in a virtual lab." },
       { property: "og:title", content: "Biomedical Signals Lab — BEPlay" },
       { property: "og:description", content: "Record, filter and decode ECG, EEG and EMG signals in a virtual lab." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: () => <ModulePage id="signals" />,

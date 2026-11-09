@@ -9,6 +9,8 @@ export const Route = createFileRoute("/concepts")({
       { name: "description", content: "Biomechanics, biomaterials and bioinstrumentation explained visually." },
       { property: "og:title", content: "Biomedical Engineering Concepts — BEPlay" },
       { property: "og:description", content: "Biomechanics, biomaterials and bioinstrumentation explained visually." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: () => <ModulePage id="concepts" />,
