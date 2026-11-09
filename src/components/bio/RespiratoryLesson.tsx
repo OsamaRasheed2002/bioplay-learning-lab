@@ -33,7 +33,13 @@ function Anatomy() {
   const [selected, setSelected] = useState(0);
   const part = RESPIRATORY_PARTS[selected];
   return <div className="grid items-start gap-8 md:grid-cols-2">
-    <figure><img src={lungs} alt="Front view of the trachea, branching bronchi, right and left lungs, and diaphragm" width={1024} height={1024} className="aspect-square w-full rounded-3xl object-contain" /><figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">Front view · Your right lung is on the left of the image</figcaption></figure>
+    <figure>
+      <div className="relative isolate aspect-square overflow-hidden rounded-3xl">
+        <img src={lungs} alt="Front view of the trachea, branching bronchi, right and left lungs, and diaphragm" width={1024} height={1024} className="h-full w-full object-contain" />
+        <AnatomyHighlight selected={selected} name={part?.name ?? ""} />
+      </div>
+      <figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">Front view · Your right lung is on the left of the image</figcaption>
+    </figure>
     <div>
       <h2 className="mb-4 text-2xl font-bold">Meet the main structures</h2>
       <div className="flex flex-col gap-2" aria-label="Respiratory structures">{RESPIRATORY_PARTS.map((item, index) => <Button key={item.name} variant={selected === index ? "default" : "outline"} className="h-12 justify-start" aria-pressed={selected === index} onClick={() => setSelected(index)}><span className="w-6 font-mono text-xs">0{index + 1}</span>{item.name}</Button>)}</div>
@@ -41,6 +47,34 @@ function Anatomy() {
       <div className="mt-4 border-t border-border pt-5"><h3 className="font-semibold text-sky-deep">The route air takes</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">Nose or mouth → throat → trachea → bronchi → bronchioles → alveoli.</p></div>
     </div>
   </div>;
+}
+
+function AnatomyHighlight({ selected, name }: { selected: number; name: string }) {
+  return <svg viewBox="0 0 768 768" role="img" aria-label={`${name} highlighted on the respiratory diagram`} className="pointer-events-none absolute inset-0 h-full w-full text-mint-deep">
+    <defs>
+      <filter id="respiratory-highlight-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+    </defs>
+    <g key={selected} className="animate-fade-up" filter="url(#respiratory-highlight-glow)" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+      {selected === 0 && <path d="M351 63 Q376 73 404 63 L411 237 L389 259 L364 244 Z" className="fill-mint/25" />}
+      {selected === 1 && <g fill="none" strokeWidth="9">
+        <path d="M382 246 L329 287 L278 312 L229 362 M277 312 L274 393 L244 465 M277 312 L212 295 L172 257 M274 393 L323 433 L337 498 M229 362 L173 406 L132 452 M244 465 L180 519 L126 575 M329 287 L324 346" />
+        <path d="M387 246 L437 290 L491 318 L541 365 M491 318 L499 399 L532 472 M491 318 L550 293 L599 252 M499 399 L460 453 L455 501 M541 365 L591 411 L626 460 M532 472 L583 526 L626 572 M437 290 L446 353" />
+      </g>}
+      {selected === 2 && <g className="fill-mint/25">
+        <path d="M338 109 C305 87 232 128 184 182 C112 264 81 369 71 472 C67 536 65 594 83 654 C143 623 186 587 230 557 C289 535 348 517 357 472 C375 365 367 198 338 109 Z" />
+        <path d="M422 106 C464 87 539 130 586 189 C641 258 675 355 691 470 C700 550 703 611 686 653 C622 621 570 581 520 554 C465 532 430 510 418 470 C401 394 424 347 453 319 C425 277 403 174 422 106 Z" />
+      </g>}
+      {selected === 3 && <>
+        <circle cx="563" cy="470" r="22" className="fill-mint/25" />
+        <path d="M576 450 L643 180" fill="none" strokeDasharray="6 7" />
+        <circle cx="651" cy="99" r="74" className="fill-card" strokeWidth="2" />
+        <path d="M649 51 L649 81 M649 76 L620 96 M649 76 L679 97 M649 82 L650 118" fill="none" strokeWidth="5" />
+        {[{ x: 614, y: 101 }, { x: 609, y: 124 }, { x: 633, y: 123 }, { x: 654, y: 139 }, { x: 675, y: 125 }, { x: 687, y: 104 }].map(({ x, y }) => <circle key={`${x}-${y}`} cx={x} cy={y} r="14" className="fill-mint/25" strokeWidth="2" />)}
+      </>}
+      {selected === 4 && <path d="M92 647 C164 586 257 522 365 516 C481 505 602 574 685 654 L674 750 C554 677 438 691 397 719 C342 744 252 681 199 696 L97 723 Z" className="fill-mint/25" />}
+    </g>
+    {selected === 3 && <text x="651" y="191" textAnchor="middle" className="fill-mint-deep font-mono text-sm">Alveoli · magnified</text>}
+  </svg>;
 }
 
 function BreathingDiagram({ inhale }: { inhale: boolean }) {
