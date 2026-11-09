@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import skeleton from "@/assets/skeleton-front.jpg";
 import { Button } from "@/components/ui/button";
-import { JOINT_TYPES, LOADS, SKELETAL_PARTS, SKELETAL_SECTIONS, type LoadId, type SkeletalSection } from "@/data/skeletal";
+import { JOINT_TYPES, LOADS, SKELETON_LABELS, SKELETAL_SECTIONS, type LoadId, type SkeletalSection } from "@/data/skeletal";
 import { cn } from "@/lib/utils";
 
 export function SkeletalLesson({ section }: { section: SkeletalSection }) {
@@ -30,33 +30,30 @@ export function SkeletalLesson({ section }: { section: SkeletalSection }) {
   );
 }
 
-function Skeleton({ selected }: { selected: number }) {
-  const bones = "M230 285 L205 520 M540 285 L565 520 M205 535 L165 710 M565 535 L605 710 M282 705 L318 975 M488 705 L452 975 M318 1035 L322 1350 M452 1035 L450 1350";
-  return <div className="relative mx-auto aspect-[1/2] max-h-[620px] overflow-hidden rounded-2xl">
-    <img src={skeleton} alt="Front view of a full human skeleton" width={768} height={1536} className="h-full w-full object-cover" />
-    <svg viewBox="0 0 768 1536" role="img" aria-label={`${SKELETAL_PARTS[selected]?.name} highlighted on the skeleton`} className="pointer-events-none absolute inset-0 h-full w-full text-mint" strokeLinecap="round">
-      <defs><filter id="bone-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
-      <g key={selected} className="animate-fade-up" filter="url(#bone-glow)" stroke="currentColor" strokeWidth="6" fill="currentColor" fillOpacity="0.25">
-        {selected === 0 && <ellipse cx="383" cy="92" rx="66" ry="88" />}
-        {selected === 1 && <rect x="360" y="180" width="48" height="440" rx="22" />}
-        {selected === 2 && <ellipse cx="385" cy="385" rx="128" ry="145" />}
-        {selected === 3 && <ellipse cx="383" cy="660" rx="125" ry="92" />}
-        {selected === 4 && <path d={bones} fill="none" strokeWidth="34" strokeOpacity="0.55" />}
-      </g>
-    </svg>
-  </div>;
-}
+const OFFSET = 316;
 
 function Anatomy() {
   const [selected, setSelected] = useState(0);
-  const part = SKELETAL_PARTS[selected];
-  return <div className="grid items-start gap-8 md:grid-cols-2">
-    <figure className="rounded-3xl border border-border bg-card p-4"><Skeleton selected={selected} /><figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">Simplified front view · 206 bones in an adult</figcaption></figure>
-    <div>
-      <h2 className="mb-4 text-2xl font-bold">Meet the main structures</h2>
-      <div className="flex flex-col gap-2">{SKELETAL_PARTS.map((item, index) => <Button key={item.name} variant={selected === index ? "default" : "outline"} className="h-12 justify-start" aria-pressed={selected === index} onClick={() => setSelected(index)}><span className="w-6 font-mono text-xs">0{index + 1}</span>{item.name}</Button>)}</div>
-      <div aria-live="polite" className="mt-6 min-h-32 border-l-2 border-mint pl-5"><h3 className="text-xl font-semibold">{part?.name}</h3><p className="mt-2 leading-relaxed text-muted-foreground">{part?.text}</p></div>
-    </div>
+  const part = SKELETON_LABELS[selected];
+  return <div>
+    <figure className="rounded-3xl border border-border bg-card p-4 sm:p-6">
+      <svg viewBox="0 0 1400 1536" role="group" aria-label="Labelled front view of the human skeleton" className="mx-auto w-full max-w-4xl">
+        <image href={skeleton} x={OFFSET} y="0" width="768" height="1536" preserveAspectRatio="xMidYMid slice" />
+        {SKELETON_LABELS.map((l, i) => {
+          const left = l.side === "left";
+          const tx = left ? 290 : 1110;
+          const px = l.x + OFFSET;
+          const active = selected === i;
+          return <g key={l.name} role="button" tabIndex={0} aria-pressed={active} aria-label={l.name} onClick={() => setSelected(i)} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setSelected(i)} className="cursor-pointer outline-none">
+            <path d={`M${tx} ${l.ly} H${left ? tx + 30 : tx - 30} L${px} ${l.y}`} fill="none" strokeWidth={active ? 4 : 2} className={cn("transition-colors", active ? "stroke-mint" : "stroke-muted-foreground/60")} />
+            <circle cx={px} cy={l.y} r={active ? 10 : 6} className={active ? "fill-mint" : "fill-muted-foreground"} />
+            <text x={left ? tx - 8 : tx + 8} y={l.ly + 10} textAnchor={left ? "end" : "start"} fontSize="30" className={cn("font-sans font-semibold transition-colors", active ? "fill-mint" : "fill-foreground")}>{l.name}</text>
+          </g>;
+        })}
+      </svg>
+      <figcaption className="mt-2 text-center font-mono text-xs text-muted-foreground">Front view · 206 bones in an adult · tap a label to learn more</figcaption>
+    </figure>
+    <div aria-live="polite" className="mx-auto mt-6 max-w-2xl border-l-2 border-mint pl-5"><h2 className="text-2xl font-bold">{part?.name}</h2><p className="mt-2 leading-relaxed text-muted-foreground">{part?.text}</p></div>
   </div>;
 }
 
