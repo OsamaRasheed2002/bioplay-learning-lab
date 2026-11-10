@@ -70,6 +70,10 @@
   --color-platelet: var(--platelet);
   --color-platelet-ink: var(--platelet-ink);
 
+  /* Skeleton picture: the navy behind the bones and the label text on it. */
+  --color-skeleton-bg: var(--skeleton-bg);
+  --color-skeleton-ink: var(--skeleton-ink);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -143,6 +147,10 @@
   --whitecell-ink: oklch(0.38 0.04 255);
   --platelet: oklch(0.85 0.09 82);
   --platelet-ink: oklch(0.36 0.08 75);
+
+  /* Fixed in both themes — these match the skeleton picture itself. */
+  --skeleton-bg: oklch(0.255 0.065 254);
+  --skeleton-ink: oklch(0.957 0.017 248);
 
   --gradient-hero: radial-gradient(
       60% 60% at 15% 20%,

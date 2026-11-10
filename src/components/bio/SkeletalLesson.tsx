@@ -75,6 +75,7 @@ function Anatomy() {
           aria-label="Labelled front view of the human skeleton"
           className="mx-auto w-full"
         >
+          <rect x="0" y="0" width="100%" height="100%" className="fill-skeleton-bg" />
           <image href={skeleton} x={OFFSET} y="0" width="768" height="1536" preserveAspectRatio="xMidYMid slice" />
           {SKELETON_LABELS.map((l, i) => {
             const left = l.side === "left";
