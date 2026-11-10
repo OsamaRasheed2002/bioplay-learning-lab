@@ -48,7 +48,7 @@ function Pacemakers() {
     <div className="mt-4 flex flex-wrap gap-2">
       {PARTS.map((p, i) => <Button key={p.name} size="sm" variant={i === part ? "default" : "outline"} onClick={() => setPart(i)}>{p.name}</Button>)}
     </div>
-    <p className="mt-4 rounded-2xl bg-card p-5 text-sm leading-relaxed shadow-soft"><strong>{PARTS[part].name}:</strong> {PARTS[part].text}</p>
+    <p className="mt-4 rounded-2xl bg-card p-5 text-sm leading-relaxed shadow-soft"><strong>{PARTS[part]!.name}:</strong> {PARTS[part]!.text}</p>
 
     <h2 className="mt-12 text-2xl font-bold">How it works</h2>
     <div className="mt-4 grid gap-3 sm:grid-cols-4">
@@ -57,7 +57,7 @@ function Pacemakers() {
         <div className="font-display font-semibold">{s.name}</div>
       </button>)}
     </div>
-    <p className="mt-4 rounded-2xl bg-card p-5 text-sm leading-relaxed shadow-soft">{STEPS[step].text}</p>
+    <p className="mt-4 rounded-2xl bg-card p-5 text-sm leading-relaxed shadow-soft">{STEPS[step]!.text}</p>
 
     <div className="mt-12 rounded-3xl border border-dashed border-border bg-card/70 p-6">
       <h2 className="font-display text-xl font-bold">Engineering link</h2>
