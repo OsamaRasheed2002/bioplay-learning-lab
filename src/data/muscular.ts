@@ -1,6 +1,7 @@
 export const MUSCULAR_SECTIONS = [
   { id: "anatomy", to: "/anatomy/muscular/anatomy", title: "Simple Anatomy", description: "Five major muscle groups and the movements they produce." },
   { id: "movement", to: "/anatomy/muscular/movement", title: "How Muscles Work", description: "Contraction, opposing muscle pairs and a little biomechanics." },
+  { id: "biomechanics", to: "/anatomy/muscular/biomechanics", title: "Muscle Biomechanics", description: "How muscles lift, lower and hold a load — without heavy maths." },
 ] as const;
 export type MuscularSection = typeof MUSCULAR_SECTIONS[number]["id"];
 

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { MUSCULAR_SECTIONS, muscularHead } from "@/data/muscular";
 
 export const Route = createFileRoute("/anatomy_/muscular")({
-  head: () => muscularHead("Muscular System", "Explore major muscles, contraction and movement in two simple interactive lessons."),
+  head: () => muscularHead("Muscular System", "Explore major muscles, contraction and simple biomechanics in three interactive lessons."),
   component: MuscularHub,
 });
 function MuscularHub() {

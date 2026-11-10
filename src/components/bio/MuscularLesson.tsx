@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUp, ArrowDown, Pause } from "lucide-react";
 import contractionImage from "@/assets/muscular-contraction.jpg";
 import muscleImage from "@/assets/muscular-anatomy.png.asset.json";
 import { Button } from "@/components/ui/button";
@@ -9,13 +9,14 @@ import { MUSCLE_PARTS, MUSCULAR_SECTIONS, type MuscularSection } from "@/data/mu
 export function MuscularLesson({ section }: { section: MuscularSection }) {
   const current = MUSCULAR_SECTIONS.find(item => item.id === section);
   if (!current) return null;
+  const next = MUSCULAR_SECTIONS[MUSCULAR_SECTIONS.findIndex(item => item.id === section) + 1];
   return <section className="px-5 py-10 sm:py-14"><div className="mx-auto max-w-6xl">
     <Button asChild variant="ghost" size="sm" className="mb-6"><Link to="/anatomy/muscular"><ArrowLeft /> Muscular System</Link></Button>
     <p className="font-mono text-xs uppercase tracking-widest text-lavender-deep">Anatomy Explorer · Muscular system</p>
     <h1 className="mt-3 text-4xl font-bold sm:text-5xl">{current.title}</h1><p className="mt-3 text-muted-foreground">{current.description}</p>
     <nav aria-label="Muscular system sections" className="my-7 flex flex-wrap gap-2">{MUSCULAR_SECTIONS.map(item => <Button key={item.id} asChild size="sm" variant={section === item.id ? "default" : "outline"}><Link to={item.to} aria-current={section === item.id ? "page" : undefined}>{item.title}</Link></Button>)}</nav>
-    {section === "anatomy" ? <Anatomy /> : <Movement />}
-    <div className="mt-10 flex justify-end"><Button asChild variant="outline"><Link to={section === "anatomy" ? "/anatomy/muscular/movement" : "/anatomy/muscular"}>{section === "anatomy" ? "Next section" : "Back to sections"}<ArrowRight /></Link></Button></div>
+    {section === "anatomy" ? <Anatomy /> : section === "movement" ? <Movement /> : <Biomechanics />}
+    <div className="mt-10 flex justify-end"><Button asChild variant="outline"><Link to={next?.to ?? "/anatomy/muscular"}>{next ? "Next section" : "Back to sections"}<ArrowRight /></Link></Button></div>
   </div></section>;
 }
 
@@ -40,4 +41,15 @@ function Movement() {
     <div className="mt-9 grid gap-6 border-t border-border pt-7 sm:grid-cols-3"><div><h3 className="text-xl font-bold text-mint-deep">Opposing pairs</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">Biceps bend the elbow; triceps straighten it. The nervous system coordinates both, and they can also contract together to stabilise a joint.</p></div><div><h3 className="text-xl font-bold text-lavender-deep">Force & movement</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">Muscle force turns a bone around a joint. A larger moment arm gives more turning effect for the same force. Muscles can produce force while shortening, lengthening or holding still.</p></div><div><h3 className="text-xl font-bold text-sky-deep">Engineering link</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">EMG measures electrical activity linked to muscle activation. Engineers use it in rehabilitation and prosthetic control; it is not a direct measurement of muscle force.</p></div></div>
     <div className="mt-7 border-t border-border pt-6"><h3 className="font-semibold">Three muscle tissue types</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">Skeletal muscle moves the body, cardiac muscle pumps the heart, and smooth muscle moves material through organs such as the digestive tract.</p></div>
   </>;
+}
+
+function Biomechanics() {
+  const [selected, setSelected] = useState(0);
+  const actions = [
+    { name: "Lift", icon: ArrowUp, title: "Concentric · shortening", text: "As you curl a weight upwards, the biceps produce force while shortening. Their turning effect at the elbow lifts the load against gravity." },
+    { name: "Lower", icon: ArrowDown, title: "Eccentric · lengthening", text: "As you slowly lower the weight, the biceps remain active while lengthening. They act like a brake, controlling the movement rather than simply switching off." },
+    { name: "Hold", icon: Pause, title: "Isometric · holding steady", text: "When you hold the weight still, the biceps produce force with little overall change in length. Their turning effect balances the load, so the elbow stays in position." },
+  ];
+  const action = actions[selected];
+  return <><div className="grid items-center gap-8 md:grid-cols-2"><figure><img src={muscleImage.url} alt="Labelled anatomical muscle chart showing the biceps and other muscles that generate movement" width={1664} height={1632} loading="lazy" className="mx-auto w-full max-w-md rounded-3xl" /><figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">Gray’s Anatomy / Mikael Häggström · public domain</figcaption></figure><div><h2 className="text-2xl font-bold">One muscle, three actions</h2><p className="mt-3 leading-relaxed text-muted-foreground">Think of a biceps curl: the muscle can move a load, control its descent or keep it still.</p><div className="mt-5 flex flex-wrap gap-2">{actions.map((item, i) => <Button key={item.name} variant={selected === i ? "default" : "outline"} aria-pressed={selected === i} onClick={() => setSelected(i)}><item.icon className="size-4" />{item.name}</Button>)}</div><div aria-live="polite" className="mt-6 min-h-44 border-l-2 border-mint pl-5"><h3 className="text-xl font-bold text-mint-deep">{action?.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{action?.text}</p></div></div></div><div className="mt-9 grid gap-6 border-t border-border pt-7 sm:grid-cols-3"><div><h3 className="text-xl font-bold text-lavender-deep">Bones are levers</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">A joint is the pivot. Tendons transfer muscle force to bones, creating a turning effect called torque.</p></div><div><h3 className="text-xl font-bold text-peach-deep">Distance matters</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">The same load held farther from a joint creates more torque. Holding a bag closer to your body can reduce the muscle effort needed to support it.</p></div><div><h3 className="text-xl font-bold text-sky-deep">Rehabilitation & design</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">Engineers consider muscle force and joint leverage when designing braces, prostheses and exercise equipment. Controlled movement helps manage how tissues are loaded.</p></div></div></>;
 }
