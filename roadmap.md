@@ -33,7 +33,7 @@
 - [x] Verify highlights, lesson navigation and mobile fit.
 
 # Reproductive system
-- [ ] Simplify anatomy pictures to main labels and add four selectable stage-specific pictures.
-- [ ] Verify picture switching and desktop/mobile layouts.
+- [x] Simplify anatomy pictures to main labels and add four selectable stage-specific pictures.
+- [x] Verify picture switching and desktop/mobile layouts.
 - [x] Add a connected hub, male and female anatomy pictures and a short function lesson.
 - [x] Verify anatomy selections, lesson steps and phone layout.

@@ -30,7 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- Reproductive anatomy and section definitions live in `src/data/reproductive.ts`; un-nested leaf routes share `ReproductiveLesson` to keep male/female views and short physiology lessons consistent.
+- Reproductive anatomy, stage images and section definitions live in `src/data/reproductive.ts`; un-nested leaf routes share `ReproductiveLesson`, with anatomy views confined to anatomy and selection-driven stage images in physiology.
 - Urinary section definitions live in `src/data/urinary.ts`; un-nested leaf routes share `UrinaryLesson` so anatomy and urine flow use consistent navigation and explanations.
 - Integumentary section definitions and highlight paths live in `src/data/integumentary.ts`; un-nested leaf routes share `SkinLesson` so anatomy and skin functions stay consistent.
 - Endocrine gland definitions and section navigation live in `src/data/endocrine.ts`; un-nested leaf routes share `EndocrineLesson` so highlights and short hormone lessons use one source.
