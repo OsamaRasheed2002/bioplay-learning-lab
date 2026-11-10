@@ -2,6 +2,7 @@ export const SKELETAL_SECTIONS = [
   { id: "anatomy", to: "/anatomy/skeletal/anatomy", title: "Simple Anatomy", description: "The main bones and where they sit.", tone: "mint" },
   { id: "bones", to: "/anatomy/skeletal/bones", title: "How Bones Work", description: "Inside a bone, and how joints let you move.", tone: "sky" },
   { id: "biomechanics", to: "/anatomy/skeletal/biomechanics", title: "Bone Biomechanics", description: "Loads, strength and adaptation, kept light.", tone: "lavender" },
+  { id: "fractures", to: "/anatomy/skeletal/fractures", title: "Fracture Types", description: "The four main ways a bone can break.", tone: "peach" },
 ] as const;
 
 export type SkeletalSection = typeof SKELETAL_SECTIONS[number]["id"];
@@ -45,6 +46,18 @@ export const JOINT_TYPES = [
   { name: "Ball & socket", where: "Shoulder, hip", text: "A rounded head in a cup — moves in almost every direction.", image: jointBallSocket, alt: "3D render of the hip ball-and-socket joint" },
   { name: "Pivot", where: "Top of the neck", text: "One bone rotates around another, letting you turn your head.", image: jointPivot, alt: "3D render of the pivot joint at the top of the neck" },
   { name: "Fixed", where: "Skull sutures", text: "Bones locked together with no real movement, for protection.", image: jointFixed, alt: "3D render of skull sutures, a fixed joint" },
+] as const;
+
+import fractureTransverse from "@/assets/fracture-transverse.jpg";
+import fractureOblique from "@/assets/fracture-oblique.jpg";
+import fractureSpiral from "@/assets/fracture-spiral.jpg";
+import fractureComminuted from "@/assets/fracture-comminuted.jpg";
+
+export const FRACTURE_TYPES = [
+  { name: "Transverse", cause: "A direct blow or bending force", text: "A clean, straight break straight across the bone.", image: fractureTransverse, alt: "3D render of a transverse fracture across a long bone" },
+  { name: "Oblique", cause: "An angled blow or a twisting fall", text: "A diagonal break running across the shaft at an angle.", image: fractureOblique, alt: "3D render of an oblique fracture on a long bone" },
+  { name: "Spiral", cause: "A twisting force, like planting a foot and turning", text: "The break winds around the bone like a corkscrew.", image: fractureSpiral, alt: "3D render of a spiral fracture winding around a long bone" },
+  { name: "Comminuted", cause: "A high-energy impact, like a car crash", text: "The bone shatters into three or more pieces.", image: fractureComminuted, alt: "3D render of a comminuted fracture with the bone in several pieces" },
 ] as const;
 
 export const LOADS = [
