@@ -75,6 +75,7 @@ function Anatomy() {
           aria-label="Labelled front view of the human skeleton"
           className="mx-auto w-full"
         >
+          <rect x="0" y="0" width="100%" height="100%" className="fill-skeleton-bg" />
           <image href={skeleton} x={OFFSET} y="0" width="768" height="1536" preserveAspectRatio="xMidYMid slice" />
           {SKELETON_LABELS.map((l, i) => {
             const left = l.side === "left";
@@ -96,20 +97,20 @@ function Anatomy() {
                   d={`M${tx} ${l.ly} H${left ? tx + 12 : tx - 12} L${px} ${l.y}`}
                   fill="none"
                   strokeWidth={active ? 4 : 2}
-                  className={cn("transition-colors", active ? "stroke-mint" : "stroke-muted-foreground/60")}
+                  className={cn("transition-colors", active ? "stroke-mint" : "stroke-skeleton-ink/45")}
                 />
                 <circle
                   cx={px}
                   cy={l.y}
                   r={active ? 10 : 6}
-                  className={active ? "fill-mint" : "fill-muted-foreground"}
+                  className={active ? "fill-mint" : "fill-skeleton-ink/80"}
                 />
                 <text
                   x={left ? tx - 8 : tx + 8}
                   y={l.ly + 9}
                   textAnchor={left ? "end" : "start"}
                   fontSize="26"
-                  className={cn("font-sans font-semibold transition-colors", active ? "fill-mint" : "fill-foreground")}
+                  className={cn("font-sans font-semibold transition-colors", active ? "fill-mint" : "fill-skeleton-ink")}
                 >
                   {l.name}
                 </text>
