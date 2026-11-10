@@ -349,6 +349,15 @@
   }
 }
 
+.biceps-forearm { transform-origin: 210px 700px; }
+.biceps-lift { animation: biceps-lift 2.4s ease-in-out forwards; }
+.biceps-lower { animation: biceps-lift 3s ease-in-out reverse forwards; }
+.biceps-hold { transform: rotate(-25deg); }
+@keyframes biceps-lift {
+  from { transform: rotate(10deg); }
+  to { transform: rotate(-55deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
