@@ -27,6 +27,7 @@ import { Route as AnatomyMuscularRouteImport } from './routes/anatomy_.muscular'
 import { Route as AnatomyNervousRouteImport } from './routes/anatomy_.nervous'
 import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respiratory'
 import { Route as AnatomySkeletalRouteImport } from './routes/anatomy_.skeletal'
+import { Route as AnatomyUrinaryRouteImport } from './routes/anatomy_.urinary'
 import { Route as AnatomyVeinsRouteImport } from './routes/anatomy_.veins'
 import { Route as AnatomyDigestiveAnatomyRouteImport } from './routes/anatomy_.digestive_.anatomy'
 import { Route as AnatomyDigestiveBiomechanicsRouteImport } from './routes/anatomy_.digestive_.biomechanics'
@@ -48,6 +49,8 @@ import { Route as AnatomySkeletalAnatomyRouteImport } from './routes/anatomy_.sk
 import { Route as AnatomySkeletalBiomechanicsRouteImport } from './routes/anatomy_.skeletal_.biomechanics'
 import { Route as AnatomySkeletalBonesRouteImport } from './routes/anatomy_.skeletal_.bones'
 import { Route as AnatomySkeletalFracturesRouteImport } from './routes/anatomy_.skeletal_.fractures'
+import { Route as AnatomyUrinaryAnatomyRouteImport } from './routes/anatomy_.urinary_.anatomy'
+import { Route as AnatomyUrinaryFunctionRouteImport } from './routes/anatomy_.urinary_.function'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -137,6 +140,11 @@ const AnatomyRespiratoryRoute = AnatomyRespiratoryRouteImport.update({
 const AnatomySkeletalRoute = AnatomySkeletalRouteImport.update({
   id: '/anatomy_/skeletal',
   path: '/anatomy/skeletal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyUrinaryRoute = AnatomyUrinaryRouteImport.update({
+  id: '/anatomy_/urinary',
+  path: '/anatomy/urinary',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnatomyVeinsRoute = AnatomyVeinsRouteImport.update({
@@ -255,6 +263,16 @@ const AnatomySkeletalFracturesRoute =
     path: '/anatomy/skeletal/fractures',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AnatomyUrinaryAnatomyRoute = AnatomyUrinaryAnatomyRouteImport.update({
+  id: '/anatomy_/urinary_/anatomy',
+  path: '/anatomy/urinary/anatomy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyUrinaryFunctionRoute = AnatomyUrinaryFunctionRouteImport.update({
+  id: '/anatomy_/urinary_/function',
+  path: '/anatomy/urinary/function',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -275,6 +293,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/nervous': typeof AnatomyNervousRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
+  '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
   '/anatomy/digestive/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy/digestive/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
@@ -296,6 +315,8 @@ export interface FileRoutesByFullPath {
   '/anatomy/skeletal/biomechanics': typeof AnatomySkeletalBiomechanicsRoute
   '/anatomy/skeletal/bones': typeof AnatomySkeletalBonesRoute
   '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
+  '/anatomy/urinary/anatomy': typeof AnatomyUrinaryAnatomyRoute
+  '/anatomy/urinary/function': typeof AnatomyUrinaryFunctionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -316,6 +337,7 @@ export interface FileRoutesByTo {
   '/anatomy/nervous': typeof AnatomyNervousRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
+  '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
   '/anatomy/digestive/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy/digestive/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
@@ -337,6 +359,8 @@ export interface FileRoutesByTo {
   '/anatomy/skeletal/biomechanics': typeof AnatomySkeletalBiomechanicsRoute
   '/anatomy/skeletal/bones': typeof AnatomySkeletalBonesRoute
   '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
+  '/anatomy/urinary/anatomy': typeof AnatomyUrinaryAnatomyRoute
+  '/anatomy/urinary/function': typeof AnatomyUrinaryFunctionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -358,6 +382,7 @@ export interface FileRoutesById {
   '/anatomy_/nervous': typeof AnatomyNervousRoute
   '/anatomy_/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy_/skeletal': typeof AnatomySkeletalRoute
+  '/anatomy_/urinary': typeof AnatomyUrinaryRoute
   '/anatomy_/veins': typeof AnatomyVeinsRoute
   '/anatomy_/digestive_/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy_/digestive_/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
@@ -379,6 +404,8 @@ export interface FileRoutesById {
   '/anatomy_/skeletal_/biomechanics': typeof AnatomySkeletalBiomechanicsRoute
   '/anatomy_/skeletal_/bones': typeof AnatomySkeletalBonesRoute
   '/anatomy_/skeletal_/fractures': typeof AnatomySkeletalFracturesRoute
+  '/anatomy_/urinary_/anatomy': typeof AnatomyUrinaryAnatomyRoute
+  '/anatomy_/urinary_/function': typeof AnatomyUrinaryFunctionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -401,6 +428,7 @@ export interface FileRouteTypes {
     | '/anatomy/nervous'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
+    | '/anatomy/urinary'
     | '/anatomy/veins'
     | '/anatomy/digestive/anatomy'
     | '/anatomy/digestive/biomechanics'
@@ -422,6 +450,8 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/biomechanics'
     | '/anatomy/skeletal/bones'
     | '/anatomy/skeletal/fractures'
+    | '/anatomy/urinary/anatomy'
+    | '/anatomy/urinary/function'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -442,6 +472,7 @@ export interface FileRouteTypes {
     | '/anatomy/nervous'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
+    | '/anatomy/urinary'
     | '/anatomy/veins'
     | '/anatomy/digestive/anatomy'
     | '/anatomy/digestive/biomechanics'
@@ -463,6 +494,8 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/biomechanics'
     | '/anatomy/skeletal/bones'
     | '/anatomy/skeletal/fractures'
+    | '/anatomy/urinary/anatomy'
+    | '/anatomy/urinary/function'
   id:
     | '__root__'
     | '/'
@@ -483,6 +516,7 @@ export interface FileRouteTypes {
     | '/anatomy_/nervous'
     | '/anatomy_/respiratory'
     | '/anatomy_/skeletal'
+    | '/anatomy_/urinary'
     | '/anatomy_/veins'
     | '/anatomy_/digestive_/anatomy'
     | '/anatomy_/digestive_/biomechanics'
@@ -504,6 +538,8 @@ export interface FileRouteTypes {
     | '/anatomy_/skeletal_/biomechanics'
     | '/anatomy_/skeletal_/bones'
     | '/anatomy_/skeletal_/fractures'
+    | '/anatomy_/urinary_/anatomy'
+    | '/anatomy_/urinary_/function'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -525,6 +561,7 @@ export interface RootRouteChildren {
   AnatomyNervousRoute: typeof AnatomyNervousRoute
   AnatomyRespiratoryRoute: typeof AnatomyRespiratoryRoute
   AnatomySkeletalRoute: typeof AnatomySkeletalRoute
+  AnatomyUrinaryRoute: typeof AnatomyUrinaryRoute
   AnatomyVeinsRoute: typeof AnatomyVeinsRoute
   AnatomyDigestiveAnatomyRoute: typeof AnatomyDigestiveAnatomyRoute
   AnatomyDigestiveBiomechanicsRoute: typeof AnatomyDigestiveBiomechanicsRoute
@@ -546,6 +583,8 @@ export interface RootRouteChildren {
   AnatomySkeletalBiomechanicsRoute: typeof AnatomySkeletalBiomechanicsRoute
   AnatomySkeletalBonesRoute: typeof AnatomySkeletalBonesRoute
   AnatomySkeletalFracturesRoute: typeof AnatomySkeletalFracturesRoute
+  AnatomyUrinaryAnatomyRoute: typeof AnatomyUrinaryAnatomyRoute
+  AnatomyUrinaryFunctionRoute: typeof AnatomyUrinaryFunctionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -674,6 +713,13 @@ declare module '@tanstack/react-router' {
       path: '/anatomy/skeletal'
       fullPath: '/anatomy/skeletal'
       preLoaderRoute: typeof AnatomySkeletalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/urinary': {
+      id: '/anatomy_/urinary'
+      path: '/anatomy/urinary'
+      fullPath: '/anatomy/urinary'
+      preLoaderRoute: typeof AnatomyUrinaryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anatomy_/veins': {
@@ -823,6 +869,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomySkeletalFracturesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/urinary_/anatomy': {
+      id: '/anatomy_/urinary_/anatomy'
+      path: '/anatomy/urinary/anatomy'
+      fullPath: '/anatomy/urinary/anatomy'
+      preLoaderRoute: typeof AnatomyUrinaryAnatomyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/urinary_/function': {
+      id: '/anatomy_/urinary_/function'
+      path: '/anatomy/urinary/function'
+      fullPath: '/anatomy/urinary/function'
+      preLoaderRoute: typeof AnatomyUrinaryFunctionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -845,6 +905,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyNervousRoute: AnatomyNervousRoute,
   AnatomyRespiratoryRoute: AnatomyRespiratoryRoute,
   AnatomySkeletalRoute: AnatomySkeletalRoute,
+  AnatomyUrinaryRoute: AnatomyUrinaryRoute,
   AnatomyVeinsRoute: AnatomyVeinsRoute,
   AnatomyDigestiveAnatomyRoute: AnatomyDigestiveAnatomyRoute,
   AnatomyDigestiveBiomechanicsRoute: AnatomyDigestiveBiomechanicsRoute,
@@ -866,6 +927,8 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomySkeletalBiomechanicsRoute: AnatomySkeletalBiomechanicsRoute,
   AnatomySkeletalBonesRoute: AnatomySkeletalBonesRoute,
   AnatomySkeletalFracturesRoute: AnatomySkeletalFracturesRoute,
+  AnatomyUrinaryAnatomyRoute: AnatomyUrinaryAnatomyRoute,
+  AnatomyUrinaryFunctionRoute: AnatomyUrinaryFunctionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
