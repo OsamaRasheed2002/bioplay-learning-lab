@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
+- Urinary section definitions and organ highlights live in `src/data/urinary.ts`; un-nested leaf routes share `UrinaryLesson` so anatomy and urine flow use the same organ mapping.
 - Integumentary section definitions and highlight paths live in `src/data/integumentary.ts`; un-nested leaf routes share `SkinLesson` so anatomy and skin functions stay consistent.
 - Endocrine gland definitions and section navigation live in `src/data/endocrine.ts`; un-nested leaf routes share `EndocrineLesson` so highlights and short hormone lessons use one source.
 - Learning modules are defined once in `src/lib/modules.ts`; cards, module pages and progress topics all read from it so a new path only needs one entry plus its route file.
