@@ -25,4 +25,4 @@
 
 # Integumentary system
 - [x] Add a connected hub with detailed skin anatomy and a short skin functions lesson.
-- [ ] Verify structure highlights, navigation and mobile fit.
+- [x] Verify structure highlights, navigation and mobile fit.
