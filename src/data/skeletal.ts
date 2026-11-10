@@ -35,11 +35,16 @@ export const SKELETON_LABELS = [
   { name: "Fibula", side: "right", x: 482, y: 1170, ly: 1170, text: "The thin outer lower-leg bone; mainly anchors muscles rather than bearing weight." },
 ] as const;
 
+import jointHinge from "@/assets/joint-hinge.jpg";
+import jointBallSocket from "@/assets/joint-ball-socket.jpg";
+import jointPivot from "@/assets/joint-pivot.jpg";
+import jointFixed from "@/assets/joint-fixed.jpg";
+
 export const JOINT_TYPES = [
-  { name: "Hinge", where: "Elbow, knee", text: "Bends in one direction, like a door hinge." },
-  { name: "Ball & socket", where: "Shoulder, hip", text: "A rounded head in a cup — moves in almost every direction." },
-  { name: "Pivot", where: "Top of the neck", text: "One bone rotates around another, letting you turn your head." },
-  { name: "Fixed", where: "Skull sutures", text: "Bones locked together with no real movement, for protection." },
+  { name: "Hinge", where: "Elbow, knee", text: "Bends in one direction, like a door hinge.", image: jointHinge, alt: "3D render of the elbow hinge joint" },
+  { name: "Ball & socket", where: "Shoulder, hip", text: "A rounded head in a cup — moves in almost every direction.", image: jointBallSocket, alt: "3D render of the hip ball-and-socket joint" },
+  { name: "Pivot", where: "Top of the neck", text: "One bone rotates around another, letting you turn your head.", image: jointPivot, alt: "3D render of the pivot joint at the top of the neck" },
+  { name: "Fixed", where: "Skull sutures", text: "Bones locked together with no real movement, for protection.", image: jointFixed, alt: "3D render of skull sutures, a fixed joint" },
 ] as const;
 
 export const LOADS = [

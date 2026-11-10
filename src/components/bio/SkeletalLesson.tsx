@@ -194,10 +194,20 @@ function Bones() {
         </p>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {JOINT_TYPES.map((j) => (
-            <div key={j.name} className="rounded-2xl border border-border bg-card p-5">
-              <h3 className="font-semibold text-sky-deep">{j.name}</h3>
-              <div className="mt-1 font-mono text-xs text-muted-foreground">{j.where}</div>
-              <p className="mt-3 text-sm text-muted-foreground">{j.text}</p>
+            <div key={j.name} className="overflow-hidden rounded-2xl border border-border bg-card">
+              <img
+                src={j.image}
+                alt={j.alt}
+                loading="lazy"
+                width={1024}
+                height={768}
+                className="aspect-[4/3] w-full object-cover"
+              />
+              <div className="p-5">
+                <h3 className="font-semibold text-sky-deep">{j.name}</h3>
+                <div className="mt-1 font-mono text-xs text-muted-foreground">{j.where}</div>
+                <p className="mt-3 text-sm text-muted-foreground">{j.text}</p>
+              </div>
             </div>
           ))}
         </div>
