@@ -21,6 +21,7 @@ import { Route as AnatomyBloodRouteImport } from './routes/anatomy_.blood'
 import { Route as AnatomyCardiovascularRouteImport } from './routes/anatomy_.cardiovascular'
 import { Route as AnatomyDigestiveRouteImport } from './routes/anatomy_.digestive'
 import { Route as AnatomyHeartRouteImport } from './routes/anatomy_.heart'
+import { Route as AnatomyMuscularRouteImport } from './routes/anatomy_.muscular'
 import { Route as AnatomyNervousRouteImport } from './routes/anatomy_.nervous'
 import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respiratory'
 import { Route as AnatomySkeletalRouteImport } from './routes/anatomy_.skeletal'
@@ -28,6 +29,8 @@ import { Route as AnatomyVeinsRouteImport } from './routes/anatomy_.veins'
 import { Route as AnatomyDigestiveAnatomyRouteImport } from './routes/anatomy_.digestive_.anatomy'
 import { Route as AnatomyDigestiveBiomechanicsRouteImport } from './routes/anatomy_.digestive_.biomechanics'
 import { Route as AnatomyDigestiveDigestionRouteImport } from './routes/anatomy_.digestive_.digestion'
+import { Route as AnatomyMuscularAnatomyRouteImport } from './routes/anatomy_.muscular_.anatomy'
+import { Route as AnatomyMuscularMovementRouteImport } from './routes/anatomy_.muscular_.movement'
 import { Route as AnatomyNervousAnatomyRouteImport } from './routes/anatomy_.nervous_.anatomy'
 import { Route as AnatomyNervousReflexesRouteImport } from './routes/anatomy_.nervous_.reflexes'
 import { Route as AnatomyNervousSignalsRouteImport } from './routes/anatomy_.nervous_.signals'
@@ -99,6 +102,11 @@ const AnatomyHeartRoute = AnatomyHeartRouteImport.update({
   path: '/anatomy/heart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyMuscularRoute = AnatomyMuscularRouteImport.update({
+  id: '/anatomy_/muscular',
+  path: '/anatomy/muscular',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnatomyNervousRoute = AnatomyNervousRouteImport.update({
   id: '/anatomy_/nervous',
   path: '/anatomy/nervous',
@@ -136,6 +144,16 @@ const AnatomyDigestiveDigestionRoute =
     path: '/anatomy/digestive/digestion',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AnatomyMuscularAnatomyRoute = AnatomyMuscularAnatomyRouteImport.update({
+  id: '/anatomy_/muscular_/anatomy',
+  path: '/anatomy/muscular/anatomy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyMuscularMovementRoute = AnatomyMuscularMovementRouteImport.update({
+  id: '/anatomy_/muscular_/movement',
+  path: '/anatomy/muscular/movement',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnatomyNervousAnatomyRoute = AnatomyNervousAnatomyRouteImport.update({
   id: '/anatomy_/nervous_/anatomy',
   path: '/anatomy/nervous/anatomy',
@@ -205,6 +223,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy/digestive': typeof AnatomyDigestiveRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
@@ -212,6 +231,8 @@ export interface FileRoutesByFullPath {
   '/anatomy/digestive/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy/digestive/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
   '/anatomy/digestive/digestion': typeof AnatomyDigestiveDigestionRoute
+  '/anatomy/muscular/anatomy': typeof AnatomyMuscularAnatomyRoute
+  '/anatomy/muscular/movement': typeof AnatomyMuscularMovementRoute
   '/anatomy/nervous/anatomy': typeof AnatomyNervousAnatomyRoute
   '/anatomy/nervous/reflexes': typeof AnatomyNervousReflexesRoute
   '/anatomy/nervous/signals': typeof AnatomyNervousSignalsRoute
@@ -236,6 +257,7 @@ export interface FileRoutesByTo {
   '/anatomy/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy/digestive': typeof AnatomyDigestiveRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
@@ -243,6 +265,8 @@ export interface FileRoutesByTo {
   '/anatomy/digestive/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy/digestive/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
   '/anatomy/digestive/digestion': typeof AnatomyDigestiveDigestionRoute
+  '/anatomy/muscular/anatomy': typeof AnatomyMuscularAnatomyRoute
+  '/anatomy/muscular/movement': typeof AnatomyMuscularMovementRoute
   '/anatomy/nervous/anatomy': typeof AnatomyNervousAnatomyRoute
   '/anatomy/nervous/reflexes': typeof AnatomyNervousReflexesRoute
   '/anatomy/nervous/signals': typeof AnatomyNervousSignalsRoute
@@ -268,6 +292,7 @@ export interface FileRoutesById {
   '/anatomy_/cardiovascular': typeof AnatomyCardiovascularRoute
   '/anatomy_/digestive': typeof AnatomyDigestiveRoute
   '/anatomy_/heart': typeof AnatomyHeartRoute
+  '/anatomy_/muscular': typeof AnatomyMuscularRoute
   '/anatomy_/nervous': typeof AnatomyNervousRoute
   '/anatomy_/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy_/skeletal': typeof AnatomySkeletalRoute
@@ -275,6 +300,8 @@ export interface FileRoutesById {
   '/anatomy_/digestive_/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy_/digestive_/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
   '/anatomy_/digestive_/digestion': typeof AnatomyDigestiveDigestionRoute
+  '/anatomy_/muscular_/anatomy': typeof AnatomyMuscularAnatomyRoute
+  '/anatomy_/muscular_/movement': typeof AnatomyMuscularMovementRoute
   '/anatomy_/nervous_/anatomy': typeof AnatomyNervousAnatomyRoute
   '/anatomy_/nervous_/reflexes': typeof AnatomyNervousReflexesRoute
   '/anatomy_/nervous_/signals': typeof AnatomyNervousSignalsRoute
@@ -301,6 +328,7 @@ export interface FileRouteTypes {
     | '/anatomy/cardiovascular'
     | '/anatomy/digestive'
     | '/anatomy/heart'
+    | '/anatomy/muscular'
     | '/anatomy/nervous'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
@@ -308,6 +336,8 @@ export interface FileRouteTypes {
     | '/anatomy/digestive/anatomy'
     | '/anatomy/digestive/biomechanics'
     | '/anatomy/digestive/digestion'
+    | '/anatomy/muscular/anatomy'
+    | '/anatomy/muscular/movement'
     | '/anatomy/nervous/anatomy'
     | '/anatomy/nervous/reflexes'
     | '/anatomy/nervous/signals'
@@ -332,6 +362,7 @@ export interface FileRouteTypes {
     | '/anatomy/cardiovascular'
     | '/anatomy/digestive'
     | '/anatomy/heart'
+    | '/anatomy/muscular'
     | '/anatomy/nervous'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
@@ -339,6 +370,8 @@ export interface FileRouteTypes {
     | '/anatomy/digestive/anatomy'
     | '/anatomy/digestive/biomechanics'
     | '/anatomy/digestive/digestion'
+    | '/anatomy/muscular/anatomy'
+    | '/anatomy/muscular/movement'
     | '/anatomy/nervous/anatomy'
     | '/anatomy/nervous/reflexes'
     | '/anatomy/nervous/signals'
@@ -363,6 +396,7 @@ export interface FileRouteTypes {
     | '/anatomy_/cardiovascular'
     | '/anatomy_/digestive'
     | '/anatomy_/heart'
+    | '/anatomy_/muscular'
     | '/anatomy_/nervous'
     | '/anatomy_/respiratory'
     | '/anatomy_/skeletal'
@@ -370,6 +404,8 @@ export interface FileRouteTypes {
     | '/anatomy_/digestive_/anatomy'
     | '/anatomy_/digestive_/biomechanics'
     | '/anatomy_/digestive_/digestion'
+    | '/anatomy_/muscular_/anatomy'
+    | '/anatomy_/muscular_/movement'
     | '/anatomy_/nervous_/anatomy'
     | '/anatomy_/nervous_/reflexes'
     | '/anatomy_/nervous_/signals'
@@ -395,6 +431,7 @@ export interface RootRouteChildren {
   AnatomyCardiovascularRoute: typeof AnatomyCardiovascularRoute
   AnatomyDigestiveRoute: typeof AnatomyDigestiveRoute
   AnatomyHeartRoute: typeof AnatomyHeartRoute
+  AnatomyMuscularRoute: typeof AnatomyMuscularRoute
   AnatomyNervousRoute: typeof AnatomyNervousRoute
   AnatomyRespiratoryRoute: typeof AnatomyRespiratoryRoute
   AnatomySkeletalRoute: typeof AnatomySkeletalRoute
@@ -402,6 +439,8 @@ export interface RootRouteChildren {
   AnatomyDigestiveAnatomyRoute: typeof AnatomyDigestiveAnatomyRoute
   AnatomyDigestiveBiomechanicsRoute: typeof AnatomyDigestiveBiomechanicsRoute
   AnatomyDigestiveDigestionRoute: typeof AnatomyDigestiveDigestionRoute
+  AnatomyMuscularAnatomyRoute: typeof AnatomyMuscularAnatomyRoute
+  AnatomyMuscularMovementRoute: typeof AnatomyMuscularMovementRoute
   AnatomyNervousAnatomyRoute: typeof AnatomyNervousAnatomyRoute
   AnatomyNervousReflexesRoute: typeof AnatomyNervousReflexesRoute
   AnatomyNervousSignalsRoute: typeof AnatomyNervousSignalsRoute
@@ -500,6 +539,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomyHeartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/muscular': {
+      id: '/anatomy_/muscular'
+      path: '/anatomy/muscular'
+      fullPath: '/anatomy/muscular'
+      preLoaderRoute: typeof AnatomyMuscularRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anatomy_/nervous': {
       id: '/anatomy_/nervous'
       path: '/anatomy/nervous'
@@ -547,6 +593,20 @@ declare module '@tanstack/react-router' {
       path: '/anatomy/digestive/digestion'
       fullPath: '/anatomy/digestive/digestion'
       preLoaderRoute: typeof AnatomyDigestiveDigestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/muscular_/anatomy': {
+      id: '/anatomy_/muscular_/anatomy'
+      path: '/anatomy/muscular/anatomy'
+      fullPath: '/anatomy/muscular/anatomy'
+      preLoaderRoute: typeof AnatomyMuscularAnatomyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/muscular_/movement': {
+      id: '/anatomy_/muscular_/movement'
+      path: '/anatomy/muscular/movement'
+      fullPath: '/anatomy/muscular/movement'
+      preLoaderRoute: typeof AnatomyMuscularMovementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anatomy_/nervous_/anatomy': {
@@ -635,6 +695,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyCardiovascularRoute: AnatomyCardiovascularRoute,
   AnatomyDigestiveRoute: AnatomyDigestiveRoute,
   AnatomyHeartRoute: AnatomyHeartRoute,
+  AnatomyMuscularRoute: AnatomyMuscularRoute,
   AnatomyNervousRoute: AnatomyNervousRoute,
   AnatomyRespiratoryRoute: AnatomyRespiratoryRoute,
   AnatomySkeletalRoute: AnatomySkeletalRoute,
@@ -642,6 +703,8 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyDigestiveAnatomyRoute: AnatomyDigestiveAnatomyRoute,
   AnatomyDigestiveBiomechanicsRoute: AnatomyDigestiveBiomechanicsRoute,
   AnatomyDigestiveDigestionRoute: AnatomyDigestiveDigestionRoute,
+  AnatomyMuscularAnatomyRoute: AnatomyMuscularAnatomyRoute,
+  AnatomyMuscularMovementRoute: AnatomyMuscularMovementRoute,
   AnatomyNervousAnatomyRoute: AnatomyNervousAnatomyRoute,
   AnatomyNervousReflexesRoute: AnatomyNervousReflexesRoute,
   AnatomyNervousSignalsRoute: AnatomyNervousSignalsRoute,
