@@ -5,6 +5,7 @@ import { useState } from "react";
 import skeleton from "@/assets/skeleton-front.jpg";
 import { Button } from "@/components/ui/button";
 import {
+  FRACTURE_TYPES,
   JOINT_TYPES,
   LOADS,
   SKELETON_LABELS,
@@ -22,7 +23,9 @@ export function SkeletalLesson({ section }: { section: SkeletalSection }) {
       ? "/anatomy/skeletal/bones"
       : section === "bones"
         ? "/anatomy/skeletal/biomechanics"
-        : "/anatomy/skeletal";
+        : section === "biomechanics"
+          ? "/anatomy/skeletal/fractures"
+          : "/anatomy/skeletal";
   return (
     <section className="px-5 py-10 sm:py-14">
       <div className="mx-auto max-w-6xl">
@@ -45,11 +48,19 @@ export function SkeletalLesson({ section }: { section: SkeletalSection }) {
             </Button>
           ))}
         </nav>
-        {section === "anatomy" ? <Anatomy /> : section === "bones" ? <Bones /> : <Biomechanics />}
+        {section === "anatomy" ? (
+          <Anatomy />
+        ) : section === "bones" ? (
+          <Bones />
+        ) : section === "biomechanics" ? (
+          <Biomechanics />
+        ) : (
+          <Fractures />
+        )}
         <div className="mt-10 flex justify-end">
           <Button asChild variant="outline">
             <Link to={next}>
-              {section === "biomechanics" ? "Back to sections" : "Next section"}
+              {section === "fractures" ? "Back to sections" : "Next section"}
               <ArrowRight />
             </Link>
           </Button>
