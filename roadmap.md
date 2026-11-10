@@ -18,3 +18,7 @@
 - [x] Connect a two-section muscular system to Anatomy Explorer.
 - [x] Add selectable muscle anatomy and interactive contraction with short biomechanics notes.
 - [x] Verify navigation, selections and phone layout.
+
+# Endocrine system
+- [x] Add a connected hub, labelled gland anatomy and a short hormone feedback lesson.
+- [x] Verify gland selections, lesson navigation and mobile layout.
