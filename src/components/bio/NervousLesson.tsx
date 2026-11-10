@@ -54,8 +54,25 @@ function Signals() {
   const [selected, setSelected] = useState(0);
   const step = NEURON_STEPS[selected];
   return <>
-    <figure className="relative overflow-hidden rounded-3xl">
-      <img src={neuron} alt="Realistic neuron render showing branching dendrites, a cell body, a myelinated axon and axon terminals" width={1536} height={1024} className="max-h-[520px] w-full object-contain bg-skeleton-bg" />
+    <figure className="overflow-hidden rounded-3xl bg-skeleton-bg">
+      <div className="relative mx-auto max-w-[780px]">
+        <img src={neuron} alt="Realistic neuron render showing branching dendrites, a cell body, a myelinated axon and axon terminals" width={1536} height={1024} className="block h-auto w-full" />
+        <svg viewBox="0 0 1536 1024" role="img" aria-label={`${step?.name} highlighted on the neuron`} className="pointer-events-none absolute inset-0 h-full w-full text-mint-deep">
+          <defs><filter id="neuron-highlight-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+          <g key={selected} filter="url(#neuron-highlight-glow)" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="animate-fade-up">
+            {selected === 0 && <>
+              <ellipse cx="360" cy="462" rx="105" ry="97" className="fill-mint/20" />
+              <g fill="none" strokeWidth="7"><path d="M323 400 L278 321 L207 268 L109 220 M278 321 L261 214 L292 157 M261 214 L211 172 M380 388 L420 293 L465 224 L520 182 M420 293 L421 216 L449 168 M420 293 L530 284 L589 254 M289 467 L182 449 L94 477 L25 461 M182 449 L139 389 L59 375 M139 389 L99 328 M306 524 L227 594 L139 638 L59 691 M227 594 L204 697 L141 766 M204 697 L247 786 M365 544 L363 662 L413 749 L420 838 M363 662 L311 732 L295 815 M413 749 L480 782 M423 509 L466 579 L492 656 L566 709" /></g>
+            </>}
+            {selected === 1 && <path d="M457 465 C548 481 602 479 676 495 S808 520 871 515 S1026 490 1080 503 S1180 507 1240 511" fill="none" strokeWidth="12" />}
+            {selected === 2 && <>
+              <g className="fill-mint/20"><rect x="550" y="449" width="108" height="64" rx="27" transform="rotate(7 604 481)" /><rect x="676" y="471" width="112" height="63" rx="27" transform="rotate(10 732 503)" /><rect x="804" y="490" width="111" height="60" rx="27" /><rect x="930" y="480" width="106" height="60" rx="27" transform="rotate(-8 983 510)" /><rect x="1046" y="475" width="103" height="60" rx="27" /><rect x="1156" y="488" width="71" height="53" rx="24" /></g>
+              <g fill="none" strokeWidth="7"><circle cx="666" cy="491" r="12" /><circle cx="796" cy="512" r="12" /><circle cx="922" cy="515" r="12" /><circle cx="1040" cy="502" r="12" /><circle cx="1152" cy="511" r="12" /></g>
+            </>}
+            {selected === 3 && <g fill="none" strokeWidth="8"><path d="M1236 511 L1301 465 L1344 399 L1389 346 M1301 465 L1386 416 L1447 393 M1301 465 L1371 477 L1472 466 M1236 511 L1309 544 L1377 578 L1450 576 M1309 544 L1373 635 L1432 670 M1309 544 L1322 664 L1375 716" />{[{ x: 1389, y: 346 }, { x: 1447, y: 393 }, { x: 1472, y: 466 }, { x: 1450, y: 576 }, { x: 1432, y: 670 }, { x: 1375, y: 716 }].map(({ x, y }) => <circle key={x} cx={x} cy={y} r="15" className="fill-mint/25" />)}</g>}
+          </g>
+        </svg>
+      </div>
     </figure>
     <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4" aria-label="Neuron signal stages">{NEURON_STEPS.map((item, i) => <Button key={item.name} variant={selected === i ? "default" : "outline"} aria-pressed={selected === i} onClick={() => setSelected(i)} className="h-auto min-h-14 justify-start whitespace-normal py-3 text-left"><span className="font-mono">0{i + 1}</span>{item.name}</Button>)}</div>
     <div aria-live="polite" className="mt-6 min-h-32"><h2 className="text-2xl font-bold">{step?.name}</h2><p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">{step?.text}</p></div>

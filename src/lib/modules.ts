@@ -18,7 +18,7 @@ export type LearningModule = {
   minutes: number;
   topics: string[];
   /** Topics that already have a lesson page. */
-  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous">>;
+  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous" | "/anatomy/digestive">>;
 };
 
 export const MODULES: LearningModule[] = [
@@ -33,8 +33,8 @@ export const MODULES: LearningModule[] = [
     tone: "mint",
     lessons: 24,
     minutes: 180,
-    topics: ["Cardiovascular system", "Respiratory system", "Nervous system", "Skeletal system"],
-    topicLinks: { "Cardiovascular system": "/anatomy/cardiovascular", "Respiratory system": "/anatomy/respiratory", "Skeletal system": "/anatomy/skeletal", "Nervous system": "/anatomy/nervous" },
+    topics: ["Cardiovascular system", "Respiratory system", "Nervous system", "Skeletal system", "Digestive system"],
+    topicLinks: { "Cardiovascular system": "/anatomy/cardiovascular", "Respiratory system": "/anatomy/respiratory", "Skeletal system": "/anatomy/skeletal", "Nervous system": "/anatomy/nervous", "Digestive system": "/anatomy/digestive" },
   },
   {
     id: "signals",
