@@ -86,6 +86,19 @@ function Valves() {
     </div>
     <p className="mt-4 rounded-2xl bg-card p-5 text-sm leading-relaxed shadow-soft">{STEPS[step]!.text}</p>
 
+    <h2 className="mt-12 text-2xl font-bold">A short history</h2>
+    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">Every generation of valve fixed one problem and exposed another. Here is the run of versions that led to the two designs above.</p>
+    <ol className="mt-5 space-y-3">
+      {HISTORY.map(h => <li key={h.year} className="rounded-2xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-0.5">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="font-mono text-xs uppercase tracking-widest text-lavender-deep">{h.year}</span>
+          <span className="font-display text-lg font-semibold">{h.name}</span>
+        </div>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.what}</p>
+        <p className="mt-3 rounded-xl bg-muted/60 px-4 py-3 text-sm leading-relaxed"><span className="font-mono text-xs uppercase tracking-widest text-mint">Why it failed</span> — {h.failed}</p>
+      </li>)}
+    </ol>
+
     <div className="mt-12 rounded-3xl border border-dashed border-border bg-card/70 p-6">
       <h2 className="font-display text-xl font-bold">Engineering link</h2>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">A valve opens around 100,000 times a day, so engineers test every design in rigs that copy the heart's pressure and flow for tens of millions of cycles. They measure how wide the valve opens, how much the flow is disturbed, and how much blood is damaged by shear. Newer valves are folded into a catheter and expanded in place (TAVR), avoiding open-heart surgery.</p>
