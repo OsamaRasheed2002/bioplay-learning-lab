@@ -33,5 +33,5 @@
 - [x] Verify highlights, lesson navigation and mobile fit.
 
 # Reproductive system
-- [ ] Add a connected hub, male and female anatomy pictures and a short function lesson.
-- [ ] Verify anatomy selections, lesson steps and phone layout.
+- [x] Add a connected hub, male and female anatomy pictures and a short function lesson.
+- [x] Verify anatomy selections, lesson steps and phone layout.
