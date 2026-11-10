@@ -39,5 +39,5 @@
 - [x] Verify anatomy selections, lesson steps and phone layout.
 
 # Anatomical planes
-- [ ] Add one simple page using the supplied planes diagram and three short definitions.
-- [ ] Verify the Anatomy Explorer link and phone layout.
+- [x] Add one simple page using the supplied planes diagram and three short definitions.
+- [x] Verify the Anatomy Explorer link and phone layout.
