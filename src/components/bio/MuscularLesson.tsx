@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ArrowUp, ArrowDown, Pause } from "lucide-react";
 import contractionImage from "@/assets/muscular-contraction.jpg";
-import bicepsImage from "@/assets/biceps-movement.jpg";
+import bicepsImage from "@/assets/biceps-movement.png";
 import muscleImage from "@/assets/muscular-anatomy.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { MUSCLE_PARTS, MUSCULAR_SECTIONS, type MuscularSection } from "@/data/muscular";
