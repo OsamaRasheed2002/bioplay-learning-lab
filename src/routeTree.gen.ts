@@ -29,6 +29,7 @@ import { Route as AnatomyRespiratoryBreathingRouteImport } from './routes/anatom
 import { Route as AnatomySkeletalAnatomyRouteImport } from './routes/anatomy_.skeletal_.anatomy'
 import { Route as AnatomySkeletalBiomechanicsRouteImport } from './routes/anatomy_.skeletal_.biomechanics'
 import { Route as AnatomySkeletalBonesRouteImport } from './routes/anatomy_.skeletal_.bones'
+import { Route as AnatomySkeletalFracturesRouteImport } from './routes/anatomy_.skeletal_.fractures'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -134,6 +135,12 @@ const AnatomySkeletalBonesRoute = AnatomySkeletalBonesRouteImport.update({
   path: '/anatomy/skeletal/bones',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomySkeletalFracturesRoute =
+  AnatomySkeletalFracturesRouteImport.update({
+    id: '/anatomy_/skeletal_/fractures',
+    path: '/anatomy/skeletal/fractures',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/skeletal/anatomy': typeof AnatomySkeletalAnatomyRoute
   '/anatomy/skeletal/biomechanics': typeof AnatomySkeletalBiomechanicsRoute
   '/anatomy/skeletal/bones': typeof AnatomySkeletalBonesRoute
+  '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -178,6 +186,7 @@ export interface FileRoutesByTo {
   '/anatomy/skeletal/anatomy': typeof AnatomySkeletalAnatomyRoute
   '/anatomy/skeletal/biomechanics': typeof AnatomySkeletalBiomechanicsRoute
   '/anatomy/skeletal/bones': typeof AnatomySkeletalBonesRoute
+  '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -201,6 +210,7 @@ export interface FileRoutesById {
   '/anatomy_/skeletal_/anatomy': typeof AnatomySkeletalAnatomyRoute
   '/anatomy_/skeletal_/biomechanics': typeof AnatomySkeletalBiomechanicsRoute
   '/anatomy_/skeletal_/bones': typeof AnatomySkeletalBonesRoute
+  '/anatomy_/skeletal_/fractures': typeof AnatomySkeletalFracturesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -225,6 +235,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/anatomy'
     | '/anatomy/skeletal/biomechanics'
     | '/anatomy/skeletal/bones'
+    | '/anatomy/skeletal/fractures'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/anatomy'
     | '/anatomy/skeletal/biomechanics'
     | '/anatomy/skeletal/bones'
+    | '/anatomy/skeletal/fractures'
   id:
     | '__root__'
     | '/'
@@ -269,6 +281,7 @@ export interface FileRouteTypes {
     | '/anatomy_/skeletal_/anatomy'
     | '/anatomy_/skeletal_/biomechanics'
     | '/anatomy_/skeletal_/bones'
+    | '/anatomy_/skeletal_/fractures'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -292,6 +305,7 @@ export interface RootRouteChildren {
   AnatomySkeletalAnatomyRoute: typeof AnatomySkeletalAnatomyRoute
   AnatomySkeletalBiomechanicsRoute: typeof AnatomySkeletalBiomechanicsRoute
   AnatomySkeletalBonesRoute: typeof AnatomySkeletalBonesRoute
+  AnatomySkeletalFracturesRoute: typeof AnatomySkeletalFracturesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -436,6 +450,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomySkeletalBonesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/skeletal_/fractures': {
+      id: '/anatomy_/skeletal_/fractures'
+      path: '/anatomy/skeletal/fractures'
+      fullPath: '/anatomy/skeletal/fractures'
+      preLoaderRoute: typeof AnatomySkeletalFracturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -460,6 +481,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomySkeletalAnatomyRoute: AnatomySkeletalAnatomyRoute,
   AnatomySkeletalBiomechanicsRoute: AnatomySkeletalBiomechanicsRoute,
   AnatomySkeletalBonesRoute: AnatomySkeletalBonesRoute,
+  AnatomySkeletalFracturesRoute: AnatomySkeletalFracturesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

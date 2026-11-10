@@ -5,6 +5,7 @@ import { useState } from "react";
 import skeleton from "@/assets/skeleton-front.jpg";
 import { Button } from "@/components/ui/button";
 import {
+  FRACTURE_TYPES,
   JOINT_TYPES,
   LOADS,
   SKELETON_LABELS,
@@ -22,7 +23,9 @@ export function SkeletalLesson({ section }: { section: SkeletalSection }) {
       ? "/anatomy/skeletal/bones"
       : section === "bones"
         ? "/anatomy/skeletal/biomechanics"
-        : "/anatomy/skeletal";
+        : section === "biomechanics"
+          ? "/anatomy/skeletal/fractures"
+          : "/anatomy/skeletal";
   return (
     <section className="px-5 py-10 sm:py-14">
       <div className="mx-auto max-w-6xl">
@@ -45,11 +48,19 @@ export function SkeletalLesson({ section }: { section: SkeletalSection }) {
             </Button>
           ))}
         </nav>
-        {section === "anatomy" ? <Anatomy /> : section === "bones" ? <Bones /> : <Biomechanics />}
+        {section === "anatomy" ? (
+          <Anatomy />
+        ) : section === "bones" ? (
+          <Bones />
+        ) : section === "biomechanics" ? (
+          <Biomechanics />
+        ) : (
+          <Fractures />
+        )}
         <div className="mt-10 flex justify-end">
           <Button asChild variant="outline">
             <Link to={next}>
-              {section === "biomechanics" ? "Back to sections" : "Next section"}
+              {section === "fractures" ? "Back to sections" : "Next section"}
               <ArrowRight />
             </Link>
           </Button>
@@ -249,6 +260,43 @@ function LoadDiagram({ load }: { load: LoadId }) {
         strokeLinejoin="round"
       />
     </svg>
+  );
+}
+
+function Fractures() {
+  return (
+    <>
+      <p className="max-w-2xl text-muted-foreground">
+        A fracture is any break in a bone. Doctors describe them by the shape of the break — and the shape tells you a
+        lot about the force that caused it.
+      </p>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {FRACTURE_TYPES.map((f) => (
+          <div key={f.name} className="overflow-hidden rounded-2xl border border-border bg-card">
+            <img
+              src={f.image}
+              alt={f.alt}
+              loading="lazy"
+              width={1024}
+              height={768}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <div className="p-5">
+              <h3 className="font-semibold text-peach-deep">{f.name}</h3>
+              <div className="mt-1 font-mono text-xs text-muted-foreground">{f.cause}</div>
+              <p className="mt-3 text-sm text-muted-foreground">{f.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 border-l-2 border-peach pl-5">
+        <h3 className="font-semibold text-peach-deep">Biomedical engineering link</h3>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          Plates, screws and intramedullary nails hold the pieces still so the bone can heal itself. A simple
+          transverse break may only need a cast, while a comminuted fracture often needs surgery and metal hardware.
+        </p>
+      </div>
+    </>
   );
 }
 
