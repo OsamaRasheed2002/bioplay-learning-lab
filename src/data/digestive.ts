@@ -1,7 +1,6 @@
 export const DIGESTIVE_SECTIONS = [
   { id: "anatomy", to: "/anatomy/digestive/anatomy", title: "Simple Anatomy", description: "The digestive tract and the organs that help it work.", tone: "peach" },
   { id: "digestion", to: "/anatomy/digestive/digestion", title: "How Digestion Works", description: "Follow food from the first bite to nutrient absorption.", tone: "mint" },
-  { id: "biomechanics", to: "/anatomy/digestive/biomechanics", title: "Digestive Biomechanics", description: "Muscle waves, mixing and stretch — without heavy maths.", tone: "sky" },
 ] as const;
 
 export type DigestiveSection = typeof DIGESTIVE_SECTIONS[number]["id"];
