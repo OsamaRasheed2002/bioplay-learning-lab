@@ -22,3 +22,7 @@
 # Endocrine system
 - [x] Add a connected hub, labelled gland anatomy and a short hormone feedback lesson.
 - [x] Verify gland selections, lesson navigation and mobile layout.
+
+# Integumentary system
+- [x] Add a connected hub with detailed skin anatomy and a short skin functions lesson.
+- [x] Verify structure highlights, navigation and mobile fit.

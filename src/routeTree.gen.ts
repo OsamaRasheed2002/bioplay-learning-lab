@@ -22,6 +22,7 @@ import { Route as AnatomyCardiovascularRouteImport } from './routes/anatomy_.car
 import { Route as AnatomyDigestiveRouteImport } from './routes/anatomy_.digestive'
 import { Route as AnatomyEndocrineRouteImport } from './routes/anatomy_.endocrine'
 import { Route as AnatomyHeartRouteImport } from './routes/anatomy_.heart'
+import { Route as AnatomyIntegumentaryRouteImport } from './routes/anatomy_.integumentary'
 import { Route as AnatomyMuscularRouteImport } from './routes/anatomy_.muscular'
 import { Route as AnatomyNervousRouteImport } from './routes/anatomy_.nervous'
 import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respiratory'
@@ -32,6 +33,8 @@ import { Route as AnatomyDigestiveBiomechanicsRouteImport } from './routes/anato
 import { Route as AnatomyDigestiveDigestionRouteImport } from './routes/anatomy_.digestive_.digestion'
 import { Route as AnatomyEndocrineAnatomyRouteImport } from './routes/anatomy_.endocrine_.anatomy'
 import { Route as AnatomyEndocrineHormonesRouteImport } from './routes/anatomy_.endocrine_.hormones'
+import { Route as AnatomyIntegumentaryAnatomyRouteImport } from './routes/anatomy_.integumentary_.anatomy'
+import { Route as AnatomyIntegumentaryFunctionsRouteImport } from './routes/anatomy_.integumentary_.functions'
 import { Route as AnatomyMuscularAnatomyRouteImport } from './routes/anatomy_.muscular_.anatomy'
 import { Route as AnatomyMuscularBiomechanicsRouteImport } from './routes/anatomy_.muscular_.biomechanics'
 import { Route as AnatomyMuscularMovementRouteImport } from './routes/anatomy_.muscular_.movement'
@@ -111,6 +114,11 @@ const AnatomyHeartRoute = AnatomyHeartRouteImport.update({
   path: '/anatomy/heart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyIntegumentaryRoute = AnatomyIntegumentaryRouteImport.update({
+  id: '/anatomy_/integumentary',
+  path: '/anatomy/integumentary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnatomyMuscularRoute = AnatomyMuscularRouteImport.update({
   id: '/anatomy_/muscular',
   path: '/anatomy/muscular',
@@ -162,6 +170,18 @@ const AnatomyEndocrineHormonesRoute =
   AnatomyEndocrineHormonesRouteImport.update({
     id: '/anatomy_/endocrine_/hormones',
     path: '/anatomy/endocrine/hormones',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AnatomyIntegumentaryAnatomyRoute =
+  AnatomyIntegumentaryAnatomyRouteImport.update({
+    id: '/anatomy_/integumentary_/anatomy',
+    path: '/anatomy/integumentary/anatomy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AnatomyIntegumentaryFunctionsRoute =
+  AnatomyIntegumentaryFunctionsRouteImport.update({
+    id: '/anatomy_/integumentary_/functions',
+    path: '/anatomy/integumentary/functions',
     getParentRoute: () => rootRouteImport,
   } as any)
 const AnatomyMuscularAnatomyRoute = AnatomyMuscularAnatomyRouteImport.update({
@@ -250,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/digestive': typeof AnatomyDigestiveRoute
   '/anatomy/endocrine': typeof AnatomyEndocrineRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
@@ -260,6 +281,8 @@ export interface FileRoutesByFullPath {
   '/anatomy/digestive/digestion': typeof AnatomyDigestiveDigestionRoute
   '/anatomy/endocrine/anatomy': typeof AnatomyEndocrineAnatomyRoute
   '/anatomy/endocrine/hormones': typeof AnatomyEndocrineHormonesRoute
+  '/anatomy/integumentary/anatomy': typeof AnatomyIntegumentaryAnatomyRoute
+  '/anatomy/integumentary/functions': typeof AnatomyIntegumentaryFunctionsRoute
   '/anatomy/muscular/anatomy': typeof AnatomyMuscularAnatomyRoute
   '/anatomy/muscular/biomechanics': typeof AnatomyMuscularBiomechanicsRoute
   '/anatomy/muscular/movement': typeof AnatomyMuscularMovementRoute
@@ -288,6 +311,7 @@ export interface FileRoutesByTo {
   '/anatomy/digestive': typeof AnatomyDigestiveRoute
   '/anatomy/endocrine': typeof AnatomyEndocrineRoute
   '/anatomy/heart': typeof AnatomyHeartRoute
+  '/anatomy/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
@@ -298,6 +322,8 @@ export interface FileRoutesByTo {
   '/anatomy/digestive/digestion': typeof AnatomyDigestiveDigestionRoute
   '/anatomy/endocrine/anatomy': typeof AnatomyEndocrineAnatomyRoute
   '/anatomy/endocrine/hormones': typeof AnatomyEndocrineHormonesRoute
+  '/anatomy/integumentary/anatomy': typeof AnatomyIntegumentaryAnatomyRoute
+  '/anatomy/integumentary/functions': typeof AnatomyIntegumentaryFunctionsRoute
   '/anatomy/muscular/anatomy': typeof AnatomyMuscularAnatomyRoute
   '/anatomy/muscular/biomechanics': typeof AnatomyMuscularBiomechanicsRoute
   '/anatomy/muscular/movement': typeof AnatomyMuscularMovementRoute
@@ -327,6 +353,7 @@ export interface FileRoutesById {
   '/anatomy_/digestive': typeof AnatomyDigestiveRoute
   '/anatomy_/endocrine': typeof AnatomyEndocrineRoute
   '/anatomy_/heart': typeof AnatomyHeartRoute
+  '/anatomy_/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy_/muscular': typeof AnatomyMuscularRoute
   '/anatomy_/nervous': typeof AnatomyNervousRoute
   '/anatomy_/respiratory': typeof AnatomyRespiratoryRoute
@@ -337,6 +364,8 @@ export interface FileRoutesById {
   '/anatomy_/digestive_/digestion': typeof AnatomyDigestiveDigestionRoute
   '/anatomy_/endocrine_/anatomy': typeof AnatomyEndocrineAnatomyRoute
   '/anatomy_/endocrine_/hormones': typeof AnatomyEndocrineHormonesRoute
+  '/anatomy_/integumentary_/anatomy': typeof AnatomyIntegumentaryAnatomyRoute
+  '/anatomy_/integumentary_/functions': typeof AnatomyIntegumentaryFunctionsRoute
   '/anatomy_/muscular_/anatomy': typeof AnatomyMuscularAnatomyRoute
   '/anatomy_/muscular_/biomechanics': typeof AnatomyMuscularBiomechanicsRoute
   '/anatomy_/muscular_/movement': typeof AnatomyMuscularMovementRoute
@@ -367,6 +396,7 @@ export interface FileRouteTypes {
     | '/anatomy/digestive'
     | '/anatomy/endocrine'
     | '/anatomy/heart'
+    | '/anatomy/integumentary'
     | '/anatomy/muscular'
     | '/anatomy/nervous'
     | '/anatomy/respiratory'
@@ -377,6 +407,8 @@ export interface FileRouteTypes {
     | '/anatomy/digestive/digestion'
     | '/anatomy/endocrine/anatomy'
     | '/anatomy/endocrine/hormones'
+    | '/anatomy/integumentary/anatomy'
+    | '/anatomy/integumentary/functions'
     | '/anatomy/muscular/anatomy'
     | '/anatomy/muscular/biomechanics'
     | '/anatomy/muscular/movement'
@@ -405,6 +437,7 @@ export interface FileRouteTypes {
     | '/anatomy/digestive'
     | '/anatomy/endocrine'
     | '/anatomy/heart'
+    | '/anatomy/integumentary'
     | '/anatomy/muscular'
     | '/anatomy/nervous'
     | '/anatomy/respiratory'
@@ -415,6 +448,8 @@ export interface FileRouteTypes {
     | '/anatomy/digestive/digestion'
     | '/anatomy/endocrine/anatomy'
     | '/anatomy/endocrine/hormones'
+    | '/anatomy/integumentary/anatomy'
+    | '/anatomy/integumentary/functions'
     | '/anatomy/muscular/anatomy'
     | '/anatomy/muscular/biomechanics'
     | '/anatomy/muscular/movement'
@@ -443,6 +478,7 @@ export interface FileRouteTypes {
     | '/anatomy_/digestive'
     | '/anatomy_/endocrine'
     | '/anatomy_/heart'
+    | '/anatomy_/integumentary'
     | '/anatomy_/muscular'
     | '/anatomy_/nervous'
     | '/anatomy_/respiratory'
@@ -453,6 +489,8 @@ export interface FileRouteTypes {
     | '/anatomy_/digestive_/digestion'
     | '/anatomy_/endocrine_/anatomy'
     | '/anatomy_/endocrine_/hormones'
+    | '/anatomy_/integumentary_/anatomy'
+    | '/anatomy_/integumentary_/functions'
     | '/anatomy_/muscular_/anatomy'
     | '/anatomy_/muscular_/biomechanics'
     | '/anatomy_/muscular_/movement'
@@ -482,6 +520,7 @@ export interface RootRouteChildren {
   AnatomyDigestiveRoute: typeof AnatomyDigestiveRoute
   AnatomyEndocrineRoute: typeof AnatomyEndocrineRoute
   AnatomyHeartRoute: typeof AnatomyHeartRoute
+  AnatomyIntegumentaryRoute: typeof AnatomyIntegumentaryRoute
   AnatomyMuscularRoute: typeof AnatomyMuscularRoute
   AnatomyNervousRoute: typeof AnatomyNervousRoute
   AnatomyRespiratoryRoute: typeof AnatomyRespiratoryRoute
@@ -492,6 +531,8 @@ export interface RootRouteChildren {
   AnatomyDigestiveDigestionRoute: typeof AnatomyDigestiveDigestionRoute
   AnatomyEndocrineAnatomyRoute: typeof AnatomyEndocrineAnatomyRoute
   AnatomyEndocrineHormonesRoute: typeof AnatomyEndocrineHormonesRoute
+  AnatomyIntegumentaryAnatomyRoute: typeof AnatomyIntegumentaryAnatomyRoute
+  AnatomyIntegumentaryFunctionsRoute: typeof AnatomyIntegumentaryFunctionsRoute
   AnatomyMuscularAnatomyRoute: typeof AnatomyMuscularAnatomyRoute
   AnatomyMuscularBiomechanicsRoute: typeof AnatomyMuscularBiomechanicsRoute
   AnatomyMuscularMovementRoute: typeof AnatomyMuscularMovementRoute
@@ -600,6 +641,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomyHeartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/integumentary': {
+      id: '/anatomy_/integumentary'
+      path: '/anatomy/integumentary'
+      fullPath: '/anatomy/integumentary'
+      preLoaderRoute: typeof AnatomyIntegumentaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anatomy_/muscular': {
       id: '/anatomy_/muscular'
       path: '/anatomy/muscular'
@@ -668,6 +716,20 @@ declare module '@tanstack/react-router' {
       path: '/anatomy/endocrine/hormones'
       fullPath: '/anatomy/endocrine/hormones'
       preLoaderRoute: typeof AnatomyEndocrineHormonesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/integumentary_/anatomy': {
+      id: '/anatomy_/integumentary_/anatomy'
+      path: '/anatomy/integumentary/anatomy'
+      fullPath: '/anatomy/integumentary/anatomy'
+      preLoaderRoute: typeof AnatomyIntegumentaryAnatomyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/integumentary_/functions': {
+      id: '/anatomy_/integumentary_/functions'
+      path: '/anatomy/integumentary/functions'
+      fullPath: '/anatomy/integumentary/functions'
+      preLoaderRoute: typeof AnatomyIntegumentaryFunctionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anatomy_/muscular_/anatomy': {
@@ -778,6 +840,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyDigestiveRoute: AnatomyDigestiveRoute,
   AnatomyEndocrineRoute: AnatomyEndocrineRoute,
   AnatomyHeartRoute: AnatomyHeartRoute,
+  AnatomyIntegumentaryRoute: AnatomyIntegumentaryRoute,
   AnatomyMuscularRoute: AnatomyMuscularRoute,
   AnatomyNervousRoute: AnatomyNervousRoute,
   AnatomyRespiratoryRoute: AnatomyRespiratoryRoute,
@@ -788,6 +851,8 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyDigestiveDigestionRoute: AnatomyDigestiveDigestionRoute,
   AnatomyEndocrineAnatomyRoute: AnatomyEndocrineAnatomyRoute,
   AnatomyEndocrineHormonesRoute: AnatomyEndocrineHormonesRoute,
+  AnatomyIntegumentaryAnatomyRoute: AnatomyIntegumentaryAnatomyRoute,
+  AnatomyIntegumentaryFunctionsRoute: AnatomyIntegumentaryFunctionsRoute,
   AnatomyMuscularAnatomyRoute: AnatomyMuscularAnatomyRoute,
   AnatomyMuscularBiomechanicsRoute: AnatomyMuscularBiomechanicsRoute,
   AnatomyMuscularMovementRoute: AnatomyMuscularMovementRoute,
