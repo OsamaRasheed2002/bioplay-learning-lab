@@ -353,6 +353,14 @@
 .biceps-lift { animation: biceps-lift 2.4s ease-in-out forwards; }
 .biceps-lower { animation: biceps-lift 3s ease-in-out reverse forwards; }
 .biceps-hold { transform: rotate(-25deg); }
+.biceps-belly { transform-origin: 175px 290px; }
+.biceps-contract { animation: biceps-contract 2.4s ease-in-out forwards; }
+.biceps-lengthen { animation: biceps-contract 3s ease-in-out reverse forwards; }
+.biceps-tense { transform: scale(1.18, 0.9); }
+@keyframes biceps-contract {
+  from { transform: scale(1, 1); }
+  to { transform: scale(1.4, 0.78); }
+}
 @keyframes biceps-lift {
   from { transform: rotate(10deg); }
   to { transform: rotate(-55deg); }
