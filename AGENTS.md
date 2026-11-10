@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
+- Endocrine gland definitions and section navigation live in `src/data/endocrine.ts`; un-nested leaf routes share `EndocrineLesson` so highlights and short hormone lessons use one source.
 - Learning modules are defined once in `src/lib/modules.ts`; cards, module pages and progress topics all read from it so a new path only needs one entry plus its route file.
 - Learner progress (XP, achievements, topics) lives in `src/lib/progress.ts` via the `useProgress` hook backed by localStorage, read after mount to avoid hydration mismatches; swap its storage for the backend when accounts arrive.
 - Respiratory section definitions live in `src/data/respiratory.ts`; separate un-nested leaf routes share `RespiratoryLesson` so section navigation and short interactive lessons remain consistent.
