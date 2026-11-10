@@ -8,3 +8,8 @@
 - [x] Connect a nervous system overview to Anatomy Explorer.
 - [x] Add simple anatomy, nerve signals and reflex sections with realistic images and interactions.
 - [x] Verify navigation, interactions and mobile layout.
+
+# Digestive system
+- [ ] Connect a digestive system overview to Anatomy Explorer.
+- [ ] Add simple anatomy with highlights, digestion and light biomechanics sections.
+- [ ] Verify the full learning flow and phone layout.
