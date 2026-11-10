@@ -31,3 +31,7 @@
 - [x] Remove diagram highlights from both urinary lessons, keeping selections and explanations.
 - [x] Add a connected hub, selectable anatomy and a short filtration and urine flow lesson.
 - [x] Verify highlights, lesson navigation and mobile fit.
+
+# Reproductive system
+- [ ] Add a connected hub, male and female anatomy pictures and a short function lesson.
+- [ ] Verify anatomy selections, lesson steps and phone layout.
