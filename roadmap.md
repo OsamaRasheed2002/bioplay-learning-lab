@@ -28,5 +28,5 @@
 - [x] Verify structure highlights, navigation and mobile fit.
 
 # Urinary system
-- [ ] Add a connected hub, selectable anatomy and a short filtration and urine flow lesson.
-- [ ] Verify highlights, lesson navigation and mobile fit.
+- [x] Add a connected hub, selectable anatomy and a short filtration and urine flow lesson.
+- [x] Verify highlights, lesson navigation and mobile fit.
