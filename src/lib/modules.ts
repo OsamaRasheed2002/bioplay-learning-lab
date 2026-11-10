@@ -18,7 +18,7 @@ export type LearningModule = {
   minutes: number;
   topics: string[];
   /** Topics that already have a lesson page. */
-  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous" | "/anatomy/digestive" | "/anatomy/muscular" | "/anatomy/endocrine" | "/anatomy/integumentary" | "/anatomy/urinary" | "/anatomy/reproductive" | "/anatomy/planes" | "/devices/pacemakers">>;
+  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous" | "/anatomy/digestive" | "/anatomy/muscular" | "/anatomy/endocrine" | "/anatomy/integumentary" | "/anatomy/urinary" | "/anatomy/reproductive" | "/anatomy/planes" | "/devices/pacemakers" | "/devices/valves">>;
 };
 
 export const MODULES: LearningModule[] = [
@@ -61,7 +61,7 @@ export const MODULES: LearningModule[] = [
     lessons: 16,
     minutes: 120,
     topics: ["Pacemakers", "Artificial valves", "Imaging systems", "Infusion pumps"],
-    topicLinks: { Pacemakers: "/devices/pacemakers" },
+    topicLinks: { Pacemakers: "/devices/pacemakers", "Artificial valves": "/devices/valves" },
   },
   {
     id: "concepts",
