@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
+- Anatomical planes use one un-nested content route with the supplied diagram and brief definitions, avoiding a redundant section hub.
 - Reproductive anatomy, stage images and section definitions live in `src/data/reproductive.ts`; un-nested leaf routes share `ReproductiveLesson`, with anatomy views confined to anatomy and selection-driven stage images in physiology.
 - Urinary section definitions live in `src/data/urinary.ts`; un-nested leaf routes share `UrinaryLesson` so anatomy and urine flow use consistent navigation and explanations.
 - Integumentary section definitions and highlight paths live in `src/data/integumentary.ts`; un-nested leaf routes share `SkinLesson` so anatomy and skin functions stay consistent.
