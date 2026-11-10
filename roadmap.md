@@ -43,6 +43,11 @@
 - [x] Highlight the chosen part on the diagram.
 - [x] Verify all four part highlights and build.
 
+# Artificial valves
+- [x] Add a single-page valve lesson with selectable parts, how-it-works steps, an implanted view and an engineering link.
+- [x] Highlight the chosen part on the valve picture.
+- [x] Verify highlights, hub link, mobile fit and build.
+
 # Anatomical planes
 - [x] Add one simple page using the supplied planes diagram and three short definitions.
 - [x] Verify the Anatomy Explorer link and phone layout.
