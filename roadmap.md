@@ -28,6 +28,6 @@
 - [x] Verify structure highlights, navigation and mobile fit.
 
 # Urinary system
-- [ ] Remove diagram highlights from both urinary lessons, keeping selections and explanations.
+- [x] Remove diagram highlights from both urinary lessons, keeping selections and explanations.
 - [x] Add a connected hub, selectable anatomy and a short filtration and urine flow lesson.
 - [x] Verify highlights, lesson navigation and mobile fit.
