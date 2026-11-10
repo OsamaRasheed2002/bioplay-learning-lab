@@ -60,7 +60,7 @@ export const MODULES: LearningModule[] = [
     tone: "lavender",
     lessons: 16,
     minutes: 120,
-    topics: ["Pacemakers", "Artificial valves", "Imaging systems", "Infusion pumps"],
+    topics: ["Pacemakers", "Artificial valves", "Stents & ", "Stenosis"],
     topicLinks: { Pacemakers: "/devices/pacemakers", "Artificial valves": "/devices/valves" },
   },
   {
