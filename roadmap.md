@@ -13,3 +13,8 @@
 - [x] Connect a digestive system overview to Anatomy Explorer.
 - [x] Add simple anatomy with highlights, digestion and light biomechanics sections.
 - [x] Verify the full learning flow and phone layout.
+
+# Muscular system
+- [x] Connect a two-section muscular system to Anatomy Explorer.
+- [x] Add selectable muscle anatomy and interactive contraction with short biomechanics notes.
+- [ ] Verify navigation, selections and phone layout.

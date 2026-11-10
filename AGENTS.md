@@ -35,3 +35,4 @@ use the editor.
 - Respiratory section definitions live in `src/data/respiratory.ts`; separate un-nested leaf routes share `RespiratoryLesson` so section navigation and short interactive lessons remain consistent.
 - Nervous section definitions live in `src/data/nervous.ts`; un-nested leaf routes share `NervousLesson` to keep anatomy, signal and reflex navigation consistent.
 - Digestive section definitions and image highlight paths live in `src/data/digestive.ts`; un-nested leaf routes share `DigestiveLesson` so anatomy and digestion use the same organ mapping.
+- Muscular section definitions and illustration paths live in `src/data/muscular.ts`; un-nested leaf routes share `MuscularLesson` to keep anatomy and movement consistent without generated media.
