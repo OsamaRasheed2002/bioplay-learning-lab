@@ -37,3 +37,7 @@
 - [x] Verify picture switching and desktop/mobile layouts.
 - [x] Add a connected hub, male and female anatomy pictures and a short function lesson.
 - [x] Verify anatomy selections, lesson steps and phone layout.
+
+# Anatomical planes
+- [x] Add one simple page using the supplied planes diagram and three short definitions.
+- [x] Verify the Anatomy Explorer link and phone layout.

@@ -25,6 +25,7 @@ import { Route as AnatomyHeartRouteImport } from './routes/anatomy_.heart'
 import { Route as AnatomyIntegumentaryRouteImport } from './routes/anatomy_.integumentary'
 import { Route as AnatomyMuscularRouteImport } from './routes/anatomy_.muscular'
 import { Route as AnatomyNervousRouteImport } from './routes/anatomy_.nervous'
+import { Route as AnatomyPlanesRouteImport } from './routes/anatomy_.planes'
 import { Route as AnatomyReproductiveRouteImport } from './routes/anatomy_.reproductive'
 import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respiratory'
 import { Route as AnatomySkeletalRouteImport } from './routes/anatomy_.skeletal'
@@ -133,6 +134,11 @@ const AnatomyMuscularRoute = AnatomyMuscularRouteImport.update({
 const AnatomyNervousRoute = AnatomyNervousRouteImport.update({
   id: '/anatomy_/nervous',
   path: '/anatomy/nervous',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyPlanesRoute = AnatomyPlanesRouteImport.update({
+  id: '/anatomy_/planes',
+  path: '/anatomy/planes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnatomyReproductiveRoute = AnatomyReproductiveRouteImport.update({
@@ -311,6 +317,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
+  '/anatomy/planes': typeof AnatomyPlanesRoute
   '/anatomy/reproductive': typeof AnatomyReproductiveRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
@@ -358,6 +365,7 @@ export interface FileRoutesByTo {
   '/anatomy/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
+  '/anatomy/planes': typeof AnatomyPlanesRoute
   '/anatomy/reproductive': typeof AnatomyReproductiveRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
@@ -406,6 +414,7 @@ export interface FileRoutesById {
   '/anatomy_/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy_/muscular': typeof AnatomyMuscularRoute
   '/anatomy_/nervous': typeof AnatomyNervousRoute
+  '/anatomy_/planes': typeof AnatomyPlanesRoute
   '/anatomy_/reproductive': typeof AnatomyReproductiveRoute
   '/anatomy_/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy_/skeletal': typeof AnatomySkeletalRoute
@@ -455,6 +464,7 @@ export interface FileRouteTypes {
     | '/anatomy/integumentary'
     | '/anatomy/muscular'
     | '/anatomy/nervous'
+    | '/anatomy/planes'
     | '/anatomy/reproductive'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
@@ -502,6 +512,7 @@ export interface FileRouteTypes {
     | '/anatomy/integumentary'
     | '/anatomy/muscular'
     | '/anatomy/nervous'
+    | '/anatomy/planes'
     | '/anatomy/reproductive'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
@@ -549,6 +560,7 @@ export interface FileRouteTypes {
     | '/anatomy_/integumentary'
     | '/anatomy_/muscular'
     | '/anatomy_/nervous'
+    | '/anatomy_/planes'
     | '/anatomy_/reproductive'
     | '/anatomy_/respiratory'
     | '/anatomy_/skeletal'
@@ -597,6 +609,7 @@ export interface RootRouteChildren {
   AnatomyIntegumentaryRoute: typeof AnatomyIntegumentaryRoute
   AnatomyMuscularRoute: typeof AnatomyMuscularRoute
   AnatomyNervousRoute: typeof AnatomyNervousRoute
+  AnatomyPlanesRoute: typeof AnatomyPlanesRoute
   AnatomyReproductiveRoute: typeof AnatomyReproductiveRoute
   AnatomyRespiratoryRoute: typeof AnatomyRespiratoryRoute
   AnatomySkeletalRoute: typeof AnatomySkeletalRoute
@@ -740,6 +753,13 @@ declare module '@tanstack/react-router' {
       path: '/anatomy/nervous'
       fullPath: '/anatomy/nervous'
       preLoaderRoute: typeof AnatomyNervousRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/planes': {
+      id: '/anatomy_/planes'
+      path: '/anatomy/planes'
+      fullPath: '/anatomy/planes'
+      preLoaderRoute: typeof AnatomyPlanesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anatomy_/reproductive': {
@@ -965,6 +985,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyIntegumentaryRoute: AnatomyIntegumentaryRoute,
   AnatomyMuscularRoute: AnatomyMuscularRoute,
   AnatomyNervousRoute: AnatomyNervousRoute,
+  AnatomyPlanesRoute: AnatomyPlanesRoute,
   AnatomyReproductiveRoute: AnatomyReproductiveRoute,
   AnatomyRespiratoryRoute: AnatomyRespiratoryRoute,
   AnatomySkeletalRoute: AnatomySkeletalRoute,
