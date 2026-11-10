@@ -32,6 +32,15 @@ const STEPS = [
   { name: "Seals", text: "The closed valve stops backflow, so the heart does not have to pump the same blood twice." },
 ];
 
+const HISTORY = [
+  { year: "1952", name: "Hufnagel ball valve", what: "The first artificial valve: a ball-in-cage clipped around the descending aorta, because surgeons still could not open a beating heart.", failed: "It sat outside the heart, only partly stopped the leak, and clots formed on it. Useless once valves could be sewn in place." },
+  { year: "1960", name: "Starr–Edwards caged ball", what: "The first valve widely used inside the heart — a silicone ball rattling inside a metal cage, still in use in modified form today.", failed: "The cage blocked a lot of flow, blood clotted on it and caused strokes, and the ball could wear, crack or jam. Lifelong blood thinners became mandatory." },
+  { year: "1965", name: "First tissue valves", what: "Pig and cow heart leaflets, stiffened with glutaraldehyde and sewn onto a stent, so blood would not clot on them as easily.", failed: "The tissue slowly calcified and tore, usually within 10–15 years — much faster in young patients — so most needed a second operation." },
+  { year: "1969", name: "Björk–Shiley tilting disc", what: "One carbon disc tilting on two struts instead of a ball in a cage, so blood could flow past it far more easily.", failed: "The outlet strut could snap, letting the disc escape into the bloodstream — a fatal failure in thousands of patients, and the valve was withdrawn." },
+  { year: "1977", name: "St Jude bileaflet valve", what: "Two carbon half-discs that swing open like double doors — the shape still used in most mechanical valves today.", failed: "Not a failure, but the trade-off never went away: carbon is durable yet clot-prone, so patients still take warfarin for life." },
+  { year: "2002", name: "Catheter valves (TAVR)", what: "A tissue valve folded into a tube and expanded in place through a blood vessel, no open-heart surgery.", failed: "Early versions leaked around the edge, could not be repositioned, and were only offered to patients too frail for surgery." },
+];
+
 function Valves() {
   const [part, setPart] = useState(0);
   const [step, setStep] = useState(0);
