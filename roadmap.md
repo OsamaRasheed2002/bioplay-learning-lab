@@ -21,4 +21,4 @@
 
 # Endocrine system
 - [x] Add a connected hub, labelled gland anatomy and a short hormone feedback lesson.
-- [ ] Verify gland selections, lesson navigation and mobile layout.
+- [x] Verify gland selections, lesson navigation and mobile layout.
