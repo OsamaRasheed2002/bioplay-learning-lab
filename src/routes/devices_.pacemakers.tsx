@@ -41,7 +41,19 @@ function Pacemakers() {
     <p className="mt-3 max-w-2xl text-muted-foreground">A pacemaker is a small implanted device that keeps the heart beating at a safe rate when its natural electrical system is too slow or irregular.</p>
 
     <figure className="mt-8 overflow-hidden rounded-3xl border border-border shadow-soft">
-      <img src={pacemaker} alt="Pacemaker under the skin below the left collarbone with a lead running through a vein into the heart" width={1280} height={896} className="block w-full" />
+      <div className="relative">
+        <img src={pacemaker} alt="Pacemaker under the skin below the left collarbone with a lead running through a vein into the heart" width={1280} height={896} className="block w-full" />
+        <svg viewBox="0 0 1280 896" role="img" aria-label={`${PARTS[part]!.name} highlighted on the pacemaker`} className="pointer-events-none absolute inset-0 h-full w-full text-mint">
+          <defs><filter id="pacemaker-highlight-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+          <g key={part} filter="url(#pacemaker-highlight-glow)" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="animate-fade-up">
+            {part === 0 && <rect x="929" y="143" width="152" height="148" rx="44" strokeWidth="6" />}
+            {part === 1 && <rect x="938" y="186" width="136" height="100" rx="40" className="fill-mint/25" strokeWidth="6" />}
+            {part === 2 && <g strokeWidth="5"><path d="M963 166 C880 148 782 146 702 166 C642 184 601 228 590 298 C584 348 592 400 601 442 C613 492 641 542 681 592 C696 616 705 640 708 657" /><path d="M963 180 C882 164 786 162 708 182 C648 200 610 242 599 302 C594 340 596 372 598 396" /></g>}
+            {part === 3 && <g><circle cx="708" cy="657" r="19" className="fill-mint/30" strokeWidth="6" /><circle cx="598" cy="397" r="14" className="fill-mint/30" strokeWidth="5" /></g>}
+          </g>
+        </svg>
+      </div>
+      <figcaption className="border-t border-border bg-card/70 px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">Tap a part below to see it highlighted</figcaption>
     </figure>
 
     <h2 className="mt-12 text-2xl font-bold">Main parts</h2>

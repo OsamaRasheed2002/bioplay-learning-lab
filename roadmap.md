@@ -38,6 +38,11 @@
 - [x] Add a connected hub, male and female anatomy pictures and a short function lesson.
 - [x] Verify anatomy selections, lesson steps and phone layout.
 
+# Pacemakers
+- [x] Add a single-page pacemaker lesson with selectable parts, how-it-works steps and an engineering link.
+- [x] Highlight the chosen part on the diagram.
+- [x] Verify all four part highlights and build.
+
 # Anatomical planes
 - [x] Add one simple page using the supplied planes diagram and three short definitions.
 - [x] Verify the Anatomy Explorer link and phone layout.
