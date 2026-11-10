@@ -50,7 +50,7 @@ function Valves() {
             {part === 0 && <ellipse cx="332" cy="432" rx="272" ry="252" strokeWidth="6" />}
             {part === 1 && <ellipse cx="958" cy="420" rx="272" ry="282" strokeWidth="6" />}
             {part === 2 && <g><ellipse cx="352" cy="414" rx="176" ry="172" transform="rotate(-22 352 414)" className="fill-mint/20" strokeWidth="6" /><ellipse cx="958" cy="336" rx="214" ry="182" className="fill-mint/20" strokeWidth="6" /></g>}
-            {part === 3 && <g strokeWidth="42" className="stroke-mint/45"><ellipse cx="330" cy="436" rx="248" ry="230" /><ellipse cx="956" cy="588" rx="244" ry="104" /></g>}
+            {part === 3 && <g strokeWidth="26" className="stroke-mint/45"><ellipse cx="332" cy="436" rx="262" ry="244" /><ellipse cx="958" cy="612" rx="246" ry="86" strokeWidth="30" /></g>}
           </g>
         </svg>
       </div>
