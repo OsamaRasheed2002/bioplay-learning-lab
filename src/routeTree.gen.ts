@@ -57,6 +57,7 @@ import { Route as AnatomySkeletalBonesRouteImport } from './routes/anatomy_.skel
 import { Route as AnatomySkeletalFracturesRouteImport } from './routes/anatomy_.skeletal_.fractures'
 import { Route as AnatomyUrinaryAnatomyRouteImport } from './routes/anatomy_.urinary_.anatomy'
 import { Route as AnatomyUrinaryFunctionRouteImport } from './routes/anatomy_.urinary_.function'
+import { Route as DevicesValvesHistoryRouteImport } from './routes/devices_.valves_.history'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -311,6 +312,11 @@ const AnatomyUrinaryFunctionRoute = AnatomyUrinaryFunctionRouteImport.update({
   path: '/anatomy/urinary/function',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevicesValvesHistoryRoute = DevicesValvesHistoryRouteImport.update({
+  id: '/devices_/valves_/history',
+  path: '/devices/valves/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -361,6 +367,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
   '/anatomy/urinary/anatomy': typeof AnatomyUrinaryAnatomyRoute
   '/anatomy/urinary/function': typeof AnatomyUrinaryFunctionRoute
+  '/devices/valves/history': typeof DevicesValvesHistoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -411,6 +418,7 @@ export interface FileRoutesByTo {
   '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
   '/anatomy/urinary/anatomy': typeof AnatomyUrinaryAnatomyRoute
   '/anatomy/urinary/function': typeof AnatomyUrinaryFunctionRoute
+  '/devices/valves/history': typeof DevicesValvesHistoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -462,6 +470,7 @@ export interface FileRoutesById {
   '/anatomy_/skeletal_/fractures': typeof AnatomySkeletalFracturesRoute
   '/anatomy_/urinary_/anatomy': typeof AnatomyUrinaryAnatomyRoute
   '/anatomy_/urinary_/function': typeof AnatomyUrinaryFunctionRoute
+  '/devices_/valves_/history': typeof DevicesValvesHistoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -514,6 +523,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/fractures'
     | '/anatomy/urinary/anatomy'
     | '/anatomy/urinary/function'
+    | '/devices/valves/history'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -564,6 +574,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/fractures'
     | '/anatomy/urinary/anatomy'
     | '/anatomy/urinary/function'
+    | '/devices/valves/history'
   id:
     | '__root__'
     | '/'
@@ -614,6 +625,7 @@ export interface FileRouteTypes {
     | '/anatomy_/skeletal_/fractures'
     | '/anatomy_/urinary_/anatomy'
     | '/anatomy_/urinary_/function'
+    | '/devices_/valves_/history'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -665,6 +677,7 @@ export interface RootRouteChildren {
   AnatomySkeletalFracturesRoute: typeof AnatomySkeletalFracturesRoute
   AnatomyUrinaryAnatomyRoute: typeof AnatomyUrinaryAnatomyRoute
   AnatomyUrinaryFunctionRoute: typeof AnatomyUrinaryFunctionRoute
+  DevicesValvesHistoryRoute: typeof DevicesValvesHistoryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1005,6 +1018,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomyUrinaryFunctionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/devices_/valves_/history': {
+      id: '/devices_/valves_/history'
+      path: '/devices/valves/history'
+      fullPath: '/devices/valves/history'
+      preLoaderRoute: typeof DevicesValvesHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1057,6 +1077,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomySkeletalFracturesRoute: AnatomySkeletalFracturesRoute,
   AnatomyUrinaryAnatomyRoute: AnatomyUrinaryAnatomyRoute,
   AnatomyUrinaryFunctionRoute: AnatomyUrinaryFunctionRoute,
+  DevicesValvesHistoryRoute: DevicesValvesHistoryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
