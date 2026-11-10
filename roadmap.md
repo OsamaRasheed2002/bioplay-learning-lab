@@ -26,3 +26,7 @@
 # Integumentary system
 - [x] Add a connected hub with detailed skin anatomy and a short skin functions lesson.
 - [x] Verify structure highlights, navigation and mobile fit.
+
+# Urinary system
+- [ ] Add a connected hub, selectable anatomy and a short filtration and urine flow lesson.
+- [ ] Verify highlights, lesson navigation and mobile fit.
