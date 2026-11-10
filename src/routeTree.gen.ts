@@ -25,6 +25,7 @@ import { Route as AnatomyHeartRouteImport } from './routes/anatomy_.heart'
 import { Route as AnatomyIntegumentaryRouteImport } from './routes/anatomy_.integumentary'
 import { Route as AnatomyMuscularRouteImport } from './routes/anatomy_.muscular'
 import { Route as AnatomyNervousRouteImport } from './routes/anatomy_.nervous'
+import { Route as AnatomyReproductiveRouteImport } from './routes/anatomy_.reproductive'
 import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respiratory'
 import { Route as AnatomySkeletalRouteImport } from './routes/anatomy_.skeletal'
 import { Route as AnatomyUrinaryRouteImport } from './routes/anatomy_.urinary'
@@ -42,6 +43,8 @@ import { Route as AnatomyMuscularMovementRouteImport } from './routes/anatomy_.m
 import { Route as AnatomyNervousAnatomyRouteImport } from './routes/anatomy_.nervous_.anatomy'
 import { Route as AnatomyNervousReflexesRouteImport } from './routes/anatomy_.nervous_.reflexes'
 import { Route as AnatomyNervousSignalsRouteImport } from './routes/anatomy_.nervous_.signals'
+import { Route as AnatomyReproductiveAnatomyRouteImport } from './routes/anatomy_.reproductive_.anatomy'
+import { Route as AnatomyReproductiveFunctionRouteImport } from './routes/anatomy_.reproductive_.function'
 import { Route as AnatomyRespiratoryAnatomyRouteImport } from './routes/anatomy_.respiratory_.anatomy'
 import { Route as AnatomyRespiratoryBiomechanicsRouteImport } from './routes/anatomy_.respiratory_.biomechanics'
 import { Route as AnatomyRespiratoryBreathingRouteImport } from './routes/anatomy_.respiratory_.breathing'
@@ -130,6 +133,11 @@ const AnatomyMuscularRoute = AnatomyMuscularRouteImport.update({
 const AnatomyNervousRoute = AnatomyNervousRouteImport.update({
   id: '/anatomy_/nervous',
   path: '/anatomy/nervous',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnatomyReproductiveRoute = AnatomyReproductiveRouteImport.update({
+  id: '/anatomy_/reproductive',
+  path: '/anatomy/reproductive',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnatomyRespiratoryRoute = AnatomyRespiratoryRouteImport.update({
@@ -223,6 +231,18 @@ const AnatomyNervousSignalsRoute = AnatomyNervousSignalsRouteImport.update({
   path: '/anatomy/nervous/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnatomyReproductiveAnatomyRoute =
+  AnatomyReproductiveAnatomyRouteImport.update({
+    id: '/anatomy_/reproductive_/anatomy',
+    path: '/anatomy/reproductive/anatomy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AnatomyReproductiveFunctionRoute =
+  AnatomyReproductiveFunctionRouteImport.update({
+    id: '/anatomy_/reproductive_/function',
+    path: '/anatomy/reproductive/function',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AnatomyRespiratoryAnatomyRoute =
   AnatomyRespiratoryAnatomyRouteImport.update({
     id: '/anatomy_/respiratory_/anatomy',
@@ -291,6 +311,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
+  '/anatomy/reproductive': typeof AnatomyReproductiveRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
@@ -308,6 +329,8 @@ export interface FileRoutesByFullPath {
   '/anatomy/nervous/anatomy': typeof AnatomyNervousAnatomyRoute
   '/anatomy/nervous/reflexes': typeof AnatomyNervousReflexesRoute
   '/anatomy/nervous/signals': typeof AnatomyNervousSignalsRoute
+  '/anatomy/reproductive/anatomy': typeof AnatomyReproductiveAnatomyRoute
+  '/anatomy/reproductive/function': typeof AnatomyReproductiveFunctionRoute
   '/anatomy/respiratory/anatomy': typeof AnatomyRespiratoryAnatomyRoute
   '/anatomy/respiratory/biomechanics': typeof AnatomyRespiratoryBiomechanicsRoute
   '/anatomy/respiratory/breathing': typeof AnatomyRespiratoryBreathingRoute
@@ -335,6 +358,7 @@ export interface FileRoutesByTo {
   '/anatomy/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy/muscular': typeof AnatomyMuscularRoute
   '/anatomy/nervous': typeof AnatomyNervousRoute
+  '/anatomy/reproductive': typeof AnatomyReproductiveRoute
   '/anatomy/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
@@ -352,6 +376,8 @@ export interface FileRoutesByTo {
   '/anatomy/nervous/anatomy': typeof AnatomyNervousAnatomyRoute
   '/anatomy/nervous/reflexes': typeof AnatomyNervousReflexesRoute
   '/anatomy/nervous/signals': typeof AnatomyNervousSignalsRoute
+  '/anatomy/reproductive/anatomy': typeof AnatomyReproductiveAnatomyRoute
+  '/anatomy/reproductive/function': typeof AnatomyReproductiveFunctionRoute
   '/anatomy/respiratory/anatomy': typeof AnatomyRespiratoryAnatomyRoute
   '/anatomy/respiratory/biomechanics': typeof AnatomyRespiratoryBiomechanicsRoute
   '/anatomy/respiratory/breathing': typeof AnatomyRespiratoryBreathingRoute
@@ -380,6 +406,7 @@ export interface FileRoutesById {
   '/anatomy_/integumentary': typeof AnatomyIntegumentaryRoute
   '/anatomy_/muscular': typeof AnatomyMuscularRoute
   '/anatomy_/nervous': typeof AnatomyNervousRoute
+  '/anatomy_/reproductive': typeof AnatomyReproductiveRoute
   '/anatomy_/respiratory': typeof AnatomyRespiratoryRoute
   '/anatomy_/skeletal': typeof AnatomySkeletalRoute
   '/anatomy_/urinary': typeof AnatomyUrinaryRoute
@@ -397,6 +424,8 @@ export interface FileRoutesById {
   '/anatomy_/nervous_/anatomy': typeof AnatomyNervousAnatomyRoute
   '/anatomy_/nervous_/reflexes': typeof AnatomyNervousReflexesRoute
   '/anatomy_/nervous_/signals': typeof AnatomyNervousSignalsRoute
+  '/anatomy_/reproductive_/anatomy': typeof AnatomyReproductiveAnatomyRoute
+  '/anatomy_/reproductive_/function': typeof AnatomyReproductiveFunctionRoute
   '/anatomy_/respiratory_/anatomy': typeof AnatomyRespiratoryAnatomyRoute
   '/anatomy_/respiratory_/biomechanics': typeof AnatomyRespiratoryBiomechanicsRoute
   '/anatomy_/respiratory_/breathing': typeof AnatomyRespiratoryBreathingRoute
@@ -426,6 +455,7 @@ export interface FileRouteTypes {
     | '/anatomy/integumentary'
     | '/anatomy/muscular'
     | '/anatomy/nervous'
+    | '/anatomy/reproductive'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
     | '/anatomy/urinary'
@@ -443,6 +473,8 @@ export interface FileRouteTypes {
     | '/anatomy/nervous/anatomy'
     | '/anatomy/nervous/reflexes'
     | '/anatomy/nervous/signals'
+    | '/anatomy/reproductive/anatomy'
+    | '/anatomy/reproductive/function'
     | '/anatomy/respiratory/anatomy'
     | '/anatomy/respiratory/biomechanics'
     | '/anatomy/respiratory/breathing'
@@ -470,6 +502,7 @@ export interface FileRouteTypes {
     | '/anatomy/integumentary'
     | '/anatomy/muscular'
     | '/anatomy/nervous'
+    | '/anatomy/reproductive'
     | '/anatomy/respiratory'
     | '/anatomy/skeletal'
     | '/anatomy/urinary'
@@ -487,6 +520,8 @@ export interface FileRouteTypes {
     | '/anatomy/nervous/anatomy'
     | '/anatomy/nervous/reflexes'
     | '/anatomy/nervous/signals'
+    | '/anatomy/reproductive/anatomy'
+    | '/anatomy/reproductive/function'
     | '/anatomy/respiratory/anatomy'
     | '/anatomy/respiratory/biomechanics'
     | '/anatomy/respiratory/breathing'
@@ -514,6 +549,7 @@ export interface FileRouteTypes {
     | '/anatomy_/integumentary'
     | '/anatomy_/muscular'
     | '/anatomy_/nervous'
+    | '/anatomy_/reproductive'
     | '/anatomy_/respiratory'
     | '/anatomy_/skeletal'
     | '/anatomy_/urinary'
@@ -531,6 +567,8 @@ export interface FileRouteTypes {
     | '/anatomy_/nervous_/anatomy'
     | '/anatomy_/nervous_/reflexes'
     | '/anatomy_/nervous_/signals'
+    | '/anatomy_/reproductive_/anatomy'
+    | '/anatomy_/reproductive_/function'
     | '/anatomy_/respiratory_/anatomy'
     | '/anatomy_/respiratory_/biomechanics'
     | '/anatomy_/respiratory_/breathing'
@@ -559,6 +597,7 @@ export interface RootRouteChildren {
   AnatomyIntegumentaryRoute: typeof AnatomyIntegumentaryRoute
   AnatomyMuscularRoute: typeof AnatomyMuscularRoute
   AnatomyNervousRoute: typeof AnatomyNervousRoute
+  AnatomyReproductiveRoute: typeof AnatomyReproductiveRoute
   AnatomyRespiratoryRoute: typeof AnatomyRespiratoryRoute
   AnatomySkeletalRoute: typeof AnatomySkeletalRoute
   AnatomyUrinaryRoute: typeof AnatomyUrinaryRoute
@@ -576,6 +615,8 @@ export interface RootRouteChildren {
   AnatomyNervousAnatomyRoute: typeof AnatomyNervousAnatomyRoute
   AnatomyNervousReflexesRoute: typeof AnatomyNervousReflexesRoute
   AnatomyNervousSignalsRoute: typeof AnatomyNervousSignalsRoute
+  AnatomyReproductiveAnatomyRoute: typeof AnatomyReproductiveAnatomyRoute
+  AnatomyReproductiveFunctionRoute: typeof AnatomyReproductiveFunctionRoute
   AnatomyRespiratoryAnatomyRoute: typeof AnatomyRespiratoryAnatomyRoute
   AnatomyRespiratoryBiomechanicsRoute: typeof AnatomyRespiratoryBiomechanicsRoute
   AnatomyRespiratoryBreathingRoute: typeof AnatomyRespiratoryBreathingRoute
@@ -701,6 +742,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomyNervousRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/reproductive': {
+      id: '/anatomy_/reproductive'
+      path: '/anatomy/reproductive'
+      fullPath: '/anatomy/reproductive'
+      preLoaderRoute: typeof AnatomyReproductiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anatomy_/respiratory': {
       id: '/anatomy_/respiratory'
       path: '/anatomy/respiratory'
@@ -820,6 +868,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomyNervousSignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anatomy_/reproductive_/anatomy': {
+      id: '/anatomy_/reproductive_/anatomy'
+      path: '/anatomy/reproductive/anatomy'
+      fullPath: '/anatomy/reproductive/anatomy'
+      preLoaderRoute: typeof AnatomyReproductiveAnatomyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anatomy_/reproductive_/function': {
+      id: '/anatomy_/reproductive_/function'
+      path: '/anatomy/reproductive/function'
+      fullPath: '/anatomy/reproductive/function'
+      preLoaderRoute: typeof AnatomyReproductiveFunctionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anatomy_/respiratory_/anatomy': {
       id: '/anatomy_/respiratory_/anatomy'
       path: '/anatomy/respiratory/anatomy'
@@ -903,6 +965,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyIntegumentaryRoute: AnatomyIntegumentaryRoute,
   AnatomyMuscularRoute: AnatomyMuscularRoute,
   AnatomyNervousRoute: AnatomyNervousRoute,
+  AnatomyReproductiveRoute: AnatomyReproductiveRoute,
   AnatomyRespiratoryRoute: AnatomyRespiratoryRoute,
   AnatomySkeletalRoute: AnatomySkeletalRoute,
   AnatomyUrinaryRoute: AnatomyUrinaryRoute,
@@ -920,6 +983,8 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyNervousAnatomyRoute: AnatomyNervousAnatomyRoute,
   AnatomyNervousReflexesRoute: AnatomyNervousReflexesRoute,
   AnatomyNervousSignalsRoute: AnatomyNervousSignalsRoute,
+  AnatomyReproductiveAnatomyRoute: AnatomyReproductiveAnatomyRoute,
+  AnatomyReproductiveFunctionRoute: AnatomyReproductiveFunctionRoute,
   AnatomyRespiratoryAnatomyRoute: AnatomyRespiratoryAnatomyRoute,
   AnatomyRespiratoryBiomechanicsRoute: AnatomyRespiratoryBiomechanicsRoute,
   AnatomyRespiratoryBreathingRoute: AnatomyRespiratoryBreathingRoute,
