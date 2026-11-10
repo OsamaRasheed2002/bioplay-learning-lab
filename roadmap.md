@@ -5,6 +5,6 @@
 - [x] Add skeletal system with anatomy, bones/joints and biomechanics sections.
 
 # Nervous system
-- [ ] Connect a nervous system overview to Anatomy Explorer.
-- [ ] Add simple anatomy, nerve signals and reflex sections with realistic images and interactions.
-- [ ] Verify navigation, interactions and mobile layout.
+- [x] Connect a nervous system overview to Anatomy Explorer.
+- [x] Add simple anatomy, nerve signals and reflex sections with realistic images and interactions.
+- [x] Verify navigation, interactions and mobile layout.

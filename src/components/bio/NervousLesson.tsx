@@ -5,7 +5,6 @@ import anatomy from "@/assets/nervous-anatomy.jpg";
 import neuron from "@/assets/nervous-neuron.jpg";
 import { Button } from "@/components/ui/button";
 import { NERVOUS_PARTS, NERVOUS_SECTIONS, NEURON_STEPS, REFLEX_STEPS, type NervousSection } from "@/data/nervous";
-import { cn } from "@/lib/utils";
 
 export function NervousLesson({ section }: { section: NervousSection }) {
   const current = NERVOUS_SECTIONS.find((item) => item.id === section);
