@@ -162,7 +162,7 @@ function Bones() {
             <circle cx="120" cy="120" r="66" className={cn("fill-plasma", ring(2))} />
             <circle cx="120" cy="120" r="40" className={cn("fill-redcell", ring(3))} />
           </svg>
-          <p className="mt-3 text-center font-mono text-xs text-muted-foreground">Cross-section of a long bone</p>
+          <p className="mt-3 text-center font-mono text-xs text-muted-foreground">Cross-section of a bone</p>
         </div>
         <div>
           <div className="flex flex-wrap gap-2">
