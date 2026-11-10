@@ -34,3 +34,4 @@ use the editor.
 - Learner progress (XP, achievements, topics) lives in `src/lib/progress.ts` via the `useProgress` hook backed by localStorage, read after mount to avoid hydration mismatches; swap its storage for the backend when accounts arrive.
 - Respiratory section definitions live in `src/data/respiratory.ts`; separate un-nested leaf routes share `RespiratoryLesson` so section navigation and short interactive lessons remain consistent.
 - Nervous section definitions live in `src/data/nervous.ts`; un-nested leaf routes share `NervousLesson` to keep anatomy, signal and reflex navigation consistent.
+- Digestive section definitions and image highlight paths live in `src/data/digestive.ts`; un-nested leaf routes share `DigestiveLesson` so anatomy and digestion use the same organ mapping.
