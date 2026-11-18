@@ -32,6 +32,7 @@ import { Route as AnatomySkeletalRouteImport } from './routes/anatomy_.skeletal'
 import { Route as AnatomyUrinaryRouteImport } from './routes/anatomy_.urinary'
 import { Route as AnatomyVeinsRouteImport } from './routes/anatomy_.veins'
 import { Route as DevicesPacemakersRouteImport } from './routes/devices_.pacemakers'
+import { Route as DevicesStenosisRouteImport } from './routes/devices_.stenosis'
 import { Route as DevicesValvesRouteImport } from './routes/devices_.valves'
 import { Route as AnatomyDigestiveAnatomyRouteImport } from './routes/anatomy_.digestive_.anatomy'
 import { Route as AnatomyDigestiveBiomechanicsRouteImport } from './routes/anatomy_.digestive_.biomechanics'
@@ -172,6 +173,11 @@ const AnatomyVeinsRoute = AnatomyVeinsRouteImport.update({
 const DevicesPacemakersRoute = DevicesPacemakersRouteImport.update({
   id: '/devices_/pacemakers',
   path: '/devices/pacemakers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevicesStenosisRoute = DevicesStenosisRouteImport.update({
+  id: '/devices_/stenosis',
+  path: '/devices/stenosis',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DevicesValvesRoute = DevicesValvesRouteImport.update({
@@ -342,6 +348,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
   '/devices/pacemakers': typeof DevicesPacemakersRoute
+  '/devices/stenosis': typeof DevicesStenosisRoute
   '/devices/valves': typeof DevicesValvesRoute
   '/anatomy/digestive/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy/digestive/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
@@ -393,6 +400,7 @@ export interface FileRoutesByTo {
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
   '/devices/pacemakers': typeof DevicesPacemakersRoute
+  '/devices/stenosis': typeof DevicesStenosisRoute
   '/devices/valves': typeof DevicesValvesRoute
   '/anatomy/digestive/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy/digestive/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
@@ -445,6 +453,7 @@ export interface FileRoutesById {
   '/anatomy_/urinary': typeof AnatomyUrinaryRoute
   '/anatomy_/veins': typeof AnatomyVeinsRoute
   '/devices_/pacemakers': typeof DevicesPacemakersRoute
+  '/devices_/stenosis': typeof DevicesStenosisRoute
   '/devices_/valves': typeof DevicesValvesRoute
   '/anatomy_/digestive_/anatomy': typeof AnatomyDigestiveAnatomyRoute
   '/anatomy_/digestive_/biomechanics': typeof AnatomyDigestiveBiomechanicsRoute
@@ -498,6 +507,7 @@ export interface FileRouteTypes {
     | '/anatomy/urinary'
     | '/anatomy/veins'
     | '/devices/pacemakers'
+    | '/devices/stenosis'
     | '/devices/valves'
     | '/anatomy/digestive/anatomy'
     | '/anatomy/digestive/biomechanics'
@@ -549,6 +559,7 @@ export interface FileRouteTypes {
     | '/anatomy/urinary'
     | '/anatomy/veins'
     | '/devices/pacemakers'
+    | '/devices/stenosis'
     | '/devices/valves'
     | '/anatomy/digestive/anatomy'
     | '/anatomy/digestive/biomechanics'
@@ -600,6 +611,7 @@ export interface FileRouteTypes {
     | '/anatomy_/urinary'
     | '/anatomy_/veins'
     | '/devices_/pacemakers'
+    | '/devices_/stenosis'
     | '/devices_/valves'
     | '/anatomy_/digestive_/anatomy'
     | '/anatomy_/digestive_/biomechanics'
@@ -652,6 +664,7 @@ export interface RootRouteChildren {
   AnatomyUrinaryRoute: typeof AnatomyUrinaryRoute
   AnatomyVeinsRoute: typeof AnatomyVeinsRoute
   DevicesPacemakersRoute: typeof DevicesPacemakersRoute
+  DevicesStenosisRoute: typeof DevicesStenosisRoute
   DevicesValvesRoute: typeof DevicesValvesRoute
   AnatomyDigestiveAnatomyRoute: typeof AnatomyDigestiveAnatomyRoute
   AnatomyDigestiveBiomechanicsRoute: typeof AnatomyDigestiveBiomechanicsRoute
@@ -841,6 +854,13 @@ declare module '@tanstack/react-router' {
       path: '/devices/pacemakers'
       fullPath: '/devices/pacemakers'
       preLoaderRoute: typeof DevicesPacemakersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/devices_/stenosis': {
+      id: '/devices_/stenosis'
+      path: '/devices/stenosis'
+      fullPath: '/devices/stenosis'
+      preLoaderRoute: typeof DevicesStenosisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/devices_/valves': {
@@ -1052,6 +1072,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomyUrinaryRoute: AnatomyUrinaryRoute,
   AnatomyVeinsRoute: AnatomyVeinsRoute,
   DevicesPacemakersRoute: DevicesPacemakersRoute,
+  DevicesStenosisRoute: DevicesStenosisRoute,
   DevicesValvesRoute: DevicesValvesRoute,
   AnatomyDigestiveAnatomyRoute: AnatomyDigestiveAnatomyRoute,
   AnatomyDigestiveBiomechanicsRoute: AnatomyDigestiveBiomechanicsRoute,
