@@ -58,6 +58,7 @@ import { Route as AnatomySkeletalBonesRouteImport } from './routes/anatomy_.skel
 import { Route as AnatomySkeletalFracturesRouteImport } from './routes/anatomy_.skeletal_.fractures'
 import { Route as AnatomyUrinaryAnatomyRouteImport } from './routes/anatomy_.urinary_.anatomy'
 import { Route as AnatomyUrinaryFunctionRouteImport } from './routes/anatomy_.urinary_.function'
+import { Route as DevicesStenosisStentsRouteImport } from './routes/devices_.stenosis_.stents'
 import { Route as DevicesValvesHistoryRouteImport } from './routes/devices_.valves_.history'
 
 const IndexRoute = IndexRouteImport.update({
@@ -318,6 +319,11 @@ const AnatomyUrinaryFunctionRoute = AnatomyUrinaryFunctionRouteImport.update({
   path: '/anatomy/urinary/function',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevicesStenosisStentsRoute = DevicesStenosisStentsRouteImport.update({
+  id: '/devices_/stenosis_/stents',
+  path: '/devices/stenosis/stents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DevicesValvesHistoryRoute = DevicesValvesHistoryRouteImport.update({
   id: '/devices_/valves_/history',
   path: '/devices/valves/history',
@@ -374,6 +380,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
   '/anatomy/urinary/anatomy': typeof AnatomyUrinaryAnatomyRoute
   '/anatomy/urinary/function': typeof AnatomyUrinaryFunctionRoute
+  '/devices/stenosis/stents': typeof DevicesStenosisStentsRoute
   '/devices/valves/history': typeof DevicesValvesHistoryRoute
 }
 export interface FileRoutesByTo {
@@ -426,6 +433,7 @@ export interface FileRoutesByTo {
   '/anatomy/skeletal/fractures': typeof AnatomySkeletalFracturesRoute
   '/anatomy/urinary/anatomy': typeof AnatomyUrinaryAnatomyRoute
   '/anatomy/urinary/function': typeof AnatomyUrinaryFunctionRoute
+  '/devices/stenosis/stents': typeof DevicesStenosisStentsRoute
   '/devices/valves/history': typeof DevicesValvesHistoryRoute
 }
 export interface FileRoutesById {
@@ -479,6 +487,7 @@ export interface FileRoutesById {
   '/anatomy_/skeletal_/fractures': typeof AnatomySkeletalFracturesRoute
   '/anatomy_/urinary_/anatomy': typeof AnatomyUrinaryAnatomyRoute
   '/anatomy_/urinary_/function': typeof AnatomyUrinaryFunctionRoute
+  '/devices_/stenosis_/stents': typeof DevicesStenosisStentsRoute
   '/devices_/valves_/history': typeof DevicesValvesHistoryRoute
 }
 export interface FileRouteTypes {
@@ -533,6 +542,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/fractures'
     | '/anatomy/urinary/anatomy'
     | '/anatomy/urinary/function'
+    | '/devices/stenosis/stents'
     | '/devices/valves/history'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -585,6 +595,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal/fractures'
     | '/anatomy/urinary/anatomy'
     | '/anatomy/urinary/function'
+    | '/devices/stenosis/stents'
     | '/devices/valves/history'
   id:
     | '__root__'
@@ -637,6 +648,7 @@ export interface FileRouteTypes {
     | '/anatomy_/skeletal_/fractures'
     | '/anatomy_/urinary_/anatomy'
     | '/anatomy_/urinary_/function'
+    | '/devices_/stenosis_/stents'
     | '/devices_/valves_/history'
   fileRoutesById: FileRoutesById
 }
@@ -690,6 +702,7 @@ export interface RootRouteChildren {
   AnatomySkeletalFracturesRoute: typeof AnatomySkeletalFracturesRoute
   AnatomyUrinaryAnatomyRoute: typeof AnatomyUrinaryAnatomyRoute
   AnatomyUrinaryFunctionRoute: typeof AnatomyUrinaryFunctionRoute
+  DevicesStenosisStentsRoute: typeof DevicesStenosisStentsRoute
   DevicesValvesHistoryRoute: typeof DevicesValvesHistoryRoute
 }
 
@@ -1038,6 +1051,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnatomyUrinaryFunctionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/devices_/stenosis_/stents': {
+      id: '/devices_/stenosis_/stents'
+      path: '/devices/stenosis/stents'
+      fullPath: '/devices/stenosis/stents'
+      preLoaderRoute: typeof DevicesStenosisStentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/devices_/valves_/history': {
       id: '/devices_/valves_/history'
       path: '/devices/valves/history'
@@ -1098,6 +1118,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomySkeletalFracturesRoute: AnatomySkeletalFracturesRoute,
   AnatomyUrinaryAnatomyRoute: AnatomyUrinaryAnatomyRoute,
   AnatomyUrinaryFunctionRoute: AnatomyUrinaryFunctionRoute,
+  DevicesStenosisStentsRoute: DevicesStenosisStentsRoute,
   DevicesValvesHistoryRoute: DevicesValvesHistoryRoute,
 }
 export const routeTree = rootRouteImport

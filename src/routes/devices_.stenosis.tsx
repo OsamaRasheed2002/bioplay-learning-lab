@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Activity, Layers, Droplets, Wind, Wrench } from "lucide-react";
 import stenosisImg from "@/assets/stenosis-artery.jpg";
+import { StenosisTabs } from "@/components/bio/StenosisTabs";
 
 export const Route = createFileRoute("/devices_/stenosis")({
   component: StenosisPage,
@@ -156,6 +157,7 @@ function StenosisPage() {
         <h1 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
           Stenosis: when arteries narrow
         </h1>
+        <StenosisTabs />
         <p className="mt-3 max-w-2xl text-muted-foreground">
           Stenosis is the narrowing of a blood vessel, usually caused by plaque
           building up inside the wall. Tap each part below to see it on the
