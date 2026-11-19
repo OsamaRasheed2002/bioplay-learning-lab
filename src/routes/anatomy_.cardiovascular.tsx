@@ -1,3 +1,4 @@
+import { MiniQuiz } from "@/components/bio/MiniQuiz";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
@@ -53,7 +54,8 @@ function CardioHub() {
               <div className="mt-3 text-xs font-semibold text-mint-deep">Explore →</div>
             </Link>
           ))}
-        </div>
+        <MiniQuiz id="cardiovascular" />
+</div>
       </div>
     </section>
   );

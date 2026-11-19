@@ -1,3 +1,4 @@
+import { MiniQuiz } from "@/components/bio/MiniQuiz";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,5 +28,5 @@ function AnatomicalPlanes() {
       <div><dt className="font-bold text-sky-deep">Frontal (coronal) plane</dt><dd className="mt-2 text-sm leading-relaxed text-muted-foreground">Divides the body into front and back.</dd></div>
       <div><dt className="font-bold text-lavender-deep">Transverse plane</dt><dd className="mt-2 text-sm leading-relaxed text-muted-foreground">Divides the body into upper and lower parts.</dd></div>
     </dl>
-  </div></section>;
+  <MiniQuiz id="planes" /></div></section>;
 }
