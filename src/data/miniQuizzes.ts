@@ -1,5 +1,38 @@
+import type { Progress } from "@/lib/progress";
+
 export type MiniQ = { q: string; options: string[]; answer: number; why: string };
-export const MINI_QUIZ_XP = 15;
+
+/** XP banked for each correct mini-quiz answer. */
+export const XP_PER_CORRECT = 5;
+
+/** Keys used to remember what a learner has already been paid for. */
+export const miniQuizWeekKey = (id: string, week: number) => `quiz:${id}:w${week}`;
+export const miniQuizSpentKey = (id: string, week: number, qi: number) => `${miniQuizWeekKey(id, week)}:q${qi}`;
+export const miniQuizPaidKey = (id: string, week: number, qi: number) => `${miniQuizWeekKey(id, week)}:c${qi}`;
+
+/**
+ * Apply one mini-quiz answer: +XP_PER_CORRECT when correct, and only once per
+ * question per week. A wrong answer still spends that question, so "Try again"
+ * can never be used to farm XP from answers already seen.
+ */
+export function awardMiniQuizAnswer(
+  p: Progress,
+  a: { id: string; week: number; qi: number; correct: boolean },
+): Progress {
+  const t = p.completedTopics;
+  // The flat +15 payout for this week's quiz (before per-answer scoring) also blocks a second payout.
+  if (t.includes(miniQuizSpentKey(a.id, a.week, a.qi)) || t.includes(miniQuizWeekKey(a.id, a.week))) return p;
+  const spent = [...t, miniQuizSpentKey(a.id, a.week, a.qi)];
+  if (!a.correct) return { ...p, completedTopics: spent };
+  return { ...p, xp: p.xp + XP_PER_CORRECT, completedTopics: [...spent, miniQuizPaidKey(a.id, a.week, a.qi)] };
+}
+
+/** XP already banked from one section's quiz this week. */
+export function miniQuizXpEarned(p: Progress, id: string, week: number, count: number) {
+  let paid = 0;
+  for (let qi = 0; qi < count; qi++) if (p.completedTopics.includes(miniQuizPaidKey(id, week, qi))) paid++;
+  return paid * XP_PER_CORRECT;
+}
 
 export const MINI_QUIZZES: Record<string, MiniQ[]> = {
   planes: [
