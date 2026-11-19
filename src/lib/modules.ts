@@ -18,7 +18,7 @@ export type LearningModule = {
   minutes: number;
   topics: string[];
   /** Topics that already have a lesson page. */
-  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous" | "/anatomy/digestive" | "/anatomy/muscular" | "/anatomy/endocrine" | "/anatomy/integumentary" | "/anatomy/urinary" | "/anatomy/reproductive" | "/anatomy/planes" | "/devices/pacemakers" | "/devices/valves" | "/devices/stenosis" | "/concepts/biomechanics" | "/concepts/biomaterials" | "/concepts/bioinstrumentation" | "/concepts/tissue-engineering">>;
+  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous" | "/anatomy/digestive" | "/anatomy/muscular" | "/anatomy/endocrine" | "/anatomy/integumentary" | "/anatomy/urinary" | "/anatomy/reproductive" | "/anatomy/planes" | "/devices/pacemakers" | "/devices/valves" | "/devices/stenosis" | "/concepts/biomechanics" | "/concepts/biomaterials" | "/concepts/bioinstrumentation" | "/concepts/tissue-engineering" | "/challenges/pulse-check">>;
 };
 
 export const MODULES: LearningModule[] = [
@@ -89,6 +89,7 @@ export const MODULES: LearningModule[] = [
     lessons: 30,
     minutes: 90,
     topics: ["Daily pulse check", "Diagnose the signal", "Design a device", "Boss quizzes"],
+    topicLinks: { "Daily pulse check": "/challenges/pulse-check" },
   },
 ];
 
