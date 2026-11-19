@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { Check, Stethoscope, Timer, Wrench, X, RotateCcw, Trophy } from "lucide-react";
+import { Check, Cpu, Stethoscope, Timer, Wrench, X, RotateCcw, Trophy } from "lucide-react";
 
-import { CHALLENGE_XP, DESIGN_MISSIONS, DIAGNOSIS_PUZZLES, SPEED_QUIZ } from "@/data/challenges";
+import { CHALLENGE_XP, DESIGN_MISSIONS, DEVICE_BRIEFS, DIAGNOSIS_PUZZLES, SPEED_QUIZ } from "@/data/challenges";
 import { useProgress } from "@/lib/progress";
 
-type Id = "quiz" | "diagnosis" | "design";
+type Id = "quiz" | "diagnosis" | "design" | "device";
 const CARDS: { id: Id; title: string; text: string; icon: typeof Timer; tone: string }[] = [
   { id: "quiz", title: "Speed Quiz", text: "10 questions, 60 seconds. How many can you get?", icon: Timer, tone: "bg-mint/20 text-mint" },
   { id: "diagnosis", title: "Diagnosis Puzzle", text: "Read the patient's clues and pick the right device.", icon: Stethoscope, tone: "bg-lavender/20 text-lavender" },
   { id: "design", title: "Design Mission", text: "Choose the best material for each engineering brief.", icon: Wrench, tone: "bg-peach/20 text-peach-deep" },
+  { id: "device", title: "Design a Device", text: "Build a pacemaker, glucose monitor or prosthetic hand, part by part.", icon: Cpu, tone: "bg-sky/20 text-sky" },
 ];
 
 function useAward() {
@@ -27,7 +28,7 @@ export function Challenges() {
       <p className="font-mono text-xs uppercase tracking-widest text-mint">Play</p>
       <h2 className="mt-1 font-display text-3xl font-bold">Pick a challenge</h2>
       <p className="mt-1 text-muted-foreground">Finish each one for +{CHALLENGE_XP} XP the first time. Replay as often as you like.</p>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {CARDS.map((c) => (
           <button key={c.id} onClick={() => setActive(c.id)}
             className={`group rounded-3xl border p-5 text-left shadow-sm transition hover:-translate-y-1 ${active === c.id ? "border-mint bg-card ring-2 ring-mint/40" : "border-border bg-card/60"}`}>
@@ -44,6 +45,7 @@ export function Challenges() {
         {active === "quiz" && <SpeedQuiz onWin={() => award("quiz")} />}
         {active === "diagnosis" && <Steps kind="diagnosis" onWin={() => award("diagnosis")} />}
         {active === "design" && <Steps kind="design" onWin={() => award("design")} />}
+        {active === "device" && <DesignDevice onWin={() => award("device")} />}
       </div>
     </section>
   );
@@ -120,6 +122,111 @@ function SpeedQuiz({ onWin }: { onWin: () => void }) {
         setPicked(p); if (p === q.answer) setScore((s) => s + 1);
         setTimeout(() => { setPicked(null); setI((n) => n + 1); }, 700);
       }} />
+    </div>
+  );
+}
+
+function DesignDevice({ onWin }: { onWin: () => void }) {
+  const [briefIdx, setBriefIdx] = useState<number | null>(null);
+  const [step, setStep] = useState(0);
+  const [picked, setPicked] = useState<number | null>(null);
+  const [score, setScore] = useState(0);
+  const [spec, setSpec] = useState<{ label: string; choice: string; good: boolean }[]>([]);
+
+  const reset = () => { setBriefIdx(null); setStep(0); setPicked(null); setScore(0); setSpec([]); };
+
+  if (briefIdx === null) return (
+    <div className="py-4">
+      <h3 className="text-center font-display text-2xl font-bold">Design a Device</h3>
+      <p className="mt-1 text-center text-muted-foreground">Pick a brief, then choose each part. Good engineering choices score points.</p>
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        {DEVICE_BRIEFS.map((b, i) => (
+          <button key={b.device} onClick={() => setBriefIdx(i)}
+            className="rounded-3xl border border-border bg-card/60 p-5 text-left transition hover:-translate-y-1 hover:border-sky">
+            <Cpu className="h-6 w-6 text-sky" />
+            <h4 className="mt-3 font-display text-lg font-semibold">{b.device}</h4>
+            <p className="mt-1 text-sm text-muted-foreground">{b.goal}</p>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
+  const brief = DEVICE_BRIEFS[briefIdx]!;
+  const total = brief.steps.length;
+
+  if (step >= total) return (
+    <div className="py-4 animate-in fade-in zoom-in-95">
+      <div className="text-center">
+        <Trophy className="mx-auto h-12 w-12 text-peach-deep" />
+        <p className="mt-3 font-display text-4xl font-bold">{score} / {total}</p>
+        <p className="mt-1 text-muted-foreground">{score === total ? "A device an engineer would sign off!" : score >= total / 2 ? "Solid prototype — a few parts to rethink." : "Back to the drawing board!"}</p>
+      </div>
+      <div className="mx-auto mt-6 max-w-md rounded-3xl border border-border bg-muted/50 p-5">
+        <p className="font-mono text-[11px] uppercase tracking-widest text-sky">Your {brief.device} spec sheet</p>
+        <ul className="mt-3 space-y-2">
+          {spec.map((s) => (
+            <li key={s.label} className="flex items-center justify-between gap-3 text-sm">
+              <span className="text-muted-foreground">{s.label}</span>
+              <span className={`flex items-center gap-1.5 font-medium ${s.good ? "text-mint" : "text-destructive"}`}>
+                {s.choice} {s.good ? <Check className="h-3.5 w-3.5" /> : <X className="h-3.5 w-3.5" />}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="mt-6 flex justify-center gap-3">
+        <button onClick={() => { setStep(0); setPicked(null); setScore(0); setSpec([]); }} className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground">
+          <RotateCcw className="h-4 w-4" /> Rebuild it
+        </button>
+        <button onClick={reset} className="rounded-full border border-border px-5 py-2 text-sm font-semibold">New brief</button>
+      </div>
+    </div>
+  );
+
+  const s = brief.steps[step]!;
+  return (
+    <div key={`${briefIdx}-${step}`} className="animate-in fade-in slide-in-from-right-4">
+      <div className="flex items-center justify-between font-mono text-xs text-muted-foreground">
+        <span>{brief.device} — part {step + 1} / {total}</span>
+        <span className="text-sky">{s.label}</span>
+      </div>
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
+        <div className="h-full bg-sky transition-all" style={{ width: `${(step / total) * 100}%` }} />
+      </div>
+      <h3 className="mt-6 font-display text-xl font-semibold">{s.question}</h3>
+      <div className="mt-5 grid gap-3 sm:grid-cols-3">
+        {s.options.map((o, i) => {
+          const state = picked === null ? "" : i === s.best ? "border-mint bg-mint/15" : i === picked ? "border-destructive bg-destructive/10" : "opacity-50";
+          return (
+            <button key={o.name} disabled={picked !== null} onClick={() => {
+              setPicked(i);
+              const good = i === s.best;
+              if (good) setScore((n) => n + 1);
+              setSpec((sp) => [...sp, { label: s.label, choice: o.name, good }]);
+            }}
+              className={`rounded-2xl border border-border px-4 py-3 text-left transition hover:border-sky ${state}`}>
+              <p className="flex items-center justify-between font-medium">
+                {o.name}
+                {picked !== null && i === s.best && <Check className="h-4 w-4 text-mint" />}
+                {picked === i && i !== s.best && <X className="h-4 w-4 text-destructive" />}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">{o.note}</p>
+            </button>
+          );
+        })}
+      </div>
+      {picked !== null && (
+        <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-muted/60 p-4 sm:flex-row sm:items-center sm:justify-between animate-in fade-in">
+          <p className="text-sm">{s.why}</p>
+          <button onClick={() => {
+            if (step + 1 >= total) onWin();
+            setPicked(null); setStep((n) => n + 1);
+          }} className="shrink-0 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground">
+            {step + 1 === total ? "See my device" : "Next part"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
