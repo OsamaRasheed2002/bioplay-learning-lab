@@ -139,13 +139,12 @@ function Hero() {
                   key={c}
                   className={`grid size-9 place-items-center rounded-full border-2 border-background ${c} font-display text-xs font-bold`}
                 >
-                  {["AK", "SL", "MR", "JD"][i]}
+                  {["", "", "", ""][i]}
                 </span>
               ))}
             </div>
             <p className="text-sm text-muted-foreground">
-              Built for <span className="font-semibold text-foreground">university students</span>{" "}
-              in BME, medicine & beyond
+              {"\n"}
             </p>
           </div>
         </div>
