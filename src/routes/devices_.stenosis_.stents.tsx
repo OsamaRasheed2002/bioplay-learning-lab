@@ -32,6 +32,13 @@ const STEPS = [
   { name: "Flow restored", text: "Blood flows freely again. The vessel lining slowly grows over the struts, and medicine coatings help stop it narrowing again." },
 ];
 
+const LABELS = [
+  { id: 0, name: "Stent mesh", tx: 880, ty: 105, x: 760, y: 330 },
+  { id: 1, name: "Artery wall", tx: 990, ty: 730, x: 1060, y: 500 },
+  { id: 2, name: "Open channel", tx: 130, ty: 230, x: 520, y: 450 },
+  { id: 3, name: "Blood flow", tx: 130, ty: 815, x: 210, y: 590 },
+] as const;
+
 function Stents() {
   const [part, setPart] = useState(0);
   const [step, setStep] = useState(0);
@@ -40,28 +47,56 @@ function Stents() {
     <p className="font-mono text-xs uppercase tracking-widest text-lavender-deep">Medical Devices · Unit 3</p>
     <h1 className="mt-3 text-4xl font-bold sm:text-5xl">Stents</h1>
     <StenosisTabs />
-    <p className="mt-6 max-w-2xl text-muted-foreground">A stent is the engineer's answer to stenosis: a tiny metal mesh tube that is expanded inside the narrowed artery to hold it open. Tap each part below to see it on the picture.</p>
+    <p className="mt-6 max-w-2xl text-muted-foreground">A stent is the engineer's answer to stenosis: a tiny metal mesh tube that is expanded inside the narrowed artery to hold it open. Tap a label on the picture to learn about that part.</p>
 
     <figure className="mt-8 overflow-hidden rounded-3xl border border-border shadow-soft">
       <div className="relative">
         <img src={stentImg} alt="A metallic mesh stent expanded inside an artery, with red blood cells flowing through the open channel" width={1280} height={896} className="block w-full" />
-        <svg viewBox="0 0 1280 896" role="img" aria-label={`${PARTS[part]!.name} highlighted on the stent`} className="pointer-events-none absolute inset-0 h-full w-full text-mint">
-          <defs><filter id="stent-highlight-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
-          <g key={part} filter="url(#stent-highlight-glow)" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="animate-fade-up">
-            {part === 0 && <ellipse cx="700" cy="390" rx="430" ry="180" transform="rotate(-18 700 390)" strokeWidth="6" />}
-            {part === 1 && <g strokeWidth="14" opacity="0.8"><path d="M 60,420 C 350,300 700,180 1240,60" /><path d="M 20,700 C 350,640 750,520 1270,400" /></g>}
-            {part === 2 && <ellipse cx="700" cy="390" rx="340" ry="110" transform="rotate(-18 700 390)" className="fill-mint/20" strokeWidth="6" />}
-            {part === 3 && <g><ellipse cx="200" cy="560" rx="150" ry="110" className="fill-mint/15" strokeWidth="6" /><ellipse cx="1170" cy="200" rx="120" ry="90" className="fill-mint/15" strokeWidth="6" /></g>}
-          </g>
+        <svg viewBox="0 0 1280 896" role="group" aria-label="Labelled parts of the stent" className="absolute inset-0 h-full w-full">
+          {LABELS.map((l) => {
+            const active = l.id === part;
+            return (
+              <g
+                key={l.id}
+                role="button"
+                tabIndex={0}
+                aria-pressed={active}
+                aria-label={l.name}
+                onClick={() => setPart(l.id)}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setPart(l.id); } }}
+                className="cursor-pointer outline-none"
+              >
+                <rect
+                  x={Math.min(l.x, l.tx) - 130}
+                  y={Math.min(l.y, l.ty) - 40}
+                  width={Math.abs(l.x - l.tx) + 260}
+                  height={Math.abs(l.y - l.ty) + 80}
+                  fill="transparent"
+                />
+                <line x1={l.x} y1={l.y} x2={l.tx} y2={l.ty} strokeWidth="3" className={active ? "stroke-mint" : "stroke-foreground/50"} />
+                <circle cx={l.x} cy={l.y} r="10" className={active ? "fill-mint" : "fill-foreground/70"} />
+                <text
+                  x={l.tx}
+                  y={l.ty}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="30"
+                  fontWeight="700"
+                  stroke="var(--background)"
+                  strokeWidth="8"
+                  strokeLinejoin="round"
+                  style={{ paintOrder: "stroke" }}
+                  className={active ? "fill-mint" : "fill-foreground"}
+                >{l.name}</text>
+              </g>
+            );
+          })}
         </svg>
       </div>
-      <figcaption className="border-t border-border bg-card/70 px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">Tap a part below to see it highlighted</figcaption>
+      <figcaption className="border-t border-border bg-card/70 px-5 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">Tap a label on the picture</figcaption>
     </figure>
 
     <h2 className="mt-12 text-2xl font-bold">Main parts</h2>
-    <div className="mt-4 flex flex-wrap gap-2">
-      {PARTS.map((p, i) => <Button key={p.name} size="sm" variant={i === part ? "default" : "outline"} onClick={() => setPart(i)}>{p.name}</Button>)}
-    </div>
     <p className="mt-4 rounded-2xl bg-card p-5 text-sm leading-relaxed shadow-soft"><strong>{PARTS[part]!.name}:</strong> {PARTS[part]!.text}</p>
 
     <h2 className="mt-12 text-2xl font-bold">How it is placed</h2>
