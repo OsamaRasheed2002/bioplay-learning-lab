@@ -31,8 +31,8 @@ export const MODULES: LearningModule[] = [
       "Rotate, zoom and dissect interactive organ systems to see how structure drives function.",
     image: anatomyImg,
     tone: "mint",
-    lessons: 24,
-    minutes: 180,
+    lessons: 28,
+    minutes: 230,
     topics: ["Cardiovascular system", "Respiratory system", "Nervous system", "Skeletal system", "Digestive system", "Muscular system", "Endocrine system", "Integumentary system", "Urinary system", "Reproductive system", "Anatomical planes"],
     topicLinks: { "Cardiovascular system": "/anatomy/cardiovascular", "Respiratory system": "/anatomy/respiratory", "Skeletal system": "/anatomy/skeletal", "Nervous system": "/anatomy/nervous", "Digestive system": "/anatomy/digestive", "Muscular system": "/anatomy/muscular", "Endocrine system": "/anatomy/endocrine", "Integumentary system": "/anatomy/integumentary", "Urinary system": "/anatomy/urinary", "Reproductive system": "/anatomy/reproductive", "Anatomical planes": "/anatomy/planes" },
   },
@@ -45,8 +45,8 @@ export const MODULES: LearningModule[] = [
       "Record, filter and decode real physiological signals in a hands-on virtual lab bench.",
     image: signalsImg,
     tone: "sky",
-    lessons: 18,
-    minutes: 140,
+    lessons: 0,
+    minutes: 0,
     topics: ["ECG waveforms", "Noise & filtering", "Fourier analysis", "EEG rhythms"],
   },
   {
@@ -58,8 +58,8 @@ export const MODULES: LearningModule[] = [
       "Take apart the machines that keep us healthy and learn the engineering inside each one.",
     image: devicesImg,
     tone: "lavender",
-    lessons: 16,
-    minutes: 120,
+    lessons: 5,
+    minutes: 50,
     topics: ["Pacemakers", "Artificial valves", "Stenosis"],
     topicLinks: { Pacemakers: "/devices/pacemakers", "Artificial valves": "/devices/valves", Stenosis: "/devices/stenosis" },
   },
@@ -72,8 +72,8 @@ export const MODULES: LearningModule[] = [
       "Biomechanics, biomaterials and transport phenomena — explained with visuals, not walls of text.",
     image: conceptsImg,
     tone: "peach",
-    lessons: 20,
-    minutes: 160,
+    lessons: 4,
+    minutes: 40,
     topics: ["Biomechanics", "Biomaterials", "Bioinstrumentation", "Tissue engineering"],
     topicLinks: { Biomechanics: "/concepts/biomechanics", Biomaterials: "/concepts/biomaterials", Bioinstrumentation: "/concepts/bioinstrumentation", "Tissue engineering": "/concepts/tissue-engineering" },
   },
@@ -86,8 +86,8 @@ export const MODULES: LearningModule[] = [
       "Test yourself with timed quizzes, diagnosis puzzles and design missions that earn real XP.",
     image: challengesImg,
     tone: "mint",
-    lessons: 30,
-    minutes: 90,
+    lessons: 6,
+    minutes: 45,
     topics: ["Daily pulse check", "Boss quizzes"],
     topicLinks: { "Daily pulse check": "/challenges/pulse-check", "Boss quizzes": "/challenges/boss" },
   },
@@ -131,4 +131,15 @@ export function getModule(id: LearningModule["id"]) {
   const m = MODULES.find((x) => x.id === id);
   if (!m) throw new Error(`Unknown module ${id}`);
   return m;
+}
+
+/** Human-friendly lesson count and study time for a module. */
+export function formatLessons(m: LearningModule) {
+  return m.lessons === 0 ? "Coming soon" : `${m.lessons} ${m.lessons === 1 ? "lesson" : "lessons"}`;
+}
+export function formatMinutes(m: LearningModule) {
+  if (m.minutes === 0) return "—";
+  if (m.minutes < 60) return `~${m.minutes} min`;
+  const h = Math.round((m.minutes / 60) * 2) / 2;
+  return `~${h} ${h === 1 ? "hour" : "hours"}`;
 }

@@ -186,9 +186,9 @@ function HeroVisual() {
 function StatsStrip() {
   const stats = [
     { icon: Heart, label: "Organ systems", value: "11", tone: "bg-mint-soft text-mint-deep" },
-    { icon: Activity, label: "Signal datasets", value: "40+", tone: "bg-sky-soft text-sky-deep" },
-    { icon: Cpu, label: "Device teardowns", value: "16", tone: "bg-lavender-soft text-lavender-deep" },
-    { icon: Brain, label: "Bite-sized lessons", value: "108", tone: "bg-peach-soft text-peach-deep" },
+    { icon: Activity, label: "BME concepts", value: "4", tone: "bg-sky-soft text-sky-deep" },
+    { icon: Cpu, label: "Medical devices", value: "3", tone: "bg-lavender-soft text-lavender-deep" },
+    { icon: Brain, label: "Bite-sized lessons", value: "43", tone: "bg-peach-soft text-peach-deep" },
   ];
   return (
     <section className="mx-auto mt-10 max-w-7xl px-5">

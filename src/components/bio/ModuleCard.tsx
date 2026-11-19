@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Clock, Layers } from "lucide-react";
 
-import { TONE_CLASSES, type LearningModule } from "@/lib/modules";
+import { TONE_CLASSES, type LearningModule , formatLessons, formatMinutes } from "@/lib/modules";
 import { cn } from "@/lib/utils";
 
 export function ModuleCard({
@@ -63,10 +63,10 @@ export function ModuleCard({
         <p className="text-sm leading-relaxed text-muted-foreground">{module.description}</p>
         <div className="mt-auto flex items-center gap-4 pt-1 font-mono text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
-            <Layers className="size-3.5" /> {module.lessons} lessons
+            <Layers className="size-3.5" /> {formatLessons(module)}
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Clock className="size-3.5" /> ~{Math.round(module.minutes / 60)}h
+            <Clock className="size-3.5" /> {formatMinutes(module)}
           </span>
         </div>
       </div>

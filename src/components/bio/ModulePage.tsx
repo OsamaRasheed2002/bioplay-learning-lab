@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Clock, Layers, Rocket } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { TONE_CLASSES, getModule, type LearningModule } from "@/lib/modules";
+import { TONE_CLASSES, getModule, type LearningModule , formatLessons, formatMinutes } from "@/lib/modules";
 import { cn } from "@/lib/utils";
 
 export function ModulePage({ id }: { id: LearningModule["id"] }) {
@@ -32,10 +32,10 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
             <p className="max-w-lg text-lg text-muted-foreground">{m.description}</p>
             <div className="flex gap-5 font-mono text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
-                <Layers className="size-4" /> {m.lessons} lessons
+                <Layers className="size-4" /> {formatLessons(m)}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Clock className="size-4" /> ~{Math.round(m.minutes / 60)} hours
+                <Clock className="size-4" /> {formatMinutes(m)}
               </span>
             </div>
             <div className="rounded-3xl border border-dashed border-border bg-card/70 p-5">
