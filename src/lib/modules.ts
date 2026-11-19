@@ -18,7 +18,7 @@ export type LearningModule = {
   minutes: number;
   topics: string[];
   /** Topics that already have a lesson page. */
-  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous" | "/anatomy/digestive" | "/anatomy/muscular" | "/anatomy/endocrine" | "/anatomy/integumentary" | "/anatomy/urinary" | "/anatomy/reproductive" | "/anatomy/planes" | "/devices/pacemakers" | "/devices/valves" | "/devices/stenosis">>;
+  topicLinks?: Partial<Record<string, "/anatomy/cardiovascular" | "/anatomy/respiratory" | "/anatomy/skeletal" | "/anatomy/nervous" | "/anatomy/digestive" | "/anatomy/muscular" | "/anatomy/endocrine" | "/anatomy/integumentary" | "/anatomy/urinary" | "/anatomy/reproductive" | "/anatomy/planes" | "/devices/pacemakers" | "/devices/valves" | "/devices/stenosis" | "/concepts/biomechanics" | "/concepts/biomaterials" | "/concepts/bioinstrumentation" | "/concepts/tissue-engineering">>;
 };
 
 export const MODULES: LearningModule[] = [
@@ -75,6 +75,7 @@ export const MODULES: LearningModule[] = [
     lessons: 20,
     minutes: 160,
     topics: ["Biomechanics", "Biomaterials", "Bioinstrumentation", "Tissue engineering"],
+    topicLinks: { Biomechanics: "/concepts/biomechanics", Biomaterials: "/concepts/biomaterials", Bioinstrumentation: "/concepts/bioinstrumentation", "Tissue engineering": "/concepts/tissue-engineering" },
   },
   {
     id: "challenges",

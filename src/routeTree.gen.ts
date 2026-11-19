@@ -31,6 +31,10 @@ import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respir
 import { Route as AnatomySkeletalRouteImport } from './routes/anatomy_.skeletal'
 import { Route as AnatomyUrinaryRouteImport } from './routes/anatomy_.urinary'
 import { Route as AnatomyVeinsRouteImport } from './routes/anatomy_.veins'
+import { Route as ConceptsBioinstrumentationRouteImport } from './routes/concepts_.bioinstrumentation'
+import { Route as ConceptsBiomaterialsRouteImport } from './routes/concepts_.biomaterials'
+import { Route as ConceptsBiomechanicsRouteImport } from './routes/concepts_.biomechanics'
+import { Route as ConceptsTissueEngineeringRouteImport } from './routes/concepts_.tissue-engineering'
 import { Route as DevicesPacemakersRouteImport } from './routes/devices_.pacemakers'
 import { Route as DevicesStenosisRouteImport } from './routes/devices_.stenosis'
 import { Route as DevicesValvesRouteImport } from './routes/devices_.valves'
@@ -171,6 +175,28 @@ const AnatomyVeinsRoute = AnatomyVeinsRouteImport.update({
   path: '/anatomy/veins',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConceptsBioinstrumentationRoute =
+  ConceptsBioinstrumentationRouteImport.update({
+    id: '/concepts_/bioinstrumentation',
+    path: '/concepts/bioinstrumentation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ConceptsBiomaterialsRoute = ConceptsBiomaterialsRouteImport.update({
+  id: '/concepts_/biomaterials',
+  path: '/concepts/biomaterials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptsBiomechanicsRoute = ConceptsBiomechanicsRouteImport.update({
+  id: '/concepts_/biomechanics',
+  path: '/concepts/biomechanics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptsTissueEngineeringRoute =
+  ConceptsTissueEngineeringRouteImport.update({
+    id: '/concepts_/tissue-engineering',
+    path: '/concepts/tissue-engineering',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DevicesPacemakersRoute = DevicesPacemakersRouteImport.update({
   id: '/devices_/pacemakers',
   path: '/devices/pacemakers',
@@ -353,6 +379,10 @@ export interface FileRoutesByFullPath {
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
+  '/concepts/bioinstrumentation': typeof ConceptsBioinstrumentationRoute
+  '/concepts/biomaterials': typeof ConceptsBiomaterialsRoute
+  '/concepts/biomechanics': typeof ConceptsBiomechanicsRoute
+  '/concepts/tissue-engineering': typeof ConceptsTissueEngineeringRoute
   '/devices/pacemakers': typeof DevicesPacemakersRoute
   '/devices/stenosis': typeof DevicesStenosisRoute
   '/devices/valves': typeof DevicesValvesRoute
@@ -406,6 +436,10 @@ export interface FileRoutesByTo {
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
+  '/concepts/bioinstrumentation': typeof ConceptsBioinstrumentationRoute
+  '/concepts/biomaterials': typeof ConceptsBiomaterialsRoute
+  '/concepts/biomechanics': typeof ConceptsBiomechanicsRoute
+  '/concepts/tissue-engineering': typeof ConceptsTissueEngineeringRoute
   '/devices/pacemakers': typeof DevicesPacemakersRoute
   '/devices/stenosis': typeof DevicesStenosisRoute
   '/devices/valves': typeof DevicesValvesRoute
@@ -460,6 +494,10 @@ export interface FileRoutesById {
   '/anatomy_/skeletal': typeof AnatomySkeletalRoute
   '/anatomy_/urinary': typeof AnatomyUrinaryRoute
   '/anatomy_/veins': typeof AnatomyVeinsRoute
+  '/concepts_/bioinstrumentation': typeof ConceptsBioinstrumentationRoute
+  '/concepts_/biomaterials': typeof ConceptsBiomaterialsRoute
+  '/concepts_/biomechanics': typeof ConceptsBiomechanicsRoute
+  '/concepts_/tissue-engineering': typeof ConceptsTissueEngineeringRoute
   '/devices_/pacemakers': typeof DevicesPacemakersRoute
   '/devices_/stenosis': typeof DevicesStenosisRoute
   '/devices_/valves': typeof DevicesValvesRoute
@@ -515,6 +553,10 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal'
     | '/anatomy/urinary'
     | '/anatomy/veins'
+    | '/concepts/bioinstrumentation'
+    | '/concepts/biomaterials'
+    | '/concepts/biomechanics'
+    | '/concepts/tissue-engineering'
     | '/devices/pacemakers'
     | '/devices/stenosis'
     | '/devices/valves'
@@ -568,6 +610,10 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal'
     | '/anatomy/urinary'
     | '/anatomy/veins'
+    | '/concepts/bioinstrumentation'
+    | '/concepts/biomaterials'
+    | '/concepts/biomechanics'
+    | '/concepts/tissue-engineering'
     | '/devices/pacemakers'
     | '/devices/stenosis'
     | '/devices/valves'
@@ -621,6 +667,10 @@ export interface FileRouteTypes {
     | '/anatomy_/skeletal'
     | '/anatomy_/urinary'
     | '/anatomy_/veins'
+    | '/concepts_/bioinstrumentation'
+    | '/concepts_/biomaterials'
+    | '/concepts_/biomechanics'
+    | '/concepts_/tissue-engineering'
     | '/devices_/pacemakers'
     | '/devices_/stenosis'
     | '/devices_/valves'
@@ -675,6 +725,10 @@ export interface RootRouteChildren {
   AnatomySkeletalRoute: typeof AnatomySkeletalRoute
   AnatomyUrinaryRoute: typeof AnatomyUrinaryRoute
   AnatomyVeinsRoute: typeof AnatomyVeinsRoute
+  ConceptsBioinstrumentationRoute: typeof ConceptsBioinstrumentationRoute
+  ConceptsBiomaterialsRoute: typeof ConceptsBiomaterialsRoute
+  ConceptsBiomechanicsRoute: typeof ConceptsBiomechanicsRoute
+  ConceptsTissueEngineeringRoute: typeof ConceptsTissueEngineeringRoute
   DevicesPacemakersRoute: typeof DevicesPacemakersRoute
   DevicesStenosisRoute: typeof DevicesStenosisRoute
   DevicesValvesRoute: typeof DevicesValvesRoute
@@ -860,6 +914,34 @@ declare module '@tanstack/react-router' {
       path: '/anatomy/veins'
       fullPath: '/anatomy/veins'
       preLoaderRoute: typeof AnatomyVeinsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concepts_/bioinstrumentation': {
+      id: '/concepts_/bioinstrumentation'
+      path: '/concepts/bioinstrumentation'
+      fullPath: '/concepts/bioinstrumentation'
+      preLoaderRoute: typeof ConceptsBioinstrumentationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concepts_/biomaterials': {
+      id: '/concepts_/biomaterials'
+      path: '/concepts/biomaterials'
+      fullPath: '/concepts/biomaterials'
+      preLoaderRoute: typeof ConceptsBiomaterialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concepts_/biomechanics': {
+      id: '/concepts_/biomechanics'
+      path: '/concepts/biomechanics'
+      fullPath: '/concepts/biomechanics'
+      preLoaderRoute: typeof ConceptsBiomechanicsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concepts_/tissue-engineering': {
+      id: '/concepts_/tissue-engineering'
+      path: '/concepts/tissue-engineering'
+      fullPath: '/concepts/tissue-engineering'
+      preLoaderRoute: typeof ConceptsTissueEngineeringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/devices_/pacemakers': {
@@ -1091,6 +1173,10 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomySkeletalRoute: AnatomySkeletalRoute,
   AnatomyUrinaryRoute: AnatomyUrinaryRoute,
   AnatomyVeinsRoute: AnatomyVeinsRoute,
+  ConceptsBioinstrumentationRoute: ConceptsBioinstrumentationRoute,
+  ConceptsBiomaterialsRoute: ConceptsBiomaterialsRoute,
+  ConceptsBiomechanicsRoute: ConceptsBiomechanicsRoute,
+  ConceptsTissueEngineeringRoute: ConceptsTissueEngineeringRoute,
   DevicesPacemakersRoute: DevicesPacemakersRoute,
   DevicesStenosisRoute: DevicesStenosisRoute,
   DevicesValvesRoute: DevicesValvesRoute,
