@@ -42,3 +42,5 @@ use the editor.
 - Digestive section definitions and image highlight paths live in `src/data/digestive.ts`; un-nested leaf routes share `DigestiveLesson` so anatomy and digestion use the same organ mapping.
 - Muscular section definitions live in `src/data/muscular.ts`; un-nested leaf routes share `MuscularLesson`, with imported asset pointers for externally sourced anatomy charts, to keep navigation and media consistent.
 - Challenge games (quiz, diagnosis, design) live in `src/data/challenges.ts` and render via `Challenges`; first completion awards XP once via a `challenge:<id>` completed topic.
+
+- Accounts: `useAuth` in `src/lib/auth.ts`; progress stays in localStorage as a cache and `startProgressSync` mirrors it to `user_progress` (jsonb per user) when signed in, so signed-out play still works.
