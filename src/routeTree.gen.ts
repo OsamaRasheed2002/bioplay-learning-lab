@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnatomyRouteImport } from './routes/anatomy'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ChallengesRouteImport } from './routes/challenges'
 import { Route as ConceptsRouteImport } from './routes/concepts'
 import { Route as DevicesRouteImport } from './routes/devices'
@@ -75,6 +76,11 @@ const IndexRoute = IndexRouteImport.update({
 const AnatomyRoute = AnatomyRouteImport.update({
   id: '/anatomy',
   path: '/anatomy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChallengesRoute = ChallengesRouteImport.update({
@@ -371,6 +377,7 @@ const DevicesValvesHistoryRoute = DevicesValvesHistoryRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/anatomy': typeof AnatomyRoute
+  '/auth': typeof AuthRoute
   '/challenges': typeof ChallengesRoute
   '/concepts': typeof ConceptsRoute
   '/devices': typeof DevicesRoute
@@ -430,6 +437,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/anatomy': typeof AnatomyRoute
+  '/auth': typeof AuthRoute
   '/challenges': typeof ChallengesRoute
   '/concepts': typeof ConceptsRoute
   '/devices': typeof DevicesRoute
@@ -490,6 +498,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/anatomy': typeof AnatomyRoute
+  '/auth': typeof AuthRoute
   '/challenges': typeof ChallengesRoute
   '/concepts': typeof ConceptsRoute
   '/devices': typeof DevicesRoute
@@ -551,6 +560,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/anatomy'
+    | '/auth'
     | '/challenges'
     | '/concepts'
     | '/devices'
@@ -610,6 +620,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/anatomy'
+    | '/auth'
     | '/challenges'
     | '/concepts'
     | '/devices'
@@ -669,6 +680,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/anatomy'
+    | '/auth'
     | '/challenges'
     | '/concepts'
     | '/devices'
@@ -729,6 +741,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnatomyRoute: typeof AnatomyRoute
+  AuthRoute: typeof AuthRoute
   ChallengesRoute: typeof ChallengesRoute
   ConceptsRoute: typeof ConceptsRoute
   DevicesRoute: typeof DevicesRoute
@@ -800,6 +813,13 @@ declare module '@tanstack/react-router' {
       path: '/anatomy'
       fullPath: '/anatomy'
       preLoaderRoute: typeof AnatomyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/challenges': {
@@ -1193,6 +1213,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnatomyRoute: AnatomyRoute,
+  AuthRoute: AuthRoute,
   ChallengesRoute: ChallengesRoute,
   ConceptsRoute: ConceptsRoute,
   DevicesRoute: DevicesRoute,

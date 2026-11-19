@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Moon, Sparkles, Sun, X } from "lucide-react";
+import { LogIn, LogOut, Menu, Moon, Sparkles, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { BioLogo } from "@/components/bio/BioLogo";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/lib/auth";
 import { levelFromXp, useProgress } from "@/lib/progress";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +23,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const { progress } = useProgress();
   const { level } = levelFromXp(progress.xp);
+  const { user, name } = useAuth();
 
   const [dark, setDark] = useState(true);
   useEffect(() => {
@@ -79,6 +82,18 @@ export function SiteHeader() {
               Lv {level}
             </span>
           </Link>
+          {user ? (
+            <Button variant="glass" size="sm" onClick={() => supabase.auth.signOut()} aria-label="Sign out">
+              <span className="hidden max-w-28 truncate sm:inline">{name}</span>
+              <LogOut />
+            </Button>
+          ) : (
+            <Button variant="glass" size="sm" asChild>
+              <Link to="/auth">
+                <LogIn /> <span className="hidden sm:inline">Sign in</span>
+              </Link>
+            </Button>
+          )}
           <Button
             variant="glass"
             size="icon"

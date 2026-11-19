@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
+import { supabase } from "@/integrations/supabase/client";
+
 export const XP_PER_LEVEL = 500;
 
 export type Achievement = {
@@ -98,6 +100,40 @@ export function answerDaily(p: Progress, choice: number, now: Date = new Date())
   };
 }
 
+// Signed-in learners: progress is mirrored to their account so it follows them across devices.
+let cloudUserId: string | null = null;
+
+function pushToCloud(p: Progress) {
+  if (!cloudUserId) return;
+  void supabase
+    .from("user_progress")
+    .upsert({ user_id: cloudUserId, data: p as never, updated_at: new Date().toISOString() });
+}
+
+/** Call once on app start: keeps local progress in step with the signed-in account. */
+export function startProgressSync() {
+  const pull = async (userId: string | null) => {
+    if (userId === cloudUserId) return;
+    cloudUserId = userId;
+    if (!userId) {
+      window.localStorage.removeItem(KEY);
+      window.dispatchEvent(new Event(EVENT));
+      return;
+    }
+    const { data } = await supabase.from("user_progress").select("data").eq("user_id", userId).maybeSingle();
+    if (data?.data) {
+      window.localStorage.setItem(KEY, JSON.stringify({ ...STARTER_PROGRESS, ...(data.data as Partial<Progress>) }));
+      window.dispatchEvent(new Event(EVENT));
+    } else {
+      // First sign-in: keep what they earned before having an account.
+      pushToCloud(loadProgress());
+    }
+  };
+  const { data } = supabase.auth.onAuthStateChange((_e, s) => void pull(s?.user.id ?? null));
+  void supabase.auth.getSession().then(({ data: d }) => pull(d.session?.user.id ?? null));
+  return () => data.subscription.unsubscribe();
+}
+
 export function useProgress() {
   const [progress, setProgress] = useState<Progress>(STARTER_PROGRESS);
 
@@ -116,11 +152,13 @@ export function useProgress() {
     const next = fn(loadProgress());
     window.localStorage.setItem(KEY, JSON.stringify(next));
     window.dispatchEvent(new Event(EVENT));
+    pushToCloud(next);
   }, []);
 
   const reset = useCallback(() => {
     window.localStorage.removeItem(KEY);
     window.dispatchEvent(new Event(EVENT));
+    pushToCloud(STARTER_PROGRESS);
   }, []);
 
   return { progress, update, reset };

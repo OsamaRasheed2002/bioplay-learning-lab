@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteFooter } from "@/components/bio/SiteFooter";
 import { SiteHeader } from "@/components/bio/SiteHeader";
 import { Toaster } from "@/components/ui/sonner";
+import { startProgressSync } from "@/lib/progress";
 
 function NotFoundComponent() {
   return (
@@ -141,6 +142,7 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
+  useEffect(() => startProgressSync(), []);
   const { queryClient } = Route.useRouteContext();
 
   return (
