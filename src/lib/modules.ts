@@ -33,8 +33,8 @@ export const MODULES: LearningModule[] = [
     tone: "mint",
     lessons: 28,
     minutes: 230,
-    topics: ["Cardiovascular system", "Respiratory system", "Nervous system", "Skeletal system", "Digestive system", "Muscular system", "Endocrine system", "Integumentary system", "Urinary system", "Reproductive system", "Anatomical planes"],
-    topicLinks: { "Cardiovascular system": "/anatomy/cardiovascular", "Respiratory system": "/anatomy/respiratory", "Skeletal system": "/anatomy/skeletal", "Nervous system": "/anatomy/nervous", "Digestive system": "/anatomy/digestive", "Muscular system": "/anatomy/muscular", "Endocrine system": "/anatomy/endocrine", "Integumentary system": "/anatomy/integumentary", "Urinary system": "/anatomy/urinary", "Reproductive system": "/anatomy/reproductive", "Anatomical planes": "/anatomy/planes" },
+    topics: ["Anatomical planes", "Cardiovascular system", "Respiratory system", "Nervous system", "Skeletal system", "Digestive system", "Muscular system", "Endocrine system", "Integumentary system", "Urinary system", "Reproductive system"],
+    topicLinks: { "Anatomical planes": "/anatomy/planes", "Cardiovascular system": "/anatomy/cardiovascular", "Respiratory system": "/anatomy/respiratory", "Skeletal system": "/anatomy/skeletal", "Nervous system": "/anatomy/nervous", "Digestive system": "/anatomy/digestive", "Muscular system": "/anatomy/muscular", "Endocrine system": "/anatomy/endocrine", "Integumentary system": "/anatomy/integumentary", "Urinary system": "/anatomy/urinary", "Reproductive system": "/anatomy/reproductive" },
   },
   {
     id: "signals",
