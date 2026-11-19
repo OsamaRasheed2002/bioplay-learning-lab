@@ -128,25 +128,6 @@ function Hero() {
               </Link>
             </Button>
           </div>
-
-          <div
-            className="flex animate-fade-up items-center gap-4 pt-2"
-            style={{ animationDelay: "320ms" }}
-          >
-            <div className="flex -space-x-2">
-              {["bg-mint", "bg-lavender", "bg-sky", "bg-peach"].map((c, i) => (
-                <span
-                  key={c}
-                  className={`grid size-9 place-items-center rounded-full border-2 border-background ${c} font-display text-xs font-bold`}
-                >
-                  {["", "", "", ""][i]}
-                </span>
-              ))}
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {"\n"}
-            </p>
-          </div>
         </div>
 
         <HeroVisual />
