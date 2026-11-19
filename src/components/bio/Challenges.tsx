@@ -23,8 +23,20 @@ function useAward() {
 export function Challenges() {
   const [active, setActive] = useState<Id>("quiz");
   const { done, award } = useAward();
+  useEffect(() => {
+    const sync = () => {
+      const h = window.location.hash.slice(1);
+      if (CARDS.some((c) => c.id === h)) {
+        setActive(h as Id);
+        document.getElementById("challenge-games")?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
   return (
-    <section className="py-10">
+    <section id="challenge-games" className="scroll-mt-20 py-10">
       <p className="font-mono text-xs uppercase tracking-widest text-mint">Play</p>
       <h2 className="mt-1 font-display text-3xl font-bold">Pick a challenge</h2>
       <p className="mt-1 text-muted-foreground">Finish each one for +{CHALLENGE_XP} XP the first time. Replay as often as you like.</p>

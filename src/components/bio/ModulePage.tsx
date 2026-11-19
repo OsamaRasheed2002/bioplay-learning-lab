@@ -82,8 +82,12 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
               "animate-fade-up block rounded-3xl border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-float",
               link ? "border-mint" : "border-border",
             );
-            return link ? (
-              <Link key={t} to={link} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
+            return link?.includes("#") ? (
+              <a key={t} href={link} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
+                {body}
+              </a>
+            ) : link ? (
+              <Link key={t} to={link as Exclude<typeof link, "/challenges#device">} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
                 {body}
               </Link>
             ) : (
