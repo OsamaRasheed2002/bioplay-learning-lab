@@ -82,12 +82,12 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
               "animate-fade-up block rounded-3xl border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-float",
               link ? "border-mint" : "border-border",
             );
-            return link?.includes("#") ? (
-              <a key={t} href={link} onClick={(e) => { const [path, hash] = link.split("#"); if (window.location.pathname === path) { e.preventDefault(); history.replaceState(null, "", link); window.dispatchEvent(new HashChangeEvent("hashchange")); void hash; } }} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
+            return (link as string | undefined)?.includes("#") ? (
+              <a key={t} href={link} onClick={(e) => { const [path, hash] = (link as string).split("#"); if (window.location.pathname === path) { e.preventDefault(); history.replaceState(null, "", link as string); window.dispatchEvent(new HashChangeEvent("hashchange")); void hash; } }} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
                 {body}
               </a>
             ) : link ? (
-              <Link key={t} to={link as Exclude<typeof link, "/challenges#device">} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
+              <Link key={t} to={link} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
                 {body}
               </Link>
             ) : (

@@ -31,6 +31,7 @@ import { Route as AnatomyRespiratoryRouteImport } from './routes/anatomy_.respir
 import { Route as AnatomySkeletalRouteImport } from './routes/anatomy_.skeletal'
 import { Route as AnatomyUrinaryRouteImport } from './routes/anatomy_.urinary'
 import { Route as AnatomyVeinsRouteImport } from './routes/anatomy_.veins'
+import { Route as ChallengesBossRouteImport } from './routes/challenges_.boss'
 import { Route as ChallengesPulseCheckRouteImport } from './routes/challenges_.pulse-check'
 import { Route as ConceptsBioinstrumentationRouteImport } from './routes/concepts_.bioinstrumentation'
 import { Route as ConceptsBiomaterialsRouteImport } from './routes/concepts_.biomaterials'
@@ -174,6 +175,11 @@ const AnatomyUrinaryRoute = AnatomyUrinaryRouteImport.update({
 const AnatomyVeinsRoute = AnatomyVeinsRouteImport.update({
   id: '/anatomy_/veins',
   path: '/anatomy/veins',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChallengesBossRoute = ChallengesBossRouteImport.update({
+  id: '/challenges_/boss',
+  path: '/challenges/boss',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChallengesPulseCheckRoute = ChallengesPulseCheckRouteImport.update({
@@ -385,6 +391,7 @@ export interface FileRoutesByFullPath {
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
+  '/challenges/boss': typeof ChallengesBossRoute
   '/challenges/pulse-check': typeof ChallengesPulseCheckRoute
   '/concepts/bioinstrumentation': typeof ConceptsBioinstrumentationRoute
   '/concepts/biomaterials': typeof ConceptsBiomaterialsRoute
@@ -443,6 +450,7 @@ export interface FileRoutesByTo {
   '/anatomy/skeletal': typeof AnatomySkeletalRoute
   '/anatomy/urinary': typeof AnatomyUrinaryRoute
   '/anatomy/veins': typeof AnatomyVeinsRoute
+  '/challenges/boss': typeof ChallengesBossRoute
   '/challenges/pulse-check': typeof ChallengesPulseCheckRoute
   '/concepts/bioinstrumentation': typeof ConceptsBioinstrumentationRoute
   '/concepts/biomaterials': typeof ConceptsBiomaterialsRoute
@@ -502,6 +510,7 @@ export interface FileRoutesById {
   '/anatomy_/skeletal': typeof AnatomySkeletalRoute
   '/anatomy_/urinary': typeof AnatomyUrinaryRoute
   '/anatomy_/veins': typeof AnatomyVeinsRoute
+  '/challenges_/boss': typeof ChallengesBossRoute
   '/challenges_/pulse-check': typeof ChallengesPulseCheckRoute
   '/concepts_/bioinstrumentation': typeof ConceptsBioinstrumentationRoute
   '/concepts_/biomaterials': typeof ConceptsBiomaterialsRoute
@@ -562,6 +571,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal'
     | '/anatomy/urinary'
     | '/anatomy/veins'
+    | '/challenges/boss'
     | '/challenges/pulse-check'
     | '/concepts/bioinstrumentation'
     | '/concepts/biomaterials'
@@ -620,6 +630,7 @@ export interface FileRouteTypes {
     | '/anatomy/skeletal'
     | '/anatomy/urinary'
     | '/anatomy/veins'
+    | '/challenges/boss'
     | '/challenges/pulse-check'
     | '/concepts/bioinstrumentation'
     | '/concepts/biomaterials'
@@ -678,6 +689,7 @@ export interface FileRouteTypes {
     | '/anatomy_/skeletal'
     | '/anatomy_/urinary'
     | '/anatomy_/veins'
+    | '/challenges_/boss'
     | '/challenges_/pulse-check'
     | '/concepts_/bioinstrumentation'
     | '/concepts_/biomaterials'
@@ -737,6 +749,7 @@ export interface RootRouteChildren {
   AnatomySkeletalRoute: typeof AnatomySkeletalRoute
   AnatomyUrinaryRoute: typeof AnatomyUrinaryRoute
   AnatomyVeinsRoute: typeof AnatomyVeinsRoute
+  ChallengesBossRoute: typeof ChallengesBossRoute
   ChallengesPulseCheckRoute: typeof ChallengesPulseCheckRoute
   ConceptsBioinstrumentationRoute: typeof ConceptsBioinstrumentationRoute
   ConceptsBiomaterialsRoute: typeof ConceptsBiomaterialsRoute
@@ -927,6 +940,13 @@ declare module '@tanstack/react-router' {
       path: '/anatomy/veins'
       fullPath: '/anatomy/veins'
       preLoaderRoute: typeof AnatomyVeinsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/challenges_/boss': {
+      id: '/challenges_/boss'
+      path: '/challenges/boss'
+      fullPath: '/challenges/boss'
+      preLoaderRoute: typeof ChallengesBossRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/challenges_/pulse-check': {
@@ -1193,6 +1213,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnatomySkeletalRoute: AnatomySkeletalRoute,
   AnatomyUrinaryRoute: AnatomyUrinaryRoute,
   AnatomyVeinsRoute: AnatomyVeinsRoute,
+  ChallengesBossRoute: ChallengesBossRoute,
   ChallengesPulseCheckRoute: ChallengesPulseCheckRoute,
   ConceptsBioinstrumentationRoute: ConceptsBioinstrumentationRoute,
   ConceptsBiomaterialsRoute: ConceptsBiomaterialsRoute,
