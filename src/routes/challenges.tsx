@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { DailyChallenge } from "@/components/bio/DailyChallenge";
+import { Challenges } from "@/components/bio/Challenges";
 import { ModulePage } from "@/components/bio/ModulePage";
 
 export const Route = createFileRoute("/challenges")({
@@ -22,6 +23,7 @@ function ChallengesPage() {
     <>
       <ModulePage id="challenges" />
       <section className="mx-auto max-w-6xl px-5">
+        <Challenges />
         <DailyChallenge />
       </section>
     </>
