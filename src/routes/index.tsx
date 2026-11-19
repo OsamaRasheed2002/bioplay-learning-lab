@@ -211,7 +211,9 @@ function StatsStrip() {
 
 function Modules() {
   const featured = getModule("anatomy");
-  const rest = MODULES.filter((m) => m.id !== featured.id);
+  const rest = MODULES.filter((m) => m.id !== featured.id).sort(
+    (a, b) => Number(a.id === "signals") - Number(b.id === "signals"),
+  );
   return (
     <section className="mx-auto mt-24 max-w-7xl px-5" id="learn">
       <SectionHeading
