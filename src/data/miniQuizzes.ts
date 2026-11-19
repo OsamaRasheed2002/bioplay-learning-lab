@@ -112,7 +112,7 @@ export const MORE_QUIZZES: Record<string, MiniQ[][]> = {
 /** Weeks start Thursday 19 Nov 2026, 9pm UK time (Europe/London, DST-aware). */
 export function quizWeek(now: Date = new Date()) {
   const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", hourCycle: "h23" }).formatToParts(now).map((x) => [x.type, x.value]));
-  const local = Date.UTC(+p.year!, +p.month! - 1, +p.day!, +p.hour!);
+  const local = Date.UTC(+p["year"]!, +p["month"]! - 1, +p["day"]!, +p["hour"]!);
   return Math.max(0, Math.floor((local - Date.UTC(2026, 10, 19, 21)) / (7 * 864e5)));
 }
 
