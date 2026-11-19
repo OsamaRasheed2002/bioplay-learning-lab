@@ -44,4 +44,4 @@ use the editor.
 - Challenge games (quiz, diagnosis, design) live in `src/data/challenges.ts` and render via `Challenges`; first completion awards XP once via a `challenge:<id>` completed topic.
 
 - Accounts: `useAuth` in `src/lib/auth.ts`; progress stays in localStorage as a cache and `startProgressSync` mirrors it to `user_progress` (jsonb per user) when signed in, so signed-out play still works.
-- Anatomy mini quizzes live in `src/data/miniQuizzes.ts` keyed by section id and render via `MiniQuiz` at the bottom of each section's main page, awarding XP once via a `quiz:<id>` topic.
+- Anatomy mini quizzes live in `src/data/miniQuizzes.ts` keyed by section id and render via `MiniQuiz` at the bottom of each section's main page, rotating weekly from Thu 19 Nov 2026 21:00 Europe/London, awarding XP once per week via a `quiz:<id>:w<week>` topic.

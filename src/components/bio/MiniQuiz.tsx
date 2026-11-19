@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, RotateCcw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { MINI_QUIZZES, MINI_QUIZ_XP } from "@/data/miniQuizzes";
+import { MINI_QUIZ_XP, quizWeek, weeklyQuiz } from "@/data/miniQuizzes";
 import { useProgress } from "@/lib/progress";
 import { cn } from "@/lib/utils";
 
 export function MiniQuiz({ id }: { id: string }) {
-  const qs = MINI_QUIZZES[id] ?? [];
+  const [week, setWeek] = useState(0);
+  useEffect(() => setWeek(quizWeek()), []);
+  const qs = weeklyQuiz(id, week);
   const [picks, setPicks] = useState<(number | null)[]>(() => qs.map(() => null));
+  useEffect(() => setPicks(qs.map(() => null)), [week]);
   const { progress, update } = useProgress();
-  const key = `quiz:${id}`;
+  const key = `quiz:${id}:w${week}`;
   const done = picks.every((p) => p !== null);
   const score = picks.filter((p, i) => p === qs[i]!.answer).length;
 
@@ -22,7 +25,7 @@ export function MiniQuiz({ id }: { id: string }) {
   };
 
   return <div className="mt-12 rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
-    <p className="font-mono text-xs uppercase tracking-widest text-mint-deep">Mini quiz · 3 questions</p>
+    <p className="font-mono text-xs uppercase tracking-widest text-mint-deep">Mini quiz · new questions every Thursday 9pm</p>
     <h2 className="mt-2 text-2xl font-bold">Test what you learned</h2>
     <div className="mt-6 space-y-6">{qs.map((q, qi) => <div key={qi}>
       <p className="font-semibold">{qi + 1}. {q.q}</p>
