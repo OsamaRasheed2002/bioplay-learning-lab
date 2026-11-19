@@ -83,7 +83,7 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
               link ? "border-mint" : "border-border",
             );
             return link?.includes("#") ? (
-              <a key={t} href={link} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
+              <a key={t} href={link} onClick={(e) => { const [path, hash] = link.split("#"); if (window.location.pathname === path) { e.preventDefault(); history.replaceState(null, "", link); window.dispatchEvent(new HashChangeEvent("hashchange")); void hash; } }} style={{ animationDelay: `${i * 80}ms` }} className={cls}>
                 {body}
               </a>
             ) : link ? (
