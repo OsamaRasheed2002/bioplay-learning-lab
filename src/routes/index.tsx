@@ -87,7 +87,7 @@ function Hero() {
           >
             Explore the <span className="text-gradient-brand">Science</span> Behind the{" "}
             <span className="relative inline-block">
-              Human Body
+              Human Body!
               <svg
                 viewBox="0 0 300 20"
                 className="absolute -bottom-2 left-0 h-3 w-full"
