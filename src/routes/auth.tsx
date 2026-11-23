@@ -1,5 +1,4 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { LovableMark } from "@lovable.dev/cloud-auth-js/react";
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 
@@ -59,8 +58,8 @@ function AuthPage() {
     setBusy(false);
   };
 
-  const social = async (provider: "google" | "lovable") => {
-    const r = await lovable.auth.signInWithOAuth(provider, { redirect_uri: window.location.origin });
+  const social = async () => {
+    const r = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
     if (r.error) toast.error("Sign-in didn't work, please try again.");
   };
 
@@ -78,11 +77,8 @@ function AuthPage() {
         ) : (
           <>
             <div className="mt-6 grid gap-2">
-              <Button type="button" variant="outline" className="h-11 border-[#8E918F] bg-[#131314] text-[#E3E3E3] hover:bg-[#131314]/90 hover:text-[#E3E3E3]" onClick={() => social("google")}>
+              <Button type="button" variant="outline" className="h-11 border-[#8E918F] bg-[#131314] text-[#E3E3E3] hover:bg-[#131314]/90 hover:text-[#E3E3E3]" onClick={social}>
                 <GoogleG /> Continue with Google
-              </Button>
-              <Button type="button" variant="outline" className="h-11" onClick={() => social("lovable")}>
-                <LovableMark /> Continue with Lovable
               </Button>
             </div>
             <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
