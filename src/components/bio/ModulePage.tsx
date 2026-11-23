@@ -69,7 +69,10 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {m.topics.map((t, i) => {
             const link = m.topicLinks?.[t];
-            const title = id === "anatomy" ? t.replace(/\bsystem\b/gi, "System") : t;
+            const title =
+              id === "anatomy"
+                ? t.replace(/\bsystem\b/gi, "System").replace(/\bplanes\b/gi, "Planes")
+                : t;
             const unitTone =
               id === "anatomy"
                 ? TONE_CLASSES[UNIT_ACCENT_TONES[i % UNIT_ACCENT_TONES.length]]
