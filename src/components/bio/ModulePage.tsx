@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { TONE_CLASSES, getModule, type LearningModule , formatLessons, formatMinutes } from "@/lib/modules";
 import { cn } from "@/lib/utils";
 
+const UNIT_ACCENT_TONES = ["mint", "sky", "lavender", "peach"] as const;
+
 export function ModulePage({ id }: { id: LearningModule["id"] }) {
   const m = getModule(id);
   const tone = TONE_CLASSES[m.tone];
@@ -67,19 +69,30 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {m.topics.map((t, i) => {
             const link = m.topicLinks?.[t];
+            const unitTone =
+              id === "anatomy"
+                ? TONE_CLASSES[UNIT_ACCENT_TONES[i % UNIT_ACCENT_TONES.length]]
+                : tone;
             const body = (
               <>
                 <div className={cn("mb-4 grid size-10 place-items-center rounded-2xl font-mono text-sm font-bold", tone.bg)}>
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <div className="font-display text-lg font-semibold">{t}</div>
-                <div className={cn("mt-1 text-xs", link ? "font-semibold text-mint-deep" : "text-muted-foreground")}>
+                <div
+                  className={cn(
+                    "mt-1 text-xs transition-colors duration-200",
+                    link
+                      ? cn("font-semibold group-hover:brightness-125", unitTone.text)
+                      : "text-muted-foreground",
+                  )}
+                >
                   Unit {i + 1} · {link ? "Explore now →" : "coming soon"}
                 </div>
               </>
             );
             const cls = cn(
-              "animate-fade-up block rounded-3xl border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-float",
+              "animate-fade-up group block rounded-3xl border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-float",
               link ? "border-mint" : "border-border",
             );
             return (link as string | undefined)?.includes("#") ? (
