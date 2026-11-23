@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import chart from "@/assets/urinary-anatomy.png.asset.json";
+import chart from "@/assets/urinary-anatomy-portable.jpg";
 import { URINARY_PARTS, URINARY_SECTIONS, URINARY_STEPS, type UrinarySection } from "@/data/urinary";
 
 export function UrinaryLesson({ section }: { section: UrinarySection }) {
@@ -15,7 +15,7 @@ export function UrinaryLesson({ section }: { section: UrinarySection }) {
     <p className="font-mono text-xs uppercase tracking-widest text-sky-deep">Anatomy Explorer · Urinary system</p>
     <h1 className="mt-3 text-4xl font-bold sm:text-5xl">{current.title}</h1><p className="mt-3 text-muted-foreground">{current.description}</p>
     <nav aria-label="Urinary system sections" className="my-7 flex flex-wrap gap-2">{URINARY_SECTIONS.map(s => <Button key={s.id} asChild size="sm" variant={section === s.id ? "default" : "outline"} className="h-auto whitespace-normal py-2"><Link to={s.to} aria-current={section === s.id ? "page" : undefined}>{s.title}</Link></Button>)}</nav>
-    <figure className="mx-auto max-w-3xl"><div className="overflow-hidden rounded-3xl"><img src={chart.url} alt="Detailed male urinary anatomy showing both kidneys, ureters, bladder and urethra, with the neighbouring prostate labelled" width={1500} height={1500} className="block w-full" /></div>
+    <figure className="mx-auto max-w-3xl"><div className="overflow-hidden rounded-3xl"><img src={chart} alt="Detailed male urinary anatomy showing both kidneys, ureters, bladder and urethra, with the neighbouring prostate labelled" width={1500} height={1500} className="block w-full" /></div>
       <figcaption className="mt-3 text-center text-xs text-muted-foreground"><a href="https://commons.wikimedia.org/wiki/File:Urinary_System_(Male).png" target="_blank" rel="noreferrer" className="underline">BruceBlaus</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" className="underline">CC BY-SA 4.0</a></figcaption>
     </figure>
     <div className="mt-7 flex flex-wrap gap-2">{(section === "anatomy" ? URINARY_PARTS : URINARY_STEPS).map((s,i) => <Button key={s.name} variant={selected === i ? "default" : "outline"} aria-pressed={selected === i} onClick={() => setSelected(i)} className="h-auto min-h-12 whitespace-normal py-3">{s.name}</Button>)}</div>

@@ -14,16 +14,16 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import planesImg from "@/assets/anatomical-planes.png.asset.json";
+import planesImg from "@/assets/anatomical-planes-portable.jpg";
 import heartImg from "@/assets/heart-diagram.jpg";
 import respiratoryImg from "@/assets/respiratory-anatomy.jpg";
 import nervousImg from "@/assets/nervous-anatomy.jpg";
 import skeletonImg from "@/assets/skeleton-front.jpg";
 import digestiveImg from "@/assets/digestive-anatomy.jpg";
-import muscularImg from "@/assets/muscular-anatomy.png.asset.json";
-import endocrineImg from "@/assets/endocrine-anatomy.png.asset.json";
-import skinImg from "@/assets/skin-anatomy.jpg.asset.json";
-import urinaryImg from "@/assets/urinary-anatomy.png.asset.json";
+import muscularImg from "@/assets/muscular-anatomy-portable.jpg";
+import endocrineImg from "@/assets/endocrine-anatomy-portable.jpg";
+import skinImg from "@/assets/skin-anatomy-portable.jpg";
+import urinaryImg from "@/assets/urinary-anatomy-portable.jpg";
 import reproductiveImg from "@/assets/reproductive-female-simple.jpg";
 import { TONE_CLASSES, type LearningModule, type ModuleTone } from "@/lib/modules";
 import { cn } from "@/lib/utils";
@@ -31,16 +31,16 @@ import { cn } from "@/lib/utils";
 type TopicVisual = { image: string; icon: LucideIcon; tone: ModuleTone };
 
 const TOPIC_VISUALS: Record<string, TopicVisual> = {
-  "Anatomical planes": { image: planesImg.url, icon: Scan, tone: "sky" },
+  "Anatomical planes": { image: planesImg, icon: Scan, tone: "sky" },
   "Cardiovascular system": { image: heartImg, icon: HeartPulse, tone: "peach" },
   "Respiratory system": { image: respiratoryImg, icon: Wind, tone: "sky" },
   "Nervous system": { image: nervousImg, icon: Brain, tone: "lavender" },
   "Skeletal system": { image: skeletonImg, icon: Bone, tone: "mint" },
   "Digestive system": { image: digestiveImg, icon: Utensils, tone: "peach" },
-  "Muscular system": { image: muscularImg.url, icon: Dumbbell, tone: "lavender" },
-  "Endocrine system": { image: endocrineImg.url, icon: FlaskConical, tone: "mint" },
-  "Integumentary system": { image: skinImg.url, icon: Layers, tone: "peach" },
-  "Urinary system": { image: urinaryImg.url, icon: Droplets, tone: "sky" },
+  "Muscular system": { image: muscularImg, icon: Dumbbell, tone: "lavender" },
+  "Endocrine system": { image: endocrineImg, icon: FlaskConical, tone: "mint" },
+  "Integumentary system": { image: skinImg, icon: Layers, tone: "peach" },
+  "Urinary system": { image: urinaryImg, icon: Droplets, tone: "sky" },
   "Reproductive system": { image: reproductiveImg, icon: Baby, tone: "lavender" },
 };
 

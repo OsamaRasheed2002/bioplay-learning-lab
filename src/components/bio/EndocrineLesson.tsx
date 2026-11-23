@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import chart from "@/assets/endocrine-anatomy.png.asset.json";
+import chart from "@/assets/endocrine-anatomy-portable.jpg";
 import { ENDOCRINE_GLANDS, ENDOCRINE_SECTIONS, HORMONE_STEPS, type EndocrineSection } from "@/data/endocrine";
 
 function GlandPicture({ selected }: { selected: number }) {
   const gland = ENDOCRINE_GLANDS[selected];
-  return <figure><div className="relative overflow-hidden rounded-3xl"><img src={chart.url} alt="Detailed male endocrine anatomy chart with front and back views and labelled glands" width={2500} height={2000} className="block w-full" /><svg viewBox="0 0 900 720" role="img" aria-label={`${gland?.name} highlighted on the endocrine chart`} className="pointer-events-none absolute inset-0 h-full w-full">{gland?.points.map(([x,y], i) => <circle key={i} cx={x} cy={y} r={selected === 3 ? 30 : selected === 1 ? 16 : 12} className="fill-mint/25 stroke-mint-deep" strokeWidth="3" />)}</svg></div><figcaption className="mt-3 text-center text-xs text-muted-foreground"><a href="https://commons.wikimedia.org/wiki/File:Blausen_0346_EndocrineSystem_Male2.png" target="_blank" rel="noreferrer" className="underline">Blausen Medical / BruceBlaus</a> · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noreferrer" className="underline">CC BY 3.0</a> · selection highlights added</figcaption></figure>;
+  return <figure><div className="relative overflow-hidden rounded-3xl"><img src={chart} alt="Detailed male endocrine anatomy chart with front and back views and labelled glands" width={2500} height={2000} className="block w-full" /><svg viewBox="0 0 900 720" role="img" aria-label={`${gland?.name} highlighted on the endocrine chart`} className="pointer-events-none absolute inset-0 h-full w-full">{gland?.points.map(([x,y], i) => <circle key={i} cx={x} cy={y} r={selected === 3 ? 30 : selected === 1 ? 16 : 12} className="fill-mint/25 stroke-mint-deep" strokeWidth="3" />)}</svg></div><figcaption className="mt-3 text-center text-xs text-muted-foreground"><a href="https://commons.wikimedia.org/wiki/File:Blausen_0346_EndocrineSystem_Male2.png" target="_blank" rel="noreferrer" className="underline">Blausen Medical / BruceBlaus</a> · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noreferrer" className="underline">CC BY 3.0</a> · selection highlights added</figcaption></figure>;
 }
 
 export function EndocrineLesson({ section }: { section: EndocrineSection }) {

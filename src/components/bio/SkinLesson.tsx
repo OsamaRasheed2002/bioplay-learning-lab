@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import chart from "@/assets/skin-anatomy.jpg.asset.json";
+import chart from "@/assets/skin-anatomy-portable.jpg";
 import { SKIN_PARTS, SKIN_SECTIONS, SKIN_FUNCTIONS, type SkinSection } from "@/data/integumentary";
 
 function SkinPicture({ selected }: { selected: number }) {
-  return <figure><div className="relative overflow-hidden rounded-3xl"><img src={chart.url} alt="Detailed three-dimensional skin cross-section showing epidermis, dermis, subcutaneous fat, hair follicles, glands, nerves and vessels" width={1920} height={1080} className="block w-full" /><svg viewBox="0 0 1000 562.5" role="img" aria-label={`${SKIN_PARTS[selected]?.name} highlighted on the skin cross-section`} className="pointer-events-none absolute inset-0 h-full w-full"><path d={SKIN_PARTS[selected]?.highlight} className="fill-mint/20 stroke-mint-deep" strokeWidth="3" /></svg></div><figcaption className="mt-3 text-center text-xs text-muted-foreground"><a href="https://commons.wikimedia.org/wiki/File:Integumentary_system.jpg" target="_blank" rel="noreferrer" className="underline">Scientific Animations</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" className="underline">CC BY-SA 4.0</a> · selection highlights added; adapted visual under the same license</figcaption></figure>;
+  return <figure><div className="relative overflow-hidden rounded-3xl"><img src={chart} alt="Detailed three-dimensional skin cross-section showing epidermis, dermis, subcutaneous fat, hair follicles, glands, nerves and vessels" width={1920} height={1080} className="block w-full" /><svg viewBox="0 0 1000 562.5" role="img" aria-label={`${SKIN_PARTS[selected]?.name} highlighted on the skin cross-section`} className="pointer-events-none absolute inset-0 h-full w-full"><path d={SKIN_PARTS[selected]?.highlight} className="fill-mint/20 stroke-mint-deep" strokeWidth="3" /></svg></div><figcaption className="mt-3 text-center text-xs text-muted-foreground"><a href="https://commons.wikimedia.org/wiki/File:Integumentary_system.jpg" target="_blank" rel="noreferrer" className="underline">Scientific Animations</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" className="underline">CC BY-SA 4.0</a> · selection highlights added; adapted visual under the same license</figcaption></figure>;
 }
 
 export function SkinLesson({ section }: { section: SkinSection }) {

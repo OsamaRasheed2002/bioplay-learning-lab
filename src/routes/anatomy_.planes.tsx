@@ -2,7 +2,7 @@ import { MiniQuiz } from "@/components/bio/MiniQuiz";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import diagram from "@/assets/anatomical-planes.png.asset.json";
+import diagram from "@/assets/anatomical-planes-portable.jpg";
 
 export const Route = createFileRoute("/anatomy_/planes")({
   head: () => ({ meta: [
@@ -22,7 +22,7 @@ function AnatomicalPlanes() {
     <p className="font-mono text-xs uppercase tracking-widest text-sky-deep">Anatomy Explorer · Unit 11</p>
     <h1 className="mt-3 text-4xl font-bold sm:text-5xl">Anatomical Planes</h1>
     <p className="mt-3 text-muted-foreground">Three imaginary planes divide the body into different views.</p>
-    <figure className="mx-auto mt-8 max-w-xl overflow-hidden rounded-3xl"><img src={diagram.url} alt="Standing human figure showing sagittal, frontal and transverse planes, with longitudinal, frontal and sagittal axes" width={656} height={772} className="block w-full" /></figure>
+    <figure className="mx-auto mt-8 max-w-xl overflow-hidden rounded-3xl"><img src={diagram} alt="Standing human figure showing sagittal, frontal and transverse planes, with longitudinal, frontal and sagittal axes" width={656} height={772} className="block w-full" /></figure>
     <dl className="mt-8 grid gap-6 sm:grid-cols-3">
       <div><dt className="font-bold text-mint-deep">Sagittal plane</dt><dd className="mt-2 text-sm leading-relaxed text-muted-foreground">Divides the body into left and right. The midsagittal plane makes equal halves.</dd></div>
       <div><dt className="font-bold text-sky-deep">Frontal (coronal) plane</dt><dd className="mt-2 text-sm leading-relaxed text-muted-foreground">Divides the body into front and back.</dd></div>
