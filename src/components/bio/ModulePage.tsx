@@ -2,10 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Clock, Layers, Rocket } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { AnatomyTopicCards } from "@/components/bio/AnatomyTopicCards";
 import { TONE_CLASSES, getModule, type LearningModule , formatLessons, formatMinutes } from "@/lib/modules";
 import { cn } from "@/lib/utils";
-
-const UNIT_ACCENT_TONES = ["mint", "sky", "lavender", "peach"] as const;
 
 export function ModulePage({ id }: { id: LearningModule["id"] }) {
   const m = getModule(id);
@@ -66,17 +65,14 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
           </div>
         </div>
 
+        {id === "anatomy" ? (
+          <AnatomyTopicCards topics={m.topics} topicLinks={m.topicLinks} />
+        ) : (
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {m.topics.map((t, i) => {
             const link = m.topicLinks?.[t];
-            const title =
-              id === "anatomy"
-                ? t.replace(/\bsystem\b/gi, "System").replace(/\bplanes\b/gi, "Planes")
-                : t;
-            const unitTone =
-              id === "anatomy"
-                ? TONE_CLASSES[UNIT_ACCENT_TONES[i % UNIT_ACCENT_TONES.length]]
-                : tone;
+            const title = t;
+            const unitTone = tone;
             const body = (
               <>
                 <div className={cn("mb-4 grid size-10 place-items-center rounded-2xl font-mono text-sm font-bold", tone.bg)}>
@@ -114,6 +110,7 @@ export function ModulePage({ id }: { id: LearningModule["id"] }) {
             );
           })}
         </div>
+        )}
       </div>
     </section>
   );
